@@ -3,99 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ሳምሪ ማሳጅ | የአስተዳዳሪ ፓናል</title>
-    <style>
-        body { background-color: #0a0a0c; color: white; font-family: sans-serif; padding: 30px; }
-        .container { max-width: 600px; margin: 40px auto; background: #121215; padding: 30px; border-radius: 12px; border: 1px solid #2c2c2e; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
-        h2 { color: #ff2d55; text-align: center; font-size: 1.8rem; margin-bottom: 5px; }
-        .form-group { margin-bottom: 20px; }
-        label { display: block; margin-bottom: 8px; color: #8e8e93; font-size: 0.9rem; }
-        input[type="text"], input[type="file"] { width: 100%; padding: 14px; border-radius: 8px; border: 1px solid #2c2c2e; background: #1c1c1e; color: white; box-sizing: border-box; font-size: 1rem; }
-        input[type="text"]:focus { border-color: #ff2d55; outline: none; }
-        .btn { width: 100%; background: #ff2d55; color: white; padding: 15px; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; font-size: 1.1rem; margin-top: 10px; transition: background 0.3s; }
-        .btn:hover { background: #e02447; }
-        .status { margin-top: 20px; text-align: center; font-weight: bold; font-size: 0.95rem; }
-    </style>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
+    <title>ሳምሪ ማሳጅ አገልግሎት | Samri Massage</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <div class="container">
-        <h2>የሳምሪ ማሳጅ ማስተዳደሪያ</h2>
-        <p style="text-align: center; color: #8e8e93; font-size: 0.9rem; margin-bottom: 25px;">ፎቶዎችን እና አገልግሎቶችን በቀጥታ መቆጣጠሪያ</p>
-
-        <div class="form-group">
-            <label>የአገልግሎቱ ስም (Title)</label>
-            <input type="text" id="serviceTitle" placeholder="ምሳሌ፦ የአሮማቴራፒ ማሳጅ">
+    <header class="navbar">
+        <div class="logo">SAMRI <span>MASSAGE</span></div>
+        <nav class="nav-links">
+            <a href="#hero">መነሻ</a>
+            <a href="#about">ስለ እኛ</a>
+            <a href="#gallery">አገልግሎቶች</a>
+            <a href="#stats">ደረጃችን</a>
+        </nav>
+        <div class="nav-right">
+            <div class="lang-selector">
+                <img src="https://flagcdn.com/w20/et.png" alt="Ethiopia Flag">
+                <span>AM</span>
+            </div>
         </div>
+    </header>
 
-        <div class="form-group">
-            <label>አዲስ ፎቶ ይምረጡ</label>
-            <input type="file" id="serviceImage" accept="image/*">
+    <section id="hero" class="hero-section">
+        <div class="hero-content">
+            <p class="subtitle">WELCOME TO ULTIMATE RELAXATION</p>
+            <h1 class="main-title">
+                Redefining <br>
+                <span class="highlight-text">Body & Mind</span> <br>
+                Mastery.
+            </h1>
+            <p class="description">
+                ለሰውነትዎ እረፍት እና ለጤናዎ መታደስ ልዩና ጥራት ያላቸውን የማሳጅ አገልግሎቶች በሙያተኞች እናቀርባለን።
+            </p>
+            <div class="cta-area">
+                <a href="#gallery" class="btn-primary">አገልግሎቶቻችንን ይመልከቱ <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
         </div>
+        <div class="hero-image-box">
+            <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?auto=format&fit=crop&w=800&q=80" alt="Samri Massage Luxury">
+        </div>
+    </section>
 
-        <button class="btn" onclick="uploadData()">ወደ ድረ-ገጹ ጫን (Upload)</button>
-        <div class="status" id="uploadStatus"></div>
-    </div>
+    <section class="quote-section">
+        <div class="quote-container">
+            <p class="quote-text">
+                "Relaxation is the learned art, correct and magnificent, of body assembled in peace."
+            </p>
+        </div>
+    </section>
 
-    <script>
-        // የአንተ የ Firebase ዝግጁ መረጃ
-        const firebaseConfig = {
-            apiKey: "YOUR_API_KEY", // <--- የራስህን API Key እዚህ አስገባ
-            authDomain: "samri-masage.firebaseapp.com",
-            databaseURL: "https://samri-masage-default-rtdb.firebaseio.com/",
-            projectId: "samri-masage",
-            storageBucket: "samri-masage.appspot.com",
-            messagingSenderId: "25518220416",
-            appId: "YOUR_APP_ID" // <--- የራስህን App ID እዚህ አስገባ
-        };
+    <section id="about" class="full-display-section">
+        <div class="display-overlay">
+            <p class="tag">EXCLUSIVE EXPERIENCE</p>
+            <h2>ELEVATED RELAXATION</h2>
+            <p class="sub-tag">Where professional mastery meets the serenity of the elements.</p>
+        </div>
+        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=80" alt="Luxury Spa">
+    </section>
 
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.database();
-        const storage = firebase.storage();
+    <section id="gallery" class="gallery-section">
+        <div class="section-header">
+            <span class="badge">የማሳጅ ዓይነቶች</span>
+            <h2>የምንሰጣቸው አገልግሎቶች</h2>
+        </div>
+        <div class="gallery-grid">
+            
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80" alt="የአሮማቴራፒ ማሳጅ">
+                <div class="item-info"><h3>የአሮማቴራፒ ማሳጅ</h3></div>
+            </div>
 
-        async function uploadData() {
-            const title = document.getElementById('serviceTitle').value;
-            const file = document.getElementById('serviceImage').files[0];
-            const statusDiv = document.getElementById('uploadStatus');
+            <div class="gallery-item active-item">
+                <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=800&q=80" alt="ስዊዲሽ ማሳጅ">
+                <div class="item-info"><h3>ስዊዲሽ ማሳጅ</h3></div>
+            </div>
 
-            if (!title || !file) {
-                statusDiv.style.color = "yellow";
-                statusDiv.innerText = "እባክዎ መጀመሪያ ስም እና ፎቶ በትክክል ያስገቡ!";
-                return;
-            }
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=800&q=80" alt="የጥልቅ ስሜት ማሳጅ">
+                <div class="item-info"><h3>የስፖርት ማሳጅ</h3></div>
+            </div>
 
-            statusDiv.style.color = "white";
-            statusDiv.innerText = "ፎቶው ወደ ሰርቨር እየተጫነ ነው... እባክዎ ይጠብቁ...";
+        </div>
+    </section>
 
-            try {
-                // 1. ፎቶውን ወደ Firebase Storage መጫን
-                const storageRef = storage.ref('massages/' + Date.now() + '_' + file.name);
-                const uploadTask = await storageRef.put(file);
-                const imageUrl = await uploadTask.ref.getDownloadURL();
+    <section id="stats" class="stats-section">
+        <div class="stats-left">
+            <h2>A New Paradigm in <br>Personal Wellness.</h2>
+            <p>በቀጠሮ እና በቤትዎ ድረስ መጥተን በታማኝነት እና በምስጢር ስራችንን እናከናውናለን።</p>
+            <a href="https://wa.me/yournumber" class="btn-secondary">አሁኑኑ ቀጠሮ ይያዙ</a>
+        </div>
+        <div class="stats-right">
+            <div class="stat-box">
+                <h3>500+</h3>
+                <p>ደስተኛ ደንበኞች</p>
+            </div>
+            <div class="stat-box">
+                <h3>100%</h3>
+                <p>ምስጢሩ የተጠበቀ</p>
+            </div>
+            <div class="stat-box">
+                <h3>12+</h3>
+                <p>ባለሙያ ሴቶች</p>
+            </div>
+            <div class="stat-box">
+                <h3>4.9★</h3>
+                <p>የደንበኞች አስተያየት</p>
+            </div>
+        </div>
+    </section>
 
-                // 2. የተሰጠውን የፎቶ ሊንክ እና ስም ወደ ሪልታይም ዳታቤዝ መላክ
-                await db.ref("massage_services").push({
-                    title: title,
-                    imageUrl: imageUrl,
-                    createdAt: new Date().toISOString()
-                });
+    <a href="https://wa.me/yournumber" class="whatsapp-float" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
 
-                statusDiv.style.color = "#25d366";
-                statusDiv.innerText = "በአሪፉ ተጭኗል! ዋናው ድረ-ገጽ ላይ በራስ ሰር ተቀይሯል።";
-                
-                // ፎርሙን ባዶ ማድረግ
-                document.getElementById('serviceTitle').value = '';
-                document.getElementById('serviceImage').value = '';
-
-            } catch (error) {
-                statusDiv.style.color = "red";
-                statusDiv.innerText = "ስህተት አጋጥሟል፦ " + error.message;
-            }
-        }
-    </script>
 </body>
 </html>
-.
