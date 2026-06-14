@@ -6,8 +6,8 @@
 }
 
 body {
-    background-color: #FFFFFF;
-    color: #000000;
+    background-color: #FFFFFF; /* ሙሉ ነጭ */
+    color: #000000; /* ሙሉ ደማቅ ጥቁር ጽሑፍ */
     font-family: 'Helvetica Neue', Arial, sans-serif;
     overflow-x: hidden;
 }
@@ -33,7 +33,7 @@ body {
 }
 
 .logo span {
-    color: #FFB6C1;
+    color: #FFB6C1; /* ላይት ፒንክ */
 }
 
 .nav-links a {
@@ -41,8 +41,8 @@ body {
     text-decoration: none;
     margin-right: 30px;
     font-size: 1rem;
-    font-weight: 700;
-    transition: color 0.3s;
+    font-weight: 800;
+    transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
@@ -83,27 +83,30 @@ body {
 }
 
 .description {
-    color: #1A1A1A;
-    font-size: 1.15rem;
-    font-weight: 600;
+    color: #000000;
+    font-size: 1.2rem;
+    font-weight: 700;
     line-height: 1.8;
     margin-bottom: 35px;
 }
 
+/* ዋናው በተን */
 .btn-primary {
     background-color: #FFB6C1;
     color: #000000;
-    padding: 16px 36px;
+    padding: 18px 40px;
     border-radius: 30px;
     text-decoration: none;
     font-weight: 900;
+    font-size: 1.1rem;
     display: inline-block;
-    transition: background 0.3s;
-    box-shadow: 0 4px 15px rgba(255, 182, 193, 0.4);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(255, 182, 193, 0.5);
 }
 
 .btn-primary:hover {
     background-color: #FFA07A;
+    transform: translateY(-3px);
 }
 
 .hero-image-box img {
@@ -122,47 +125,15 @@ body {
 }
 
 .quote-text {
-    font-size: 1.6rem;
-    font-style: italic;
-    font-weight: 700;
-    color: #000000;
-}
-
-/* ትልቅ ምስል ማሳያ */
-.full-display-section {
-    position: relative;
-    height: 450px;
-}
-
-.full-display-section img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.display-overlay {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(255, 240, 245, 0.75);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: #000000;
-    text-align: center;
-}
-
-.display-overlay h2 {
-    font-size: 2.5rem;
-    font-weight: 900;
-    margin: 10px 0;
-}
-
-.display-overlay p {
+    font-size: 1.5rem;
     font-weight: 800;
+    color: #000000;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-/* 🌟 አዲሱ የአኒሜሽን የፎቶዎች ማሳያ (Gallery) 🌟 */
+/* 🌟 አዲሱ የ3D አኒሜሽን የፎቶዎች ክፍል (Gallery) 🌟 */
 .gallery-section {
     padding: 80px 8%;
     background-color: #FFFFFF;
@@ -170,23 +141,22 @@ body {
 
 .section-header {
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 60px;
 }
 
-.section-header h2 {
-    font-size: 2.3rem;
+.section-main-title {
+    font-size: 3rem;
     color: #000000;
     font-weight: 900;
-    margin-top: 10px;
+    letter-spacing: 2px;
 }
 
-.badge {
-    background-color: #FFF0F5;
+.section-subtitle {
+    font-size: 1.5rem;
     color: #FFB6C1;
-    padding: 6px 16px;
-    border-radius: 20px;
-    font-size: 0.9rem;
     font-weight: 900;
+    margin-top: 5px;
+    letter-spacing: 4px;
 }
 
 .gallery-grid {
@@ -194,24 +164,28 @@ body {
     justify-content: center;
     gap: 40px;
     align-items: center;
+    flex-wrap: wrap;
 }
 
-/* እያንዳንዱ የፎቶ ካርድ */
+/* እያንዳንዱ የፎቶ ካርድ ከነአኒሜሽኑ */
 .gallery-item {
     width: 30%;
-    border-radius: 20px;
+    min-width: 280px;
+    border-radius: 24px;
     overflow: hidden;
     position: relative;
     background-color: #FFFFFF;
     border: 3px solid #FFF0F5;
-    /* ማራኪ የሆነ የመነሻ ጥላ እና የአኒሜሽን ፍጥነት (0.4 ሰከንድ) */
-    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease, border-color 0.4s ease;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+    
+    /* ማራኪ የ3D የመስመምና የፍጥነት አኒሜሽን (0.5 ሰከንድ) */
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s ease, border-color 0.5s ease;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    cursor: pointer;
 }
 
 .img-container {
     width: 100%;
-    height: 380px;
+    height: 420px;
     overflow: hidden;
 }
 
@@ -219,33 +193,33 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* በፎቶው ላይም የየራሱ የፍጥነት ማጉያ አኒሜሽን አለው */
-    transition: transform 0.5s ease;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* 🚀 ማውሱ ፎቶው ላይ ሲያርፍ የሚፈጠር አስደናቂ አኒሜሽን (Hover Effects) */
+/* 🚀 ማውሱ ፎቶው ላይ ሲያርፍ የሚሰራው የ3D Hover አኒሜሽን */
 .gallery-item:hover {
-    transform: translateY(-15px); /* ካርዱ ቀስ ብሎ 15 ፒክስል ወደ ላይ ከፍ ይላል */
-    border-color: #FFB6C1; /* ጠርዙ ወደ ፈካ ፒንክ ይቀየራል */
-    box-shadow: 0 20px 40px rgba(255, 182, 193, 0.5); /* ከስሩ የፒንክ ማራኪ ጥላ ይፈጠራል */
+    transform: translateY(-20px) scale(1.03) rotateX(4deg) rotateY(-2deg); /* 3D እይታ ይሰጠዋል */
+    border-color: #FFB6C1;
+    /* የበራ የፒንክ ማራኪ ብርሃን (Glow Effect) ከስሩ ይወጣል */
+    box-shadow: 0 25px 50px rgba(255, 182, 193, 0.7); 
 }
 
 .gallery-item:hover img {
-    transform: scale(1.06); /* ፎቶው ራሱ በካርዱ ውስጥ ቀስ ብሎ ይጎላል (Zoom ይደረጋል) */
+    transform: scale(1.08); /* ፎቶው በካርዱ ውስጥ ቀስ ብሎ ይጎላል */
 }
 
 .item-info {
     position: absolute;
     bottom: 0; left: 0; width: 100%;
-    background: linear-gradient(to top, rgba(255, 255, 255, 0.95), transparent);
-    padding: 25px 20px;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.98), transparent);
+    padding: 30px 20px 20px 20px;
     text-align: center;
     z-index: 2;
 }
 
 .item-info h3 {
     color: #000000;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-weight: 900;
 }
 
@@ -253,12 +227,13 @@ body {
 .stats-section {
     display: flex;
     padding: 80px 8%;
-    background-color: #FFF0F5;
+    background-color: #FFF0F5; /* ላይት ፒንክ ዳራ */
     justify-content: space-between;
+    align-items: center;
 }
 
 .stats-left h2 {
-    font-size: 2.3rem;
+    font-size: 2.5rem;
     color: #000000;
     font-weight: 900;
     margin-bottom: 15px;
@@ -266,8 +241,9 @@ body {
 
 .stats-left p {
     color: #000000;
-    font-weight: 700;
-    font-size: 1.1rem;
+    font-weight: 800;
+    font-size: 1.2rem;
+    line-height: 1.6;
 }
 
 .btn-secondary {
@@ -276,28 +252,34 @@ body {
     color: #000000;
     text-decoration: none;
     font-weight: 900;
-    border-bottom: 3px solid #FFB6C1;
+    border-bottom: 4px solid #FFB6C1;
     padding-bottom: 5px;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.btn-secondary:hover {
+    color: #FFB6C1;
 }
 
 .stats-right {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    gap: 25px;
 }
 
 .stat-box {
     background-color: #FFFFFF;
-    padding: 30px;
-    border-radius: 12px;
+    padding: 35px;
+    border-radius: 16px;
     text-align: center;
     border: 2px solid #FFF0F5;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.02);
 }
 
 .stat-box h3 {
     color: #FFB6C1;
-    font-size: 2.2rem;
+    font-size: 2.5rem;
     font-weight: 900;
     margin-bottom: 5px;
 }
@@ -305,7 +287,7 @@ body {
 .stat-box p {
     color: #000000;
     font-weight: 900;
-    font-size: 1rem;
+    font-size: 1.1rem;
 }
 
 /* ዋትስአፕ ተንሳፋፊ በተን */
@@ -315,13 +297,36 @@ body {
     right: 40px;
     background-color: #25D366;
     color: white;
-    width: 60px;
-    height: 60px;
+    width: 65px;
+    height: 65px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 30px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    font-size: 35px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
     z-index: 1000;
+    transition: transform 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
+
+/* ለስልክ ስክሪን ተስማሚ እንዲሆን (Responsive) */
+@media (max-width: 768px) {
+    .hero-section, .stats-section {
+        flex-direction: column;
+        text-align: center;
+    }
+    .hero-content, .stats-left {
+        max-width: 100%;
+        margin-bottom: 40px;
+    }
+    .gallery-item {
+        width: 100%;
+    }
+    .main-title {
+        font-size: 2.5rem;
+    }
 }
