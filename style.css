@@ -1,0 +1,288 @@
+/* --- Root Variables & Reset --- */
+:root {
+    --bg-color: #0b0b0d;
+    --card-bg: #141417;
+    --text-main: #ffffff;
+    --text-muted: #a0a0a5;
+    --accent-gold: #f4c430;
+    --accent-pink: #e91e63;
+    --gradient-primary: linear-gradient(90deg, #e91e63, #c2185b);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    padding-bottom: 60px;
+    overflow-x: hidden;
+}
+
+/* --- Navigation Bar --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #222;
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.logo span {
+    color: var(--accent-gold);
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.lang-selector {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border: 1px solid #444;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.menu-toggle {
+    background: none;
+    border: none;
+    color: var(--text-main);
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+/* --- Hero Section --- */
+.hero {
+    padding: 40px 20px;
+    text-align: left;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: rgba(233, 30, 99, 0.15);
+    color: #ff5c8d;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid rgba(233, 30, 99, 0.3);
+    margin-bottom: 25px;
+}
+
+.hero-title {
+    font-size: 2.8rem;
+    line-height: 1.3;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.gradient-text-orange {
+    background: linear-gradient(90deg, #ff9900, #ff5500);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-pink {
+    background: linear-gradient(90deg, #ff4081, #e91e63);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-desc {
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 35px;
+    max-width: 500px;
+}
+
+/* --- Buttons --- */
+.cta-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.btn-primary, .btn-secondary {
+    width: 100%;
+    padding: 16px;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.btn-primary {
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--accent-gold);
+    border: 2px solid var(--accent-gold);
+}
+
+.btn-primary:active, .btn-secondary:active {
+    transform: scale(0.98);
+}
+
+/* --- Showcase Slider Area --- */
+.showcase {
+    padding: 40px 0;
+    overflow-x: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.cards-container {
+    display: flex;
+    gap: 15px;
+    padding: 0 20px;
+}
+
+.profile-card {
+    width: 220px;
+    height: 320px;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    border: 2px solid transparent;
+    opacity: 0.6;
+    transform: scale(0.9);
+    transition: all 0.3s ease;
+}
+
+.profile-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-card.active {
+    opacity: 1;
+    transform: scale(1);
+    border-color: #00d2ff;
+    box-shadow: 0 0 20px rgba(0, 210, 255, 0.4);
+}
+
+/* --- About & Stats Section --- */
+.about-stats {
+    padding: 40px 20px;
+}
+
+.section-badge {
+    display: inline-block;
+    border: 1px solid var(--accent-gold);
+    color: var(--accent-gold);
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    margin-bottom: 15px;
+}
+
+.section-title {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+    background: linear-gradient(90deg, #ffcc00, #ff3366);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.section-desc {
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.stat-card {
+    background-color: var(--card-bg);
+    border: 1px solid #222;
+    padding: 25px 15px;
+    border-radius: 16px;
+    text-align: center;
+}
+
+.stat-card h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    background: linear-gradient(45deg, #ff9900, #ff3366);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.stat-card p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* --- Sticky Floating WhatsApp Button --- */
+.whatsapp-sticky {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25d366;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    text-decoration: none;
+    z-index: 1000;
+}
+
+/* Responsive Desktop Optimization */
+@media (min-width: 768px) {
+    .hero, .about-stats {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .hero-desc {
+        margin: 0 auto 35px auto;
+    }
+    .cta-buttons {
+        flex-direction: row;
+        justify-content: center;
+    }
+    .btn-primary, .btn-secondary {
+        width: 200px;
+    }
+    .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
