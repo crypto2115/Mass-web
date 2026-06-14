@@ -6,8 +6,8 @@
 }
 
 body {
-    background-color: #FFFFFF; /* ሙሉ ነጭ የበስተጀርባ ቀለም */
-    color: #000000; /* ጽሑፎቹ በሙሉ ደማቅ ጥቁር ሆኑ */
+    background-color: #FFFFFF;
+    color: #000000;
     font-family: 'Helvetica Neue', Arial, sans-serif;
     overflow-x: hidden;
 }
@@ -19,7 +19,7 @@ body {
     align-items: center;
     padding: 20px 8%;
     background-color: #FFFFFF;
-    border-bottom: 2px solid #FFF0F5; /* ላይት ፒንክ መስመር */
+    border-bottom: 2px solid #FFF0F5;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -28,20 +28,20 @@ body {
 .logo {
     font-size: 1.6rem;
     font-weight: 900;
-    color: #000000; /* ደማቅ ጥቁር ሎጎ */
+    color: #000000;
     letter-spacing: 2px;
 }
 
 .logo span {
-    color: #FFB6C1; /* ላይት ፒንክ ሳምሪ */
+    color: #FFB6C1;
 }
 
 .nav-links a {
-    color: #000000; /* ደማቅ ጥቁር ሊንኮች */
+    color: #000000;
     text-decoration: none;
     margin-right: 30px;
     font-size: 1rem;
-    font-weight: 700; /* ደማቅ */
+    font-weight: 700;
     transition: color 0.3s;
 }
 
@@ -55,7 +55,7 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 60px 8%;
-    background: linear-gradient(to bottom, #FFF0F5, #FFFFFF); /* ውብ የፒንክ እና ነጭ ቅልቅል */
+    background: linear-gradient(to bottom, #FFF0F5, #FFFFFF);
 }
 
 .hero-content {
@@ -72,7 +72,7 @@ body {
 
 .main-title {
     font-size: 3.5rem;
-    color: #000000; /* ደማቅ ጥቁር ርዕስ */
+    color: #000000;
     font-weight: 900;
     line-height: 1.2;
     margin-bottom: 25px;
@@ -83,17 +83,16 @@ body {
 }
 
 .description {
-    color: #1A1A1A; /* ይበልጥ ጎልቶ የሚታይ ጥቁር ጽሑፍ */
+    color: #1A1A1A;
     font-size: 1.15rem;
-    font-weight: 600; /* ደማቅ */
+    font-weight: 600;
     line-height: 1.8;
     margin-bottom: 35px;
 }
 
-/* ዋናው በተን */
 .btn-primary {
-    background-color: #FFB6C1; /* ላይት ፒንክ በተን */
-    color: #000000; /* በፒንኩ ላይ ጥቁር ደማቅ ጽሑፍ */
+    background-color: #FFB6C1;
+    color: #000000;
     padding: 16px 36px;
     border-radius: 30px;
     text-decoration: none;
@@ -126,7 +125,7 @@ body {
     font-size: 1.6rem;
     font-style: italic;
     font-weight: 700;
-    color: #000000; /* ደማቅ ጥቁር ጥቅስ */
+    color: #000000;
 }
 
 /* ትልቅ ምስል ማሳያ */
@@ -144,7 +143,7 @@ body {
 .display-overlay {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(255, 240, 245, 0.75); /* የፒንክ ማጣሪያ */
+    background: rgba(255, 240, 245, 0.75);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -163,7 +162,7 @@ body {
     font-weight: 800;
 }
 
-/* የፎቶዎች ማሳያ (Gallery) */
+/* 🌟 አዲሱ የአኒሜሽን የፎቶዎች ማሳያ (Gallery) 🌟 */
 .gallery-section {
     padding: 80px 8%;
     background-color: #FFFFFF;
@@ -193,41 +192,59 @@ body {
 .gallery-grid {
     display: flex;
     justify-content: center;
-    gap: 30px;
+    gap: 40px;
     align-items: center;
 }
 
+/* እያንዳንዱ የፎቶ ካርድ */
 .gallery-item {
     width: 30%;
-    border-radius: 15px;
+    border-radius: 20px;
     overflow: hidden;
     position: relative;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    background-color: #FFFFFF;
     border: 3px solid #FFF0F5;
+    /* ማራኪ የሆነ የመነሻ ጥላ እና የአኒሜሽን ፍጥነት (0.4 ሰከንድ) */
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+}
+
+.img-container {
+    width: 100%;
+    height: 380px;
+    overflow: hidden;
 }
 
 .gallery-item img {
     width: 100%;
-    height: 350px;
+    height: 100%;
     object-fit: cover;
+    /* በፎቶው ላይም የየራሱ የፍጥነት ማጉያ አኒሜሽን አለው */
+    transition: transform 0.5s ease;
 }
 
-.active-item {
-    transform: scale(1.08); /* መሀል ያለው ፎቶ ጎልቶ እንዲወጣ */
-    border-color: #FFB6C1;
-    box-shadow: 0 10px 25px rgba(255, 182, 193, 0.4);
+/* 🚀 ማውሱ ፎቶው ላይ ሲያርፍ የሚፈጠር አስደናቂ አኒሜሽን (Hover Effects) */
+.gallery-item:hover {
+    transform: translateY(-15px); /* ካርዱ ቀስ ብሎ 15 ፒክስል ወደ ላይ ከፍ ይላል */
+    border-color: #FFB6C1; /* ጠርዙ ወደ ፈካ ፒንክ ይቀየራል */
+    box-shadow: 0 20px 40px rgba(255, 182, 193, 0.5); /* ከስሩ የፒንክ ማራኪ ጥላ ይፈጠራል */
+}
+
+.gallery-item:hover img {
+    transform: scale(1.06); /* ፎቶው ራሱ በካርዱ ውስጥ ቀስ ብሎ ይጎላል (Zoom ይደረጋል) */
 }
 
 .item-info {
     position: absolute;
     bottom: 0; left: 0; width: 100%;
     background: linear-gradient(to top, rgba(255, 255, 255, 0.95), transparent);
-    padding: 20px;
+    padding: 25px 20px;
     text-align: center;
+    z-index: 2;
 }
 
 .item-info h3 {
-    color: #000000; /* ደማቅ ጥቁር የአገልግሎት ስም */
+    color: #000000;
     font-size: 1.3rem;
     font-weight: 900;
 }
@@ -236,7 +253,7 @@ body {
 .stats-section {
     display: flex;
     padding: 80px 8%;
-    background-color: #FFF0F5; /* ሙሉ በሙሉ ላይት ፒንክ የበስተጀርባ ቀለም */
+    background-color: #FFF0F5;
     justify-content: space-between;
 }
 
@@ -279,14 +296,14 @@ body {
 }
 
 .stat-box h3 {
-    color: #FFB6C1; /* የቁጥሮቹ ቀለም ላይት ፒንክ */
+    color: #FFB6C1;
     font-size: 2.2rem;
     font-weight: 900;
     margin-bottom: 5px;
 }
 
 .stat-box p {
-    color: #000000; /* የቁጥሮቹ መግለጫ ደማቅ ጥቁር */
+    color: #000000;
     font-weight: 900;
     font-size: 1rem;
 }
