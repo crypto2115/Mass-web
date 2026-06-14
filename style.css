@@ -7,8 +7,8 @@
 
 body {
     background-color: #FFFFFF; /* ሙሉ ነጭ የበስተጀርባ ቀለም */
-    color: #4A4A4A;
-    font-family: 'Helvetica Neue', sans-serif;
+    color: #000000; /* ጽሑፎቹ በሙሉ ደማቅ ጥቁር ሆኑ */
+    font-family: 'Helvetica Neue', Arial, sans-serif;
     overflow-x: hidden;
 }
 
@@ -19,7 +19,7 @@ body {
     align-items: center;
     padding: 20px 8%;
     background-color: #FFFFFF;
-    border-bottom: 1px solid #FFE4E1; /* ላይት ፒንክ መስመር */
+    border-bottom: 2px solid #FFF0F5; /* ላይት ፒንክ መስመር */
     position: sticky;
     top: 0;
     z-index: 100;
@@ -27,21 +27,21 @@ body {
 
 .logo {
     font-size: 1.6rem;
-    font-weight: 800;
-    color: #4A4A4A;
+    font-weight: 900;
+    color: #000000; /* ደማቅ ጥቁር ሎጎ */
     letter-spacing: 2px;
 }
 
 .logo span {
-    color: #FFB6C1; /* ውብ ላይት ፒንክ */
+    color: #FFB6C1; /* ላይት ፒንክ ሳምሪ */
 }
 
 .nav-links a {
-    color: #696969;
+    color: #000000; /* ደማቅ ጥቁር ሊንኮች */
     text-decoration: none;
     margin-right: 30px;
-    font-size: 0.95rem;
-    font-weight: 500;
+    font-size: 1rem;
+    font-weight: 700; /* ደማቅ */
     transition: color 0.3s;
 }
 
@@ -55,7 +55,7 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 60px 8%;
-    background: linear-gradient(to bottom, #FFF0F5, #FFFFFF); /* ከፒንክ ወደ ነጭ የሚቀላቀል ውብ ከለር */
+    background: linear-gradient(to bottom, #FFF0F5, #FFFFFF); /* ውብ የፒንክ እና ነጭ ቅልቅል */
 }
 
 .hero-content {
@@ -64,15 +64,16 @@ body {
 
 .subtitle {
     color: #FFB6C1;
-    font-size: 0.85rem;
-    font-weight: 700;
+    font-size: 0.9rem;
+    font-weight: 800;
     letter-spacing: 3px;
     margin-bottom: 15px;
 }
 
 .main-title {
     font-size: 3.5rem;
-    color: #2D2D2D;
+    color: #000000; /* ደማቅ ጥቁር ርዕስ */
+    font-weight: 900;
     line-height: 1.2;
     margin-bottom: 25px;
 }
@@ -82,20 +83,21 @@ body {
 }
 
 .description {
-    color: #777777;
-    font-size: 1.1rem;
-    line-height: 1.7;
+    color: #1A1A1A; /* ይበልጥ ጎልቶ የሚታይ ጥቁር ጽሑፍ */
+    font-size: 1.15rem;
+    font-weight: 600; /* ደማቅ */
+    line-height: 1.8;
     margin-bottom: 35px;
 }
 
-/* በተኖች */
+/* ዋናው በተን */
 .btn-primary {
     background-color: #FFB6C1; /* ላይት ፒንክ በተን */
-    color: white;
-    padding: 15px 35px;
+    color: #000000; /* በፒንኩ ላይ ጥቁር ደማቅ ጽሑፍ */
+    padding: 16px 36px;
     border-radius: 30px;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 900;
     display: inline-block;
     transition: background 0.3s;
     box-shadow: 0 4px 15px rgba(255, 182, 193, 0.4);
@@ -121,9 +123,10 @@ body {
 }
 
 .quote-text {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     font-style: italic;
-    color: #8B7E7E;
+    font-weight: 700;
+    color: #000000; /* ደማቅ ጥቁር ጥቅስ */
 }
 
 /* ትልቅ ምስል ማሳያ */
@@ -141,13 +144,23 @@ body {
 .display-overlay {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(255, 240, 245, 0.7); /* የሴቶች መግለጫ ፒንክ ኦቨርሌይ */
+    background: rgba(255, 240, 245, 0.75); /* የፒንክ ማጣሪያ */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: #4A4A4A;
+    color: #000000;
     text-align: center;
+}
+
+.display-overlay h2 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin: 10px 0;
+}
+
+.display-overlay p {
+    font-weight: 800;
 }
 
 /* የፎቶዎች ማሳያ (Gallery) */
@@ -161,13 +174,20 @@ body {
     margin-bottom: 50px;
 }
 
+.section-header h2 {
+    font-size: 2.3rem;
+    color: #000000;
+    font-weight: 900;
+    margin-top: 10px;
+}
+
 .badge {
     background-color: #FFF0F5;
     color: #FFB6C1;
     padding: 6px 16px;
     border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: bold;
+    font-size: 0.9rem;
+    font-weight: 900;
 }
 
 .gallery-grid {
@@ -182,7 +202,7 @@ body {
     border-radius: 15px;
     overflow: hidden;
     position: relative;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     border: 3px solid #FFF0F5;
 }
 
@@ -193,44 +213,55 @@ body {
 }
 
 .active-item {
-    transform: scale(1.08); /* መሀል ላይ ያለው ፎቶ ጎልቶ እንዲወጣ */
+    transform: scale(1.08); /* መሀል ያለው ፎቶ ጎልቶ እንዲወጣ */
     border-color: #FFB6C1;
-    box-shadow: 0 10px 25px rgba(255, 182, 193, 0.3);
+    box-shadow: 0 10px 25px rgba(255, 182, 193, 0.4);
 }
 
 .item-info {
     position: absolute;
     bottom: 0; left: 0; width: 100%;
-    background: linear-gradient(to top, rgba(255,255,255,0.9), transparent);
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.95), transparent);
     padding: 20px;
     text-align: center;
 }
 
 .item-info h3 {
-    color: #4A4A4A;
-    font-size: 1.2rem;
+    color: #000000; /* ደማቅ ጥቁር የአገልግሎት ስም */
+    font-size: 1.3rem;
+    font-weight: 900;
 }
 
 /* የቁጥር መረጃዎች ማሳያ */
 .stats-section {
     display: flex;
     padding: 80px 8%;
-    background-color: #FFF0F5; /* ላይት ፒንክ ባግራውንድ */
+    background-color: #FFF0F5; /* ሙሉ በሙሉ ላይት ፒንክ የበስተጀርባ ቀለም */
     justify-content: space-between;
 }
 
-.stats-left {
-    max-width: 45%;
+.stats-left h2 {
+    font-size: 2.3rem;
+    color: #000000;
+    font-weight: 900;
+    margin-bottom: 15px;
+}
+
+.stats-left p {
+    color: #000000;
+    font-weight: 700;
+    font-size: 1.1rem;
 }
 
 .btn-secondary {
     display: inline-block;
     margin-top: 25px;
-    color: #FFB6C1;
+    color: #000000;
     text-decoration: none;
-    font-weight: bold;
-    border-bottom: 2px solid #FFB6C1;
+    font-weight: 900;
+    border-bottom: 3px solid #FFB6C1;
     padding-bottom: 5px;
+    font-size: 1.1rem;
 }
 
 .stats-right {
@@ -244,13 +275,20 @@ body {
     padding: 30px;
     border-radius: 12px;
     text-align: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+    border: 2px solid #FFF0F5;
 }
 
 .stat-box h3 {
-    color: #FFB6C1;
-    font-size: 2rem;
+    color: #FFB6C1; /* የቁጥሮቹ ቀለም ላይት ፒንክ */
+    font-size: 2.2rem;
+    font-weight: 900;
     margin-bottom: 5px;
+}
+
+.stat-box p {
+    color: #000000; /* የቁጥሮቹ መግለጫ ደማቅ ጥቁር */
+    font-weight: 900;
+    font-size: 1rem;
 }
 
 /* ዋትስአፕ ተንሳፋፊ በተን */
@@ -267,6 +305,6 @@ body {
     justify-content: center;
     align-items: center;
     font-size: 30px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     z-index: 1000;
 }
