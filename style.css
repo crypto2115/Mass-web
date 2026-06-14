@@ -1,319 +1,264 @@
-/* --- መሰረታዊ መዋቅር እና ቀለማት --- */
-:root {
-    --bg-main: #0a0a0c;
-    --bg-card: #121215;
-    --text-white: #ffffff;
-    --text-muted: #8e8e93;
-    --accent-pink: #ff2d55; /* የፒንክ ቀለም */
-    --accent-pink-glow: rgba(255, 45, 85, 0.4);
-}
-
+/* መሠረታዊ ቅንብሮች */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    scroll-behavior: smooth;
 }
 
 body {
-    background-color: var(--bg-main);
-    color: var(--text-white);
+    background-color: #FFFFFF; /* ሙሉ ነጭ የበስተጀርባ ቀለም */
+    color: #4A4A4A;
+    font-family: 'Helvetica Neue', sans-serif;
     overflow-x: hidden;
 }
 
-/* --- 1. የላይኛው ማውጫ (Navbar) --- */
+/* የላይኛው ማውጫ (Navbar) */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 25px 5%;
-    background-color: rgba(10, 10, 12, 0.95);
-    position: fixed;
+    padding: 20px 8%;
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #FFE4E1; /* ላይት ፒንክ መስመር */
+    position: sticky;
     top: 0;
-    width: 100%;
-    z-index: 1000;
-    border-bottom: 1px solid #1c1c1e;
+    z-index: 100;
 }
 
 .logo {
-    font-size: 1.3rem;
+    font-size: 1.6rem;
     font-weight: 800;
+    color: #4A4A4A;
     letter-spacing: 2px;
 }
 
 .logo span {
-    color: var(--accent-pink);
+    color: #FFB6C1; /* ውብ ላይት ፒንክ */
 }
 
 .nav-links a {
-    color: var(--text-muted);
+    color: #696969;
     text-decoration: none;
-    margin-right: 25px;
+    margin-right: 30px;
     font-size: 0.95rem;
+    font-weight: 500;
     transition: color 0.3s;
 }
 
 .nav-links a:hover {
-    color: var(--text-white);
+    color: #FFB6C1;
 }
 
-.lang-selector {
+/* ዋናው ገጽታ (Hero) */
+.hero-section {
     display: flex;
     align-items: center;
-    gap: 8px;
-    border: 1px solid #2c2c2e;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 0.85rem;
+    justify-content: space-between;
+    padding: 60px 8%;
+    background: linear-gradient(to bottom, #FFF0F5, #FFFFFF); /* ከፒንክ ወደ ነጭ የሚቀላቀል ውብ ከለር */
 }
 
-/* --- 2. ዋናው ገጽታ (Hero Section) --- */
-.hero-section {
-    padding: 140px 5% 60px 5%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    min-height: 90vh;
-    align-items: center;
+.hero-content {
+    max-width: 50%;
 }
 
 .subtitle {
-    color: var(--text-muted);
-    font-size: 0.8rem;
+    color: #FFB6C1;
+    font-size: 0.85rem;
+    font-weight: 700;
     letter-spacing: 3px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .main-title {
-    font-size: 4rem;
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -1px;
+    font-size: 3.5rem;
+    color: #2D2D2D;
+    line-height: 1.2;
     margin-bottom: 25px;
 }
 
 .highlight-text {
-    color: transparent;
-    -webkit-text-stroke: 1px var(--text-white);
-    background: linear-gradient(90deg, var(--text-white), var(--accent-pink));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #FFB6C1;
 }
 
 .description {
-    color: var(--text-muted);
+    color: #777777;
     font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 40px;
-    max-width: 500px;
+    line-height: 1.7;
+    margin-bottom: 35px;
 }
 
 /* በተኖች */
 .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background-color: var(--text-white);
-    color: var(--bg-main);
-    padding: 16px 32px;
+    background-color: #FFB6C1; /* ላይት ፒንክ በተን */
+    color: white;
+    padding: 15px 35px;
     border-radius: 30px;
     text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
+    font-weight: bold;
+    display: inline-block;
+    transition: background 0.3s;
+    box-shadow: 0 4px 15px rgba(255, 182, 193, 0.4);
 }
 
 .btn-primary:hover {
-    background-color: var(--accent-pink);
-    color: var(--text-white);
-    box-shadow: 0 0 20px var(--accent-pink-glow);
-}
-
-.hero-image-box {
-    width: 100%;
-    height: 500px;
-    border-radius: 12px;
-    overflow: hidden;
+    background-color: #FFA07A;
 }
 
 .hero-image-box img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    max-width: 450px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border: 5px solid #FFFFFF;
 }
 
-/* --- 3. ጥቅስ (Quote Section) --- */
+/* ጥቅስ */
 .quote-section {
-    padding: 100px 5%;
+    padding: 60px 8%;
     text-align: center;
-    border-top: 1px solid #1c1c1e;
+    background-color: #FFFFFF;
 }
 
 .quote-text {
-    font-size: 1.8rem;
-    color: var(--text-muted);
-    max-width: 800px;
-    margin: 0 auto;
+    font-size: 1.5rem;
     font-style: italic;
+    color: #8B7E7E;
 }
 
-/* --- 4. ሙሉ ገጽ ማሳያ (Full Display) --- */
+/* ትልቅ ምስል ማሳያ */
 .full-display-section {
     position: relative;
-    width: 100%;
-    height: 70vh;
-    overflow: hidden;
+    height: 450px;
 }
 
 .full-display-section img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.4;
 }
 
 .display-overlay {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(255, 240, 245, 0.7); /* የሴቶች መግለጫ ፒንክ ኦቨርሌይ */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #4A4A4A;
     text-align: center;
-    width: 90%;
-    z-index: 2;
 }
 
-.display-overlay .tag {
-    letter-spacing: 4px;
-    font-size: 0.85rem;
-    color: var(--accent-pink);
-    margin-bottom: 15px;
-}
-
-.display-overlay h2 {
-    font-size: 3.5rem;
-    font-weight: 800;
-    letter-spacing: 2px;
-    margin-bottom: 15px;
-}
-
-/* --- 5. የፎቶዎች ማሳያ (Gallery) --- */
+/* የፎቶዎች ማሳያ (Gallery) */
 .gallery-section {
-    padding: 100px 5%;
+    padding: 80px 8%;
+    background-color: #FFFFFF;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
 }
 
 .badge {
-    border: 1px solid var(--accent-pink);
-    color: var(--accent-pink);
-    padding: 4px 12px;
+    background-color: #FFF0F5;
+    color: #FFB6C1;
+    padding: 6px 16px;
     border-radius: 20px;
-    font-size: 0.8rem;
-}
-
-.section-header h2 {
-    font-size: 2.5rem;
-    margin-top: 15px;
-    margin-bottom: 40px;
+    font-size: 0.85rem;
+    font-weight: bold;
 }
 
 .gallery-grid {
     display: flex;
-    gap: 20px;
     justify-content: center;
+    gap: 30px;
+    align-items: center;
 }
 
 .gallery-item {
     width: 30%;
-    height: 400px;
-    border-radius: 16px;
+    border-radius: 15px;
     overflow: hidden;
     position: relative;
-    opacity: 0.5;
-    transform: scale(0.95);
-    transition: all 0.4s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+    border: 3px solid #FFF0F5;
 }
 
 .gallery-item img {
     width: 100%;
-    height: 100%;
+    height: 350px;
     object-fit: cover;
 }
 
-.gallery-item.active-item {
-    opacity: 1;
-    transform: scale(1);
-    border: 2px solid var(--accent-pink);
-    box-shadow: 0 0 30px var(--accent-pink-glow);
+.active-item {
+    transform: scale(1.08); /* መሀል ላይ ያለው ፎቶ ጎልቶ እንዲወጣ */
+    border-color: #FFB6C1;
+    box-shadow: 0 10px 25px rgba(255, 182, 193, 0.3);
 }
 
 .item-info {
     position: absolute;
-    bottom: 20px;
-    left: 20px;
-    z-index: 5;
+    bottom: 0; left: 0; width: 100%;
+    background: linear-gradient(to top, rgba(255,255,255,0.9), transparent);
+    padding: 20px;
+    text-align: center;
 }
 
-/* --- 6. የቁጥር መረጃዎች ማሳያ (Stats) --- */
+.item-info h3 {
+    color: #4A4A4A;
+    font-size: 1.2rem;
+}
+
+/* የቁጥር መረጃዎች ማሳያ */
 .stats-section {
-    padding: 100px 5%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5px;
-    background-color: var(--bg-card);
+    display: flex;
+    padding: 80px 8%;
+    background-color: #FFF0F5; /* ላይት ፒንክ ባግራውንድ */
+    justify-content: space-between;
 }
 
-.stats-left h2 {
-    font-size: 3rem;
-    line-height: 1.2;
-    margin-bottom: 20px;
-}
-
-.stats-left p {
-    color: var(--text-muted);
-    margin-bottom: 40px;
-    max-width: 450px;
+.stats-left {
+    max-width: 45%;
 }
 
 .btn-secondary {
     display: inline-block;
-    border: 2px solid var(--text-white);
-    color: var(--text-white);
-    padding: 14px 28px;
-    border-radius: 30px;
+    margin-top: 25px;
+    color: #FFB6C1;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: bold;
+    border-bottom: 2px solid #FFB6C1;
+    padding-bottom: 5px;
 }
 
 .stats-right {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
 }
 
 .stat-box {
-    border: 1px solid #2c2c2e;
-    padding: 40px 20px;
+    background-color: #FFFFFF;
+    padding: 30px;
     border-radius: 12px;
     text-align: center;
-    background-color: var(--bg-main);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.01);
 }
 
 .stat-box h3 {
-    font-size: 2.5rem;
-    color: var(--accent-pink);
-    margin-bottom: 10px;
+    color: #FFB6C1;
+    font-size: 2rem;
+    margin-bottom: 5px;
 }
 
-.stat-box p {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-}
-
-/* ዋትስአፕ በተን */
+/* ዋትስአፕ ተንሳፋፊ በተን */
 .whatsapp-float {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background-color: #25d366;
+    bottom: 40px;
+    right: 40px;
+    background-color: #25D366;
     color: white;
     width: 60px;
     height: 60px;
@@ -321,28 +266,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2.2rem;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-    text-decoration: none;
+    font-size: 30px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     z-index: 1000;
-    transition: transform 0.3s;
-}
-
-.whatsapp-float:hover {
-    transform: scale(1.1);
-}
-
-/* ስልክ ላይ በሚገባ እንዲታይ ማስተካከያ (Responsive) */
-@media (max-width: 768px) {
-    .navbar { padding: 15px 20px; }
-    .nav-links { display: none; } /* ለስልክ ማውጫውን ይደብቃል */
-    .hero-section { grid-template-columns: 1fr; padding-top: 100px; text-align: center; }
-    .main-title { font-size: 2.8rem; }
-    .hero-image-box { height: 300px; }
-    .display-overlay h2 { font-size: 2rem; }
-    .gallery-grid { flex-direction: column; }
-    .gallery-item { width: 100%; height: 300px; }
-    .stats-section { grid-template-columns: 1fr; text-align: center; }
-    .stats-left h2 { font-size: 2rem; }
-    .stats-left p { margin: 0 auto 30px auto; }
 }
