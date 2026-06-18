@@ -1,3 +1,6 @@
+/* ==========================================================================
+   1. Base Setup & Font Integration
+   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -9,9 +12,36 @@ body {
     color: #FFFFFF;
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
+    position: relative;
 }
 
-/* Header & Navbar */
+/* 🛸 3D Floating Particles Background */
+.floating-bg-elements {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.element-3d {
+    position: absolute;
+    font-size: 1.5rem;
+    color: #ffd700;
+    opacity: 0.15;
+    animation: floatingAnimation 9s ease-in-out infinite alternate;
+}
+
+@keyframes floatingAnimation {
+    0% { transform: translateY(0) scale(1) rotate(0deg); }
+    50% { transform: translateY(-45px) scale(1.2) rotate(180deg); }
+    100% { transform: translateY(15px) scale(0.95) rotate(360deg); }
+}
+
+/* ==========================================================================
+   2. Header & Language Switcher Dropdown
+   ========================================================================== */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -39,24 +69,49 @@ body {
     gap: 16px;
 }
 
-.lang-selector-box {
+/* 🌐 የቋንቋ መምረጫ ድሮፕዳውን ስታይል */
+.lang-dropdown-select {
     background: #1e062c;
     border: 1px solid #3e1257;
-    padding: 6px 14px;
+    color: #FFFFFF;
+    padding: 8px 14px;
     border-radius: 20px;
     font-size: 0.85rem;
     font-weight: 700;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    cursor: pointer;
+    outline: none;
+    font-family: inherit;
+    -webkit-appearance: none; /* ለሞባይል ብራውዘሮች */
+    -moz-appearance: none;
+    appearance: none;
 }
 
-.lang-selector-box img { width: 18px; }
+.lang-dropdown-select option {
+    background: #17031f;
+    color: #FFFFFF;
+}
 
-/* Hero Section */
+.menu-burger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.menu-burger span {
+    width: 22px; height: 2px;
+    background: #fff;
+    border-radius: 2px;
+}
+
+/* ==========================================================================
+   3. Hero Showcase
+   ========================================================================== */
 .hero-section {
     padding: 70px 6% 40px 6%;
     text-align: center;
+    position: relative;
+    z-index: 1;
 }
 
 .hero-title {
@@ -70,7 +125,9 @@ body {
 .hero-desc {
     color: #c1aed3;
     font-size: 0.95rem;
-    margin-bottom: 35px;
+    line-height: 1.6;
+    max-width: 540px;
+    margin: 0 auto 35px auto;
 }
 
 .hero-buttons {
@@ -86,95 +143,197 @@ body {
     color: #fff;
     padding: 16px;
     border-radius: 30px;
-    text-decoration: none;
+    border: none;
     font-weight: 800;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
     text-align: center;
+    box-shadow: 0 4px 20px rgba(255, 59, 112, 0.4);
 }
 
 .btn-gold-outline {
+    background: transparent;
     border: 1.5px solid #ffd700;
     color: #ffd700;
     padding: 14px;
     border-radius: 30px;
-    text-decoration: none;
     font-weight: 800;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
     text-align: center;
 }
 
-/* Service Panel Cards */
+/* ==========================================================================
+   4. Girls Slider Layout (BUITIFULL GERLIS)
+   ========================================================================== */
+.girls-carousel-section {
+    padding: 40px 4%;
+    text-align: center;
+}
+
+.section-main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+}
+
+.section-sub-title-pink {
+    color: #ff3b70;
+    font-weight: 900;
+    font-size: 1.1rem;
+    margin-top: 6px;
+    margin-bottom: 35px;
+}
+
+.carousel-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.carousel-card {
+    border-radius: 16px;
+    overflow: hidden;
+    background: #11041c;
+    border: 1.5px solid rgba(255,255,255,0.04);
+}
+
+.side-card { width: 22%; height: 230px; opacity: 0.35; transform: scale(0.9); }
+.center-card { width: 52%; height: 330px; border-color: #ff3b70; box-shadow: 0 8px 25px rgba(255, 59, 112, 0.3); }
+.carousel-card img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ==========================================================================
+   5. Stats & Info Banner
+   ========================================================================== */
+.stats-grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 30px 6%;
+}
+
+.stat-item-box {
+    background: #12041c;
+    border: 1px solid #230b33;
+    padding: 24px;
+    border-radius: 14px;
+    text-align: center;
+}
+
+.stat-item-box h3 { color: #ffd700; font-size: 2rem; font-weight: 900; }
+.stat-item-box p { color: #a491b3; font-size: 0.85rem; margin-top: 4px; font-weight: 700; }
+
+.info-banner-card { padding: 10px 6%; margin-bottom: 30px; }
+.info-banner-inner {
+    background: #12041c; border: 1px solid #230b33; padding: 20px;
+    border-radius: 14px; display: flex; align-items: center; gap: 15px;
+}
+
+.lock-icon-box {
+    width: 42px; height: 42px; background: rgba(255, 215, 0, 0.08);
+    border-radius: 50%; display: flex; justify-content: center; align-items: center;
+    color: #ffd700; font-size: 1.1rem;
+}
+
+.info-banner-text h3 { font-size: 1.05rem; color: #ffd700; }
+.info-banner-text p { font-size: 0.85rem; color: #a491b3; margin-top: 2px; }
+
+/* ==========================================================================
+   6. Premium Services Configuration
+   ========================================================================== */
 .premium-services-section { padding: 40px 6%; }
 .services-header-box { text-align: center; margin-bottom: 40px; }
-.gold-tag { color: #ffd700; font-size: 0.8rem; font-weight: 800; }
-.services-header-box h2 { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; }
+.gold-tag { color: #ffd700; font-size: 0.8rem; font-weight: 800; letter-spacing: 1.5px; }
+.services-header-box h2 { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; margin-top: 8px; }
+.services-header-box p { color: #a491b3; font-size: 0.9rem; margin-top: 6px; }
 
 .services-vertical-list { display: flex; flex-direction: column; gap: 30px; }
 .service-panel-card { background: #11041c; border: 1px solid #230b33; border-radius: 18px; overflow: hidden; }
 .panel-img-wrap { height: 210px; position: relative; }
 .panel-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
 
-.panel-badge-pink { position: absolute; top: 15px; left: 15px; background: #ff3b70; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; }
-.panel-badge-blue { position: absolute; top: 15px; left: 15px; background: #007bff; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; }
+.panel-badge-pink, .panel-badge-blue { position: absolute; top: 15px; left: 15px; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; }
+.panel-badge-pink { background: #ff3b70; }
+.panel-badge-blue { background: #007bff; }
 
 .panel-info-content { padding: 24px; }
 .panel-info-content h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 900; }
-.panel-text-desc { color: #c1aed3; font-size: 0.9rem; margin-top: 10px; margin-bottom: 20px; }
-.btn-panel-action { display: block; text-align: center; background: #ffd700; color: #000; text-decoration: none; padding: 14px; border-radius: 25px; font-weight: 800; }
+.panel-text-desc { color: #c1aed3; font-size: 0.9rem; line-height: 1.5; margin-top: 10px; margin-bottom: 20px; }
+.btn-panel-action { display: block; width: 100%; border: none; text-align: center; background: #ffd700; color: #000; padding: 14px; border-radius: 25px; font-weight: 800; font-size: 0.95rem; cursor: pointer; text-decoration: none; }
 
-/* Not Sure Section */
-.not-sure-section { padding: 20px 6%; }
-.not-sure-box { background: linear-gradient(145deg, #180529 0%, #0d0316 100%); border: 1px solid #360e54; border-radius: 20px; padding: 35px 25px; text-align: center; }
-.crown-icon { color: #ffd700; font-weight: 800; display: block; margin-bottom: 12px; }
-.btn-vip-consultation { display: block; background: #ffd700; color: #000; padding: 14px; border-radius: 25px; font-weight: 800; text-decoration: none; margin-bottom: 15px; }
-.btn-explore-all { color: #bfaec9; font-weight: 700; text-decoration: underline; }
+/* ==========================================================================
+   7. Not Sure Which Service? Layout
+   ========================================================================== */
+.not-sure-section { padding: 20px 6% 40px 6%; }
+.not-sure-box {
+    background: linear-gradient(145deg, #180529 0%, #0d0316 100%);
+    border: 1px solid #360e54; border-radius: 20px; padding: 35px 25px; text-align: center;
+}
+.crown-icon { color: #ffd700; font-size: 1.1rem; font-weight: 800; display: block; margin-bottom: 12px; }
+.not-sure-box p { color: #c1aed3; font-size: 0.9rem; line-height: 1.5; margin-bottom: 25px; }
+.btn-vip-consultation { display: block; width: 100%; border: none; background: #ffd700; color: #000; padding: 14px; border-radius: 25px; font-weight: 800; font-size: 0.95rem; cursor: pointer; text-decoration: none; margin-bottom: 15px; }
+.btn-explore-all { display: block; width: 100%; background: transparent; border: none; color: #bfaec9; font-weight: 700; font-size: 0.9rem; text-decoration: underline; cursor: pointer; }
 
-/* Get In Touch & Form Layout */
-.get-in-touch-section { padding: 40px 6%; }
+/* ==========================================================================
+   8. Get In Touch & Form Layout (Booking Page)
+   ========================================================================== */
+.get-in-touch-section {
+    padding: 50px 6%;
+}
+
 .get-in-touch-header { text-align: center; margin-bottom: 35px; }
 .get-in-touch-header h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 900; }
+.get-in-touch-header p { color: #a491b3; margin-top: 6px; font-size: 0.95rem; }
 
 .contact-cards-stack { display: flex; flex-direction: column; gap: 15px; margin-bottom: 40px; }
 .contact-detail-row { background: #11041c; border: 1px solid #230b33; padding: 18px; border-radius: 14px; display: flex; align-items: center; gap: 15px; }
-.icon-circle-bg { width: 44px; height: 44px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; }
+.icon-circle-bg { width: 44px; height: 44px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; font-size: 1.1rem; }
 .pink-btn-circle { background: #ff3b70; }
-.contact-row-text h4 { color: #ffd700; }
+.contact-row-text h4 { color: #ffd700; font-size: 1.05rem; }
+.contact-row-text p { font-size: 0.95rem; margin-top: 2px; font-weight: 700; }
+.contact-row-text span { font-size: 0.75rem; color: #a491b3; display: block; }
 
 .appointment-form-box { background: #11041c; border: 1px solid #230b33; padding: 25px; border-radius: 18px; }
-.lock-notification-bar { background: #230b33; color: #ffd700; padding: 10px; border-radius: 8px; font-size: 0.8rem; margin-bottom: 20px; }
+.appointment-form-box h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 900; margin-bottom: 15px; }
+.lock-notification-bar { background: #230b33; color: #ffd700; padding: 10px 14px; border-radius: 8px; font-size: 0.8rem; font-weight: 700; display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
 .form-field-group { margin-bottom: 16px; }
-.form-field-group label { display: block; font-size: 0.85rem; color: #bfaec9; margin-bottom: 6px; }
-.form-field-group input, .form-field-group select { width: 100%; background: #07020d; border: 1px solid #230b33; padding: 13px; border-radius: 8px; color: #fff; }
-.btn-submit-appointment { width: 100%; background: #ffd700; color: #000; border: none; padding: 15px; border-radius: 8px; font-weight: 800; cursor: pointer; }
+.form-field-group label { display: block; font-size: 0.85rem; color: #bfaec9; margin-bottom: 6px; font-weight: 700; }
+.form-field-group input, .form-field-group select { width: 100%; background: #07020d; border: 1px solid #230b33; padding: 13px; border-radius: 8px; color: #fff; font-size: 0.95rem; outline: none; }
+.btn-submit-appointment { width: 100%; background: #ffd700; color: #000; border: none; padding: 15px; border-radius: 8px; font-weight: 800; font-size: 1rem; cursor: pointer; margin-top: 10px; }
 
-/* Girls Carousel Layout */
-.girls-carousel-section { padding: 40px 4%; text-align: center; }
-.section-main-title { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; }
-.section-sub-title-pink { color: #ff3b70; font-weight: 900; margin-bottom: 35px; }
-.carousel-container { display: flex; justify-content: center; align-items: center; gap: 12px; }
-.carousel-card { border-radius: 16px; overflow: hidden; background: #11041c; }
-.side-card { width: 22%; height: 230px; opacity: 0.35; }
-.center-card { width: 52%; height: 330px; border: 2px solid #ff3b70; }
-.carousel-card img { width: 100%; height: 100%; object-fit: cover; }
+/* ==========================================================================
+   9. Footer Settings
+   ========================================================================== */
+.vip-luxury-footer {
+    background: #040108; padding: 50px 6% 20px 6%;
+    border-top: 1px solid rgba(255, 215, 0, 0.08);
+}
+.footer-inner-content { display: flex; flex-direction: column; gap: 35px; margin-bottom: 35px; }
+.brand-pitch { color: #a491b3; font-size: 0.9rem; line-height: 1.5; margin-top: 12px; }
+.brand-social-icons { display: flex; gap: 12px; margin-top: 16px; }
+.footer-round-btn { width: 38px; height: 38px; border-radius: 50%; background: #11041c; border: 1px solid #230b33; color: #ffd700; display: flex; justify-content: center; align-items: center; text-decoration: none; }
 
-/* Stats Setup */
-.stats-grid-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 30px 6%; }
-.stat-item-box { background: #12041c; border: 1px solid #230b33; padding: 24px; border-radius: 14px; text-align: center; }
-.stat-item-box h3 { color: #ffd700; font-size: 2rem; }
-
-.info-banner-card { padding: 10px 6%; }
-.info-banner-inner { background: #12041c; border: 1px solid #230b33; padding: 20px; border-radius: 14px; display: flex; align-items: center; gap: 15px; }
-
-/* Footer */
-.vip-luxury-footer { background: #040108; padding: 50px 6% 20px 6%; border-top: 1px solid rgba(255, 215, 0, 0.08); }
-.footer-inner-content { display: flex; flex-direction: column; gap: 35px; }
-.footer-links-column h3 { color: #ffd700; margin-bottom: 18px; }
+.footer-links-column h3 { font-family: 'Playfair Display', serif; color: #ffd700; font-size: 1.2rem; margin-bottom: 18px; }
 .footer-links-column ul { list-style: none; }
-.footer-links-column li { margin-bottom: 12px; color: #bfaec9; }
+.footer-links-column li { margin-bottom: 12px; color: #bfaec9; font-size: 0.95rem; font-weight: 700; }
 .footer-links-column a { color: #bfaec9; text-decoration: none; }
+.footer-links-column i { color: #ffd700; margin-right: 8px; font-size: 0.9rem; }
 
+.footer-contact-details li { display: flex; align-items: flex-start; line-height: 1.4; }
+.footer-copyright-bottom { text-align: center; border-top: 1px solid #11041c; padding-top: 20px; color: #55485c; font-size: 0.8rem; font-weight: 600; }
+
+/* ==========================================================================
+   10. Responsive Media Queries (ለታብሌት እና ለኮምፒውተር)
+   ========================================================================== */
 @media (min-width: 768px) {
-    .hero-buttons { flex-direction: row; justify-content: center; }
+    .hero-buttons { flex-direction: row; max-width: 100%; justify-content: center; }
     .footer-inner-content { grid-template-columns: repeat(3, 1fr); display: grid; }
     .contact-cards-stack { grid-template-columns: repeat(2, 1fr); display: grid; }
     .stats-grid-container { grid-template-columns: repeat(4, 1fr); }
-    .not-sure-box { max-width: 650px; margin: 0 auto; }
+    .not-sure-box { max-width: 650px; margin: 0 auto; padding: 45px; }
+    .services-vertical-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
 }
