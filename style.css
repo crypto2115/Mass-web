@@ -1,5 +1,5 @@
 /* ==========================================================================
-   1. መሠረታዊ እና የጀርባ 3D አኒሜሽን (Base & 3D Background)
+   1. Base & Global CSS Reset
    ========================================================================== */
 * {
     margin: 0;
@@ -8,365 +8,566 @@
 }
 
 body {
-    background: linear-gradient(135deg, #0D0514 0%, #050208 50%, #0D0514 100%);
+    background: linear-gradient(180deg, #07020d 0%, #15021a 30%, #07020d 100%);
     color: #FFFFFF;
     font-family: 'Helvetica Neue', Arial, sans-serif;
     overflow-x: hidden;
     position: relative;
+    padding-bottom: 30px;
 }
 
-/* 🛸 3D ተንሳፋፊ ቅንጣቶች አኒሜሽን */
-.bg-3d-container {
+/* 🛸 3D Floating Animations Background */
+.floating-bg-elements {
     position: fixed;
     width: 100%;
     height: 100%;
     top: 0; left: 0;
     pointer-events: none;
-    z-index: -1;
+    z-index: 0;
 }
 
-.shape-3d {
+.element-3d {
     position: absolute;
-    font-size: 2rem;
-    opacity: 0.2;
-    animation: floatingEffect 8s ease-in-out infinite alternate;
+    font-size: 1.4rem;
+    color: #ffd700;
+    opacity: 0.12;
+    animation: drift3dEffect 10s ease-in-out infinite alternate;
 }
 
-@keyframes floatingEffect {
-    0% { transform: translateY(0) scale(1) rotate(0deg); filter: drop-shadow(0 0 0px #FFD700); }
-    50% { transform: translateY(-35px) scale(1.2) rotate(180deg); filter: drop-shadow(0 10px 15px rgba(255,215,0,0.5)); }
-    100% { transform: translateY(15px) scale(0.9) rotate(360deg); filter: drop-shadow(0 0 0px #FFD700); }
+@keyframes drift3dEffect {
+    0% { transform: translateY(0) scale(1) rotate(0deg); }
+    50% { transform: translateY(-40px) scale(1.15) rotate(180deg); }
+    100% { transform: translateY(20px) scale(0.9) rotate(360deg); }
 }
 
 /* ==========================================================================
-   2. የላይኛው ማውጫ (Navbar)
+   2. Navbar Configuration
    ========================================================================== */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 8%;
-    background-color: rgba(5, 2, 8, 0.9);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+    padding: 16px 5%;
+    background: rgba(7, 2, 13, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 215, 0, 0.08);
     position: sticky;
     top: 0; z-index: 100;
 }
 
 .logo {
-    font-size: 1.6rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #ffd700;
+    letter-spacing: 0.5px;
+}
+
+.logo-circle {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff3b70, #ffd700);
+}
+
+.lang-btn {
+    background: #1c062a;
+    color: #fff;
+    border: 1px solid #3d1459;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.menu-icon {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    margin-left: 15px;
+}
+
+.menu-icon span {
+    width: 22px; height: 2px;
+    background: #fff;
+    border-radius: 2px;
+}
+
+/* ==========================================================================
+   3. Hero Showcase
+   ========================================================================== */
+.hero-section {
+    padding: 60px 6% 40px 6%;
+    text-align: center;
+    z-index: 1;
+    position: relative;
+}
+
+.hero-title {
+    font-size: 2.3rem;
+    font-weight: 900;
+    line-height: 1.3;
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+}
+
+.hero-desc {
+    color: #bfaec9;
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 550px;
+    margin: 0 auto 35px auto;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 320px;
+    margin: 0 auto;
+}
+
+.btn-pink-full {
+    background: #ff3b70;
+    color: #fff;
+    padding: 15px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 1.05rem;
+    box-shadow: 0 4px 20px rgba(255, 59, 112, 0.35);
+}
+
+.btn-gold-outline {
+    border: 1.5px solid #ffd700;
+    color: #ffd700;
+    padding: 14px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 1.05rem;
+}
+
+/* ==========================================================================
+   4. Photo Gallery Arrangement (BUITIFULL GERLIS)
+   ========================================================================== */
+.girls-carousel-section {
+    padding: 40px 4%;
+    text-align: center;
+}
+
+.section-main-title {
+    font-size: 1.8rem;
     font-weight: 900;
     letter-spacing: 1px;
 }
 
-.logo span { color: #FFD700; }
+.section-sub-title-pink {
+    color: #ff3b70;
+    font-weight: 900;
+    font-size: 1.1rem;
+    margin-top: 5px;
+    margin-bottom: 30px;
+}
 
-.nav-links a {
-    color: #FFFFFF;
-    text-decoration: none;
-    margin-right: 25px;
+.carousel-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.carousel-card {
+    border-radius: 16px;
+    overflow: hidden;
+    background: #11041c;
+    border: 1.5px solid rgba(255,255,255,0.05);
+}
+
+.side-card {
+    width: 22%;
+    height: 240px;
+    opacity: 0.4;
+    transform: scale(0.9);
+}
+
+.center-card {
+    width: 50%;
+    height: 320px;
+    border-color: #ff3b70;
+    box-shadow: 0 8px 25px rgba(255, 59, 112, 0.25);
+}
+
+.carousel-card img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+}
+
+/* ==========================================================================
+   5. Counter Metrics (Stats)
+   ========================================================================== */
+.stats-grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 30px 6%;
+}
+
+.stat-item-box {
+    background: #12041c;
+    border: 1px solid #230b33;
+    padding: 22px;
+    border-radius: 14px;
+    text-align: center;
+}
+
+.stat-item-box h3 {
+    color: #ffd700;
+    font-size: 1.9rem;
+    font-weight: 900;
+}
+
+.stat-item-box p {
+    color: #a491b3;
+    font-size: 0.85rem;
+    margin-top: 4px;
     font-weight: 700;
 }
 
-.nav-links a:hover { color: #FFD700; }
-
-.lang-selector {
-    background: #1C1226;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    border: 1px solid #362547;
+/* Info Banner */
+.info-banner-card {
+    padding: 10px 6%;
+    margin-bottom: 30px;
 }
 
-.lang-selector img { width: 18px; border-radius: 2px; }
-
-/* ==========================================================================
-   3. ዋናው ገጽታ (Hero Section)
-   ========================================================================== */
-.hero-section {
-    padding: 100px 8% 60px 8%;
-    text-align: center;
-}
-
-.main-title {
-    font-size: 3rem;
-    font-weight: 900;
-    line-height: 1.3;
-    margin-bottom: 20px;
-}
-
-.main-title span { color: #FF3B70; }
-
-.description {
-    color: #CCCCCC;
-    max-width: 600px;
-    margin: 0 auto 35px auto;
-    font-size: 1.1rem;
-    line-height: 1.7;
-}
-
-.hero-btns {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-.btn-pink {
-    background: #FF3B70;
-    color: white;
-    padding: 14px 32px;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: 900;
-    box-shadow: 0 5px 20px rgba(255, 59, 112, 0.4);
-}
-
-.btn-outline {
-    border: 2px solid #FFD700;
-    color: #FFD700;
-    padding: 12px 32px;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: 900;
-}
-
-/* ==========================================================================
-   4. የሴቶች ፎቶዎች (Beautiful Girls Carousel)
-   ========================================================================== */
-.girls-section {
-    padding: 60px 8%;
-    text-align: center;
-}
-
-.girls-section h2 { font-size: 2.2rem; font-weight: 900; letter-spacing: 1px; }
-.pink-text { color: #4FA8FF; font-weight: 900; margin-bottom: 40px; font-size: 1.1rem; }
-
-.girls-grid {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.girl-card {
-    width: 260px;
-    height: 360px;
-    border-radius: 20px;
-    overflow: hidden;
-    position: relative;
-    border: 2px solid #1C1226;
-    transition: all 0.4s ease;
-}
-
-.girl-card img { width: 100%; height: 100%; object-fit: cover; }
-
-.active-card {
-    transform: scale(1.05);
-    border-color: #4FA8FF;
-    box-shadow: 0 10px 30px rgba(79, 168, 255, 0.3);
-}
-
-.card-overlay {
-    position: absolute;
-    bottom: 0; width: 100%;
-    background: linear-gradient(transparent, rgba(0,0,0,0.9));
-    padding: 15px;
-    font-weight: 900;
-}
-
-/* ==========================================================================
-   5. የቁጥር መረጃዎች ማሳያ (Stats)
-   ========================================================================== */
-.stats-section {
-    display: flex;
-    justify-content: space-around;
-    padding: 50px 8%;
-    background: #08030F;
-    border-top: 1px solid #1C1226;
-    border-bottom: 1px solid #1C1226;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.stat-box text-align: center; {
-    min-width: 120px;
-}
-
-.stat-box h3 { color: #FFD700; font-size: 2.2rem; font-weight: 900; }
-.stat-box p { color: #AAAAAA; font-size: 0.9rem; font-weight: 700; margin-top: 5px; }
-
-/* ==========================================================================
-   6. 🌟 የ "Book Now" ፎርም እና የመረጃዎች ስታይል (Get In Touch & Form) 🌟
-   ========================================================================== */
-.booking-section {
-    padding: 80px 8%;
-}
-
-.section-title { text-align: center; margin-bottom: 50px; }
-.section-title h2 { font-size: 2.5rem; font-weight: 900; }
-.section-title p { color: #B3B3B3; margin-top: 10px; }
-
-.info-contacts-grid {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
-    margin-bottom: 50px;
-}
-
-.info-item {
-    background: #120A1C;
-    border: 1px solid #251636;
+.info-banner-inner {
+    background: #12041c;
+    border: 1px solid #230b33;
     padding: 20px;
-    border-radius: 15px;
+    border-radius: 14px;
     display: flex;
     align-items: center;
     gap: 15px;
-    min-width: 280px;
 }
 
-.icon-circle {
-    width: 45px; height: 45px;
-    background: #FF3B70;
+.lock-icon-box {
+    width: 42px; height: 42px;
+    background: rgba(255, 215, 0, 0.1);
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.2rem;
-}
-
-.info-item h4 { color: #FFD700; font-size: 1.1rem; margin-bottom: 4px; }
-.info-item p { color: #FFFFFF; font-weight: 700; }
-
-/* ፎርሙ መፍጠሪያ */
-.form-container {
-    background: #120A1C;
-    border: 1px solid #251636;
-    padding: 40px;
-    border-radius: 24px;
-    max-width: 600px;
-    margin: 0 auto 60px auto;
-}
-
-.form-container h3 { font-size: 1.5rem; margin-bottom: 20px; color: #FFD700; }
-
-.form-badge {
-    background: #251636;
-    color: #FFD700;
-    padding: 10px 15px;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    font-weight: 700;
-    margin-bottom: 25px;
-    border-left: 4px solid #FFD700;
-}
-
-.input-group {
-    margin-bottom: 20px;
-}
-
-.input-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 700;
-    font-size: 0.95rem;
-    color: #CCCCCC;
-}
-
-.input-group input, .input-group select {
-    width: 100%;
-    padding: 14px;
-    background: #0D0514;
-    border: 1px solid #251636;
-    border-radius: 10px;
-    color: white;
-    font-size: 1rem;
-}
-
-.btn-submit {
-    width: 100%;
-    background: #FFD700;
-    color: black;
-    border: none;
-    padding: 16px;
+    color: #ffd700;
     font-size: 1.1rem;
-    font-weight: 900;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: background 0.3s;
-    margin-top: 10px;
 }
 
-.btn-submit:hover { background: #FFFFFF; }
-
-/* ካርታዎች (Find Us) */
-.maps-section { text-align: center; }
-.maps-section h3 { font-size: 1.8rem; color: #FFD700; }
-.map-sub { color: #AAAAAA; margin-bottom: 30px; }
-
-.map-card {
-    background: #120A1C;
-    border: 1px solid #251636;
-    border-radius: 20px;
-    padding: 40px;
-    max-width: 600px;
-    margin: 0 auto;
+.info-banner-text h3 {
+    font-size: 1.05rem;
+    color: #ffd700;
 }
 
-.map-placeholder {
-    color: #CCCCCC;
+.info-banner-text p {
+    font-size: 0.85rem;
+    color: #a491b3;
+    margin-top: 2px;
 }
-
-.map-placeholder i { font-size: 3rem; color: #FF3B70; margin-bottom: 15px; }
 
 /* ==========================================================================
-   7. የግርጌ ክፍል (Footer)
+   6. Custom Treatments Display Panels
    ========================================================================== */
-.vip-footer {
-    background: #050208;
-    padding: 60px 8% 20px 8%;
-    border-top: 1px solid #1C1226;
-    margin-top: 80px;
+.premium-services-section {
+    padding: 40px 6%;
 }
 
-.footer-container {
+.services-header-box {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.gold-tag {
+    color: #ffd700;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.services-header-box h2 {
+    font-size: 1.9rem;
+    font-weight: 900;
+    margin-top: 8px;
+}
+
+.services-header-box p {
+    color: #a491b3;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.services-vertical-list {
     display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 40px;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.service-panel-card {
+    background: #11041c;
+    border: 1px solid #230b33;
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+.panel-img-wrap {
+    height: 200px;
+    position: relative;
+}
+
+.panel-img-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+}
+
+.panel-badge-pink, .panel-badge-blue {
+    position: absolute;
+    top: 15px; left: 15px;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 800;
+}
+
+.panel-badge-pink { background: #ff3b70; }
+.panel-badge-blue { background: #007bff; }
+
+.panel-info-content {
+    padding: 22px;
+}
+
+.panel-info-content h3 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+.panel-text-desc {
+    color: #bfaec9;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-top: 10px;
+    margin-bottom: 18px;
+}
+
+.panel-features {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 22px;
+}
+
+.panel-features span {
+    font-size: 0.85rem;
+    color: #fff;
+    font-weight: 600;
+}
+
+.panel-features i {
+    color: #ffd700;
+    margin-right: 6px;
+}
+
+.btn-panel-action {
+    display: block;
+    text-align: center;
+    background: #ffd700;
+    color: #000;
+    text-decoration: none;
+    padding: 13px;
+    border-radius: 25px;
+    font-weight: 800;
+}
+
+/* ==========================================================================
+   7. Appointment Intake (Get In Touch Form)
+   ========================================================================== */
+.get-in-touch-section {
+    padding: 50px 6%;
+}
+
+.get-in-touch-header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.get-in-touch-header h2 { font-size: 2rem; font-weight: 900; }
+.get-in-touch-header p { color: #a491b3; margin-top: 5px; font-size: 0.95rem; }
+
+.contact-cards-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
     margin-bottom: 40px;
 }
 
-.footer-box { flex: 1; min-width: 250px; }
-.footer-box h3 { color: #FFD700; margin-bottom: 20px; }
-.footer-box p { color: #AAAAAA; line-height: 1.6; }
+.contact-detail-row {
+    background: #11041c;
+    border: 1px solid #230b33;
+    padding: 16px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
 
-.footer-links { list-style: none; }
-.footer-links li { margin-bottom: 12px; }
-.footer-links a { color: #CCCCCC; text-decoration: none; font-weight: 700; }
-.footer-links a:hover { color: #FF3B70; }
-
-.footer-socials { display: flex; gap: 15px; margin-top: 20px; }
-.social-btn {
-    width: 40px; height: 40px;
+.icon-circle-bg {
+    width: 44px; height: 44px;
     border-radius: 50%;
-    background: #120A1C;
-    color: #FFD700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1.1rem;
+}
+
+.pink-btn-circle { background: #ff3b70; }
+
+.contact-row-text h4 { color: #ffd700; font-size: 1.05rem; }
+.contact-row-text p { font-size: 0.95rem; margin-top: 2px; font-weight: 700; }
+.contact-row-text span { font-size: 0.75rem; color: #a491b3; display: block; }
+
+/* Interactive Form Containers */
+.appointment-form-box {
+    background: #11041c;
+    border: 1px solid #230b33;
+    padding: 25px;
+    border-radius: 18px;
+}
+
+.appointment-form-box h3 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.lock-notification-bar {
+    background: #230b33;
+    color: #ffd700;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.form-field-group {
+    margin-bottom: 16px;
+}
+
+.form-field-group label {
+    display: block;
+    font-size: 0.85rem;
+    color: #bfaec9;
+    margin-bottom: 6px;
+    font-weight: 700;
+}
+
+.form-field-group input, .form-field-group select {
+    width: 100%;
+    background: #07020d;
+    border: 1px solid #230b33;
+    padding: 12px;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 0.95rem;
+}
+
+.btn-submit-appointment {
+    width: 100%;
+    background: #ffd700;
+    color: #000;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-weight: 800;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* ==========================================================================
+   8. Navigation Footer
+   ========================================================================== */
+.vip-luxury-footer {
+    background: #05010a;
+    padding: 40px 6% 20px 6%;
+    border-top: 1px solid rgba(255, 215, 0, 0.08);
+}
+
+.footer-inner-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.brand-pitch {
+    color: #a491b3;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-top: 12px;
+}
+
+.brand-social-icons {
+    display: flex;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.footer-round-btn {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: #11041c;
+    border: 1px solid #230b33;
+    color: #ffd700;
     display: flex;
     justify-content: center;
     align-items: center;
     text-decoration: none;
-    border: 1px solid #251636;
 }
 
-.footer-bottom { text-align: center; border-top: 1px solid #1C1226; padding-top: 20px; color: #666666; font-size: 0.85rem; }
+.footer-links-column h3 {
+    color: #ffd700;
+    font-size: 1.15rem;
+    margin-bottom: 15px;
+}
 
-@media (max-width: 768px) {
-    .hero-section { padding-top: 60px; }
-    .main-title { font-size: 2.2rem; }
-    .footer-container { flex-direction: column; }
+.footer-links-column ul { list-style: none; }
+.footer-links-column li { margin-bottom: 12px; }
+.footer-links-column a {
+    color: #bfaec9;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.footer-copyright-bottom {
+    text-align: center;
+    border-top: 1px solid #11041c;
+    padding-top: 20px;
+    color: #55485c;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* responsive adjustment */
+@media (min-width: 768px) {
+    .hero-buttons { flex-direction: row; max-width: 100%; justify-content: center; }
+    .footer-inner-content { flex-direction: row; justify-content: space-between; }
+    .contact-cards-stack { grid-template-columns: repeat(2, 1fr); display: grid; }
+    .stats-grid-container { grid-template-columns: repeat(4, 1fr); }
 }
