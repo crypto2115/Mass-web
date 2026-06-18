@@ -1,25 +1,76 @@
-/* መሠረታዊ ቅንብሮች */
+/* ==========================================================================
+   1. መሠረታዊ እና የጀርባ 3D አኒሜሽን ቅንብሮች (Base & 3D Background)
+   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    background-color: #0A0A0A; /* ልክ እንደ ድረ-ገጹ ማራኪ ጥቁር ባግራውንድ */
+    /* ከጥቁር ወደ ወይንጠጅ የሚያደላ እውነተኛ የቪአይፒ የጀርባ ቀለም */
+    background: linear-gradient(135deg, #0A0A0A 0%, #15081C 50%, #0A0A0A 100%);
     color: #FFFFFF; /* ዋና ጽሑፎች በሙሉ ነጭ */
     font-family: 'Helvetica Neue', Arial, sans-serif;
     overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
 }
 
-/* የላይኛው ማውጫ (Navbar) */
+/* 🚀 በ CSS የሚፈጠሩ ተንሳፋፊ የጀርባ 3D ምልክቶች */
+body::before, body::after {
+    content: "✨";
+    position: fixed;
+    font-size: 2rem;
+    color: rgba(255, 215, 0, 0.15); /* ወርቃማ ብርሃን */
+    z-index: -1;
+    pointer-events: none;
+}
+
+body::before {
+    top: 20%; left: 8%;
+    animation: float3D 8s ease-in-out infinite alternate;
+}
+
+body::after {
+    top: 75%; right: 12%;
+    content: "💖"; /* 3D ልብ */
+    font-size: 1.5rem;
+    color: rgba(255, 182, 193, 0.12);
+    animation: float3D 12s ease-in-out infinite alternate-reverse;
+}
+
+/* 🛸 የ 3D ተንሳፋፊ እንቅስቃሴ አኒሜሽን ህግ (Keyframes) */
+@keyframes float3D {
+    0% {
+        transform: translateY(0) rotate(0deg) scale(1);
+        filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0));
+    }
+    50% {
+        transform: translateY(-45px) rotate(180deg) scale(1.25); /* ወደ ላይ ከፍ እያለ ይዞራል */
+        filter: drop-shadow(0 15px 20px rgba(255, 215, 0, 0.35)); /* 3D ጥላና ብርሃን ይሰጠዋል */
+    }
+    100% {
+        transform: translateY(15px) rotate(360deg) scale(0.95);
+        filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0));
+    }
+}
+
+/* ==========================================================================
+   2. የላይኛው ማውጫ (Navbar)
+   ========================================================================== */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px 8%;
-    background-color: #0A0A0A;
-    border-bottom: 2px solid #1A1A1A; /* ስስ ጥቁር መስመር */
+    background-color: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(10px); /* የበራሪ መስታወት መልክ ይሰጠዋል */
+    border-bottom: 1px solid rgba(255, 215, 0, 0.1);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -42,20 +93,34 @@ body {
     margin-right: 30px;
     font-size: 1rem;
     font-weight: 800;
-    transition: color 0.3s;
+    transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
-    color: #FFD700; /* ማውሱ ሲያርፍ ወርቃማ ይሆናል */
+    color: #FFD700;
 }
 
-/* ዋናው ገጽታ (Hero) */
+.lang-selector {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #1A1A1A;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid #333333;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   3. ዋናው ገጽታ (Hero Section)
+   ========================================================================== */
 .hero-section {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 60px 8%;
-    background: linear-gradient(to bottom, #111111, #0A0A0A);
+    padding: 80px 8%;
+    background: transparent;
 }
 
 .hero-content {
@@ -63,7 +128,7 @@ body {
 }
 
 .subtitle {
-    color: #FFD700; /* ወርቃማ */
+    color: #FFD700;
     font-size: 0.9rem;
     font-weight: 800;
     letter-spacing: 3px;
@@ -72,70 +137,78 @@ body {
 
 .main-title {
     font-size: 3.5rem;
-    color: #FFFFFF; /* ደማቅ ነጭ ርዕስ በጥቁር ላይ */
+    color: #FFFFFF;
     font-weight: 900;
     line-height: 1.2;
     margin-bottom: 25px;
 }
 
 .highlight-text {
-    color: #FFD700; /* ወርቃማ */
+    color: #FFD700;
 }
 
 .description {
-    color: #E0E0E0; /* ደማቅ እና የሚነበብ ግራጫ መሰል ነጭ */
+    color: #E0E0E0;
     font-size: 1.2rem;
     font-weight: 700;
     line-height: 1.8;
     margin-bottom: 35px;
 }
 
-/* ዋናው በተን */
 .btn-primary {
-    background-color: #FFD700; /* ወርቃማ በተን */
-    color: #000000; /* በወርቃማው ላይ ጥቁር ደማቅ ጽሑፍ */
-    padding: 16px 36px;
+    background-color: #FFD700;
+    color: #000000;
+    padding: 16px 38px;
     border-radius: 30px;
     text-decoration: none;
     font-weight: 900;
+    font-size: 1.05rem;
     display: inline-block;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
 }
 
 .btn-primary:hover {
-    background-color: #FFF;
+    background-color: #FFFFFF;
     transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
 }
 
 .hero-image-box img {
     width: 100%;
     max-width: 450px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border-radius: 24px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
     border: 4px solid #1A1A1A;
 }
 
-/* ጥቅስ */
+/* ==========================================================================
+   4. የጥቅስ እና የቪቪአይፒ ክፍሎች (Quote Section)
+   ========================================================================== */
 .quote-section {
     padding: 60px 8%;
     text-align: center;
-    background-color: #111111;
-    border-top: 1px solid #1A1A1A;
-    border-bottom: 1px solid #1A1A1A;
+    background-color: rgba(17, 17, 17, 0.6);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .quote-text {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     font-style: italic;
     font-weight: 800;
-    color: #FFD700; /* ጥቅሱ በወርቃማ ከለር ይደምቃል */
+    color: #FFD700;
+    line-height: 1.8;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
-/* 🌟 አዲሱ የቪአይፒ አገልግሎቶች ስታይል (Services Section) 🌟 */
+/* ==========================================================================
+   5. የናኒ አገልግሎቶች ዝርዝር (NANI Services Section)
+   ========================================================================== */
 .services-section {
-    padding: 80px 8%;
-    background-color: #0A0A0A;
+    padding: 90px 8%;
+    background: transparent;
 }
 
 .section-header {
@@ -144,10 +217,10 @@ body {
 }
 
 .section-header h2 {
-    font-size: 2.5rem;
+    font-size: 2.6rem;
     color: #FFFFFF;
     font-weight: 900;
-    margin-top: 10px;
+    margin-top: 12px;
 }
 
 .section-desc-text {
@@ -160,14 +233,15 @@ body {
 .badge {
     background-color: #1A1A1A;
     color: #FFD700;
-    padding: 6px 16px;
+    padding: 6px 18px;
     border-radius: 20px;
     font-size: 0.9rem;
     font-weight: 900;
     border: 1px solid #333333;
+    letter-spacing: 1px;
 }
 
-/* የአገልግሎት ካርዶች መደርደሪያ */
+/* ካርዶች መደርደሪያ */
 .services-grid {
     display: flex;
     justify-content: center;
@@ -175,40 +249,41 @@ body {
     flex-wrap: wrap;
 }
 
-/* እያንዳንዱ ካርድ በጥቁር እና በወርቃማ መስመር ተውቧል */
+/* እያንዳንዱ የናኒ ቪአይፒ ካርድ ዲዛይን */
 .service-card {
     background: #111111;
     border: 2px solid #1A1A1A;
-    border-radius: 20px;
+    border-radius: 24px;
     width: 31%;
     min-width: 300px;
     overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
+/* 🚀 ካርዱ ላይ ማውሱ ሲያርፍ የሚፈጠር የወርቃማ ብርሃን አኒሜሽን */
 .service-card:hover {
-    transform: translateY(-10px);
-    border-color: #FFD700; /* ማውሱ ሲያርፍ ጠርዙ ወርቃማ ይሆናል */
-    box-shadow: 0 20px 40px rgba(255, 215, 0, 0.15);
+    transform: translateY(-12px);
+    border-color: #FFD700; 
+    box-shadow: 0 25px 50px rgba(255, 215, 0, 0.18); /* ወርቃማ ፍንጣቂ ጥላ (Glow) */
 }
 
 .service-img-box {
     width: 100%;
-    height: 240px;
+    height: 250px;
     overflow: hidden;
-    border-bottom: 2px solid #1A1A1A;
+    border-bottom: 1px solid #1A1A1A;
 }
 
 .service-img-box img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.4s ease;
+    transition: transform 0.5s ease;
 }
 
 .service-card:hover .service-img-box img {
-    transform: scale(1.05);
+    transform: scale(1.06); /* ምስሉ ቀስ ብሎ ይጎላል */
 }
 
 .service-content {
@@ -222,11 +297,11 @@ body {
     text-transform: uppercase;
     letter-spacing: 1px;
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 .service-content h3 {
-    font-size: 1.3rem;
+    font-size: 1.35rem;
     color: #FFFFFF;
     font-weight: 900;
     margin-bottom: 12px;
@@ -237,20 +312,20 @@ body {
     color: #CCCCCC;
     font-weight: 700;
     line-height: 1.6;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     height: 75px;
     overflow: hidden;
 }
 
-/* የሰዓት እና ዋጋ መደራደሪያ */
+/* ሰዓት እና ዋጋ */
 .service-meta {
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-top: 1px dashed #333333;
     border-bottom: 1px dashed #333333;
-    padding: 12px 0;
-    margin-bottom: 20px;
+    padding: 14px 0;
+    margin-bottom: 25px;
 }
 
 .duration {
@@ -261,23 +336,23 @@ body {
 
 .duration i {
     color: #FFD700;
-    margin-right: 5px;
+    margin-right: 6px;
 }
 
 .price {
-    font-size: 1.2rem;
-    color: #FFD700; /* ዋጋው በወርቃማ ቀለም ይደምቃል */
+    font-size: 1.25rem;
+    color: #FFD700;
     font-weight: 900;
 }
 
-/* የ Book Now በተን ስታይል */
+/* የ Book Now በተን */
 .btn-book {
     display: block;
     text-align: center;
     background-color: transparent;
     color: #FFD700;
     border: 2px solid #FFD700;
-    padding: 12px;
+    padding: 13px;
     border-radius: 25px;
     text-decoration: none;
     font-weight: 900;
@@ -288,21 +363,23 @@ body {
 .btn-book:hover {
     background-color: #FFD700;
     color: #000000;
-    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+    box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
 }
 
-/* የቁጥር መረጃዎች ማሳያ */
+/* ==========================================================================
+   6. የቁጥር መረጃዎች ማሳያ (Stats Section)
+   ========================================================================== */
 .stats-section {
     display: flex;
-    padding: 80px 8%;
+    padding: 90px 8%;
     background-color: #111111;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid #1A1A1A;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .stats-left h2 {
-    font-size: 2.3rem;
+    font-size: 2.4rem;
     color: #FFFFFF;
     font-weight: 900;
     margin-bottom: 15px;
@@ -311,7 +388,8 @@ body {
 .stats-left p {
     color: #CCCCCC;
     font-weight: 800;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
+    line-height: 1.6;
 }
 
 .btn-secondary {
@@ -321,8 +399,14 @@ body {
     text-decoration: none;
     font-weight: 900;
     border-bottom: 3px solid #FFD700;
-    padding-bottom: 5px;
+    padding-bottom: 6px;
     font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.btn-secondary:hover {
+    color: #FFFFFF;
+    border-color: #FFFFFF;
 }
 
 .stats-right {
@@ -333,17 +417,17 @@ body {
 
 .stat-box {
     background-color: #0A0A0A;
-    padding: 30px;
-    border-radius: 12px;
+    padding: 35px;
+    border-radius: 16px;
     text-align: center;
     border: 2px solid #1A1A1A;
 }
 
 .stat-box h3 {
     color: #FFD700;
-    font-size: 2.2rem;
+    font-size: 2.4rem;
     font-weight: 900;
-    margin-bottom: 5px;
+    margin-bottom: 6px;
 }
 
 .stat-box p {
@@ -352,25 +436,201 @@ body {
     font-size: 1rem;
 }
 
-/* ዋትስአፕ ተንሳፋፊ በተን */
+/* ==========================================================================
+   7. 🌟 እውነተኛው የቪአይፒ ማሳጅ ፎተር (Luxury Footer Styles) 🌟
+   ========================================================================== */
+.vip-footer {
+    background: linear-gradient(135deg, #0A0A0A 0%, #15081C 50%, #0A0A0A 100%);
+    padding: 80px 8% 25px 8%;
+    border-top: 1px solid rgba(255, 215, 0, 0.15);
+    color: #FFFFFF;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.footer-box {
+    flex: 1;
+    min-width: 260px;
+}
+
+/* ሎጎ መግለጫ */
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.f-logo-img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid #FFD700;
+    object-fit: cover;
+}
+
+.footer-logo h2 {
+    font-size: 1.45rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.footer-logo h2 span {
+    color: #FFD700;
+}
+
+.footer-desc {
+    color: #B3B3B3;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+/* የሶሻል ክብ በተኖች */
+.footer-socials {
+    display: flex;
+    gap: 15px;
+}
+
+.social-btn {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background-color: rgba(255, 215, 0, 0.12);
+    border: 1px solid rgba(255, 215, 0, 0.25);
+    color: #FFD700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.15rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+    background-color: #FFD700;
+    color: #000000;
+    transform: translateY(-4px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+}
+
+/* አርእስቶች */
+.footer-box h3 {
+    color: #FFD700;
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin-bottom: 25px;
+}
+
+/* Quick Links ዝርዝር */
+.footer-links-list {
+    list-style: none;
+}
+
+.footer-links-list li {
+    margin-bottom: 16px;
+}
+
+.footer-links-list a {
+    color: #CCCCCC;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s ease;
+}
+
+.footer-links-list a i {
+    color: #FFD700;
+    font-size: 0.95rem;
+}
+
+.footer-links-list a:hover {
+    color: #FFD700;
+    padding-left: 6px;
+}
+
+/* የ Contact ዝርዝር */
+.footer-contact-list {
+    list-style: none;
+}
+
+.footer-contact-list li {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.c-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFD700; /* አይኮኖቹ ወርቃማ ናቸው */
+    font-size: 0.95rem;
+}
+
+.footer-contact-list li span {
+    color: #CCCCCC;
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+/* የታችኛው መብት ጥበቃ መስመር */
+.footer-bottom {
+    text-align: center;
+    padding-top: 25px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-bottom p {
+    color: #666666;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   8. ዋትስአፕ ተንሳፋፊ በተን እና ስልክ ማስተካከያ (WhatsApp & Responsive)
+   ========================================================================== */
 .whatsapp-float {
     position: fixed;
     bottom: 40px;
     right: 40px;
     background-color: #25D366;
     color: white;
-    width: 60px;
-    height: 60px;
+    width: 62px;
+    height: 62px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 30px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    font-size: 32px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
     z-index: 1000;
+    transition: transform 0.3s ease;
 }
 
-/* ተንቀሳቃሽ ስልክ ላይ በትክክል እንዲታይ (Responsive) */
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
+
+/* ተንቀሳቃሽ ስልክ ላይ በትክክል እንዲታይ ማስተካከያ (Media Queries) */
 @media (max-width: 992px) {
     .service-card {
         width: 45%;
@@ -384,12 +644,19 @@ body {
     }
     .hero-content, .stats-left {
         max-width: 100%;
-        margin-bottom: 40px;
+        margin-bottom: 45px;
     }
     .service-card {
         width: 100%;
     }
     .main-title {
-        font-size: 2.5rem;
+        font-size: 2.6rem;
+    }
+    .footer-container {
+        flex-direction: column;
+        gap: 35px;
+    }
+    .footer-box {
+        width: 100%;
     }
 }
