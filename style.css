@@ -43,7 +43,7 @@ body {
 .nav-right {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 12px;
 }
 
 .lang-dropdown-select {
@@ -106,6 +106,7 @@ body {
 }
 
 .btn-pink-full {
+    display: inline-block;
     background: linear-gradient(90deg, #ff3b70 0%, #e60042 100%);
     color: #fff;
     padding: 16px;
@@ -117,12 +118,14 @@ body {
     text-decoration: none;
     text-align: center;
     box-shadow: 0 4px 20px rgba(255, 59, 112, 0.4);
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
 }
 
 .btn-pink-full:active { transform: scale(0.98); }
 
 .btn-gold-outline {
+    display: inline-block;
     background: transparent;
     border: 1.5px solid #ffd700;
     color: #ffd700;
@@ -136,7 +139,7 @@ body {
 }
 
 /* ==========================================================================
-   4. Premium Services Layout (Our Premium Services)
+   4. Premium Services Layout
    ========================================================================== */
 .premium-services-section { padding: 40px 6%; }
 .services-header-box { text-align: center; margin-bottom: 35px; }
@@ -146,7 +149,6 @@ body {
 
 .services-vertical-list { display: flex; flex-direction: column; gap: 30px; }
 
-/* 🌟 በምስሉ ላይ የሚታየው የሚያምረው የካርድ Glow ዲዛይን */
 .service-panel-card { 
     background: #12041c; 
     border: 1px solid #310d47; 
@@ -158,7 +160,6 @@ body {
 .panel-img-wrap { height: 230px; position: relative; }
 .panel-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
 
-/* Badges */
 .panel-badge-pink, .panel-badge-blue { 
     position: absolute; 
     top: 15px; left: 15px; 
@@ -192,11 +193,14 @@ body {
 }
 
 /* ==========================================================================
-   5. Luxury Wellness Experience (Features List)
+   5. Luxury Wellness Experience & Contact Info Layout
    ========================================================================== */
-.contact-cards-stack { display: flex; flex-direction: column; gap: 20px; margin-bottom: 30px; }
+.get-in-touch-section { padding: 40px 6%; text-align: center; }
+.get-in-touch-header h2 { font-family: 'Playfair Display', serif; font-size: 2.3rem; font-weight: 900; margin-bottom: 8px; }
+.get-in-touch-header p { color: #a491b3; font-size: 0.95rem; margin-bottom: 30px; }
 
-/* 🌟 በፎቶው ላይ ያለው ውብ የወርቅ ቀለም የድንበር Glow ያላቸው ሳጥኖች */
+.contact-cards-stack { display: flex; flex-direction: column; gap: 20px; margin-bottom: 30px; text-align: left; }
+
 .contact-detail-row { 
     background: linear-gradient(145deg, #160524 0%, #090210 100%); 
     border: 1px solid rgba(255, 215, 0, 0.15); 
@@ -204,12 +208,12 @@ body {
     border-radius: 16px; 
     display: flex; 
     align-items: center; 
-    gap: 15px; 
+    gap: 20px; 
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
 }
 
 .icon-circle-bg { 
-    width: 50px; height: 50px; 
+    width: 52px; height: 52px; 
     border-radius: 50%; 
     display: flex; 
     justify-content: center; 
@@ -224,7 +228,61 @@ body {
 .contact-row-text p { font-size: 0.9rem; margin-top: 4px; color: #bfaec9; line-height: 1.5; }
 
 /* ==========================================================================
-   6. Not Sure Section & Escape Banner
+   6. 🎯 የተስተካከለው የ Contact Form ዲዛይን (ነጭ ሳጥኖችን የሚያጠፋው)
+   ========================================================================== */
+.appointment-form-box {
+    background: #12041c;
+    border: 1px solid #310d47;
+    padding: 35px 25px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    text-align: left;
+}
+
+.appointment-form-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: #fff;
+    margin-bottom: 18px;
+    text-align: center;
+}
+
+.form-field-group {
+    margin-bottom: 20px;
+}
+
+.form-field-group label {
+    display: block;
+    font-size: 0.9rem;
+    color: #ffd700;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+/* ነጭነትን አጥፍቶ ውብ የሚያደርገው ዋናው ክፍል */
+.form-field-group input {
+    width: 100%;
+    padding: 14px;
+    background: #1e062c !important; /* የውስጥ ከለር */
+    border: 1px solid #4a1566 !important; /* የድንበር ከለር */
+    color: #FFFFFF !important; /* የጽሑፍ ከለር */
+    border-radius: 10px;
+    outline: none;
+    font-size: 0.95rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-field-group input:focus {
+    border-color: #ff3b70 !important;
+}
+
+/* placeholder ጽሑፎችን አመድማ ለማድረግ */
+.form-field-group input::placeholder {
+    color: #7a638a !important;
+}
+
+/* ==========================================================================
+   7. Not Sure Section & Escape Banner
    ========================================================================== */
 .not-sure-section { padding: 30px 6%; }
 .not-sure-box {
@@ -240,7 +298,7 @@ body {
 .not-sure-box p { color: #ffd700; font-size: 0.95rem; line-height: 1.6; margin-bottom: 25px; }
 
 /* ==========================================================================
-   7. Stats & Counter Boxes (About Page)
+   8. Stats & Counter Boxes (About Page)
    ========================================================================== */
 .stats-grid-container {
     display: grid;
@@ -262,7 +320,7 @@ body {
 .stat-item-box p { color: #a491b3; font-size: 0.85rem; margin-top: 6px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
 
 /* ==========================================================================
-   8. Footer Settings (Quick Links with Icons)
+   9. Footer Settings (Quick Links with Icons)
    ========================================================================== */
 .vip-luxury-footer {
     background: #040108; 
@@ -307,9 +365,9 @@ body {
 
 .footer-links-column a i {
     font-size: 0.85rem;
+    margin-right: 8px;
 }
 
-/* 🎯 በወቅቱ የተመረጠ ገጽ ሊንክ ማድመቂያ */
 .footer-links-column a.active-link {
     color: #ffd700 !important;
     font-weight: 900;
@@ -336,59 +394,14 @@ body {
 }
 
 /* ==========================================================================
-   9. Responsive Media Queries (ለታብሌት እና ለኮምፒውተር ማስተካከያ)
+   10. Responsive Media Queries (ለመካከለኛና ትላልቅ ስክሪኖች)
    ========================================================================== */
 @media (min-width: 768px) {
     .hero-buttons { flex-direction: row; max-width: 100%; justify-content: center; }
     .footer-inner-content { grid-template-columns: repeat(3, 1fr); display: grid; gap: 40px; }
-    .contact-cards-stack { grid-template-columns: repeat(3, 1fr); display: grid; gap: 20px; }
+    .contact-cards-stack { grid-template-columns: repeat(2, 1fr); display: grid; gap: 20px; }
     .stats-grid-container { grid-template-columns: repeat(4, 1fr); }
     .services-vertical-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
     .not-sure-box { max-width: 700px; margin: 0 auto; padding: 50px; }
-}
-
-/* 📝 Contact Form Styling */
-.appointment-form-box {
-    background: #12041c;
-    border: 1px solid #310d47;
-    padding: 30px 20px;
-    border-radius: 20px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-}
-
-.appointment-form-box h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem;
-    color: #fff;
-    margin-bottom: 15px;
-    text-align: center;
-}
-
-.form-field-group {
-    margin-bottom: 20px;
-    text-align: left;
-}
-
-.form-field-group label {
-    display: block;
-    font-size: 0.9rem;
-    color: #ffd700;
-    margin-bottom: 8px;
-    font-weight: 600;
-}
-
-.form-field-group input {
-    width: 100%;
-    padding: 14px;
-    background: #1e062c;
-    border: 1px solid #4a1566;
-    color: #FFFFFF;
-    border-radius: 10px;
-    outline: none;
-    font-size: 0.95rem;
-    transition: border 0.3s ease;
-}
-
-.form-field-group input:focus {
-    border-color: #ff3b70;
+    .appointment-form-box { max-width: 600px; margin: 40px auto 0 auto; }
 }
