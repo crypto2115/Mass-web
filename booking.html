@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="am">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,24 +12,28 @@
 
     <header class="navbar">
         <a href="index.html" class="logo" style="text-decoration: none;">Habesha <span>Girls By Money</span></a>
-        <div class="nav-right">
-            <a href="index.html" class="btn-gold-outline" style="padding: 6px 16px; font-size: 0.85rem; text-decoration: none;"><i class="fa-solid fa-arrow-left"></i> ወደ ዋናው ገጽ</a>
+        <div class="nav-right" style="gap: 10px;">
+            <select id="lang-switcher-booking" class="lang-dropdown-select">
+                <option value="am" selected>🇪🇹 AM</option>
+                <option value="en">🇺🇸 EN</option>
+            </select>
+            <a href="index.html" class="btn-gold-outline" id="back-home-btn" style="padding: 6px 14px; font-size: 0.85rem; text-decoration: none;"><i class="fa-solid fa-arrow-left"></i> ወደ ዋናው ገጽ</a>
         </div>
     </header>
 
     <section class="get-in-touch-section" style="max-height: none; opacity: 1; overflow: visible;">
         <div class="get-in-touch-header">
-            <h2>Get In Touch</h2>
-            <p>Ready to book your premium wellness experience?</p>
+            <h2 id="git-title">ያግኙን</h2>
+            <p id="git-desc">ልዩ የቪአይፒ አገልግሎቶቻችንን ለመያዝ ዝግጁ ነዎት?</p>
         </div>
 
         <div class="contact-cards-stack">
             <div class="contact-detail-row">
                 <div class="icon-circle-bg pink-btn-circle"><i class="fa-solid fa-phone"></i></div>
                 <div class="contact-row-text">
-                    <h4>Phone</h4>
+                    <h4 class="lbl-phone">ስልክ</h4>
                     <p>0974 443616</p>
-                    <span>available 24/7</span>
+                    <span class="lbl-avail">24/7 ይገኛል</span>
                 </div>
             </div>
             <div class="contact-detail-row">
@@ -49,28 +53,28 @@
             <div class="contact-detail-row">
                 <div class="icon-circle-bg pink-btn-circle"><i class="fa-solid fa-location-dot"></i></div>
                 <div class="contact-row-text">
-                    <h4>Address</h4>
+                    <h4 class="lbl-addr">አድራሻ</h4>
                     <p>Bole Road, In front of Mega Building, Addis Ababa</p>
                 </div>
             </div>
         </div>
 
         <div class="appointment-form-box">
-            <h3>Contact Form</h3>
-            <div class="lock-notification-bar">
-                <i class="fa-solid fa-user-shield"></i> Secure VIP Booking Confirmation
+            <h3 id="form-heading">የመመዝገቢያ ፎርም</h3>
+            <div class="lock-notification-bar" id="form-security">
+                <i class="fa-solid fa-user-shield"></i> አስተማማኝ እና ምስጢራዊ የቪአይፒ ምዝገባ
             </div>
             <form action="https://wa.me/251974443616" method="get" target="_blank">
                 <div class="form-field-group">
-                    <label>Name *</label>
-                    <input type="text" name="name" placeholder="Your full name" required>
+                    <label id="lbl-name">ስም *</label>
+                    <input type="text" name="name" id="placeholder-name" placeholder="ሙሉ ስምዎን ያስገቡ" required>
                 </div>
                 <div class="form-field-group">
-                    <label>Phone *</label>
-                    <input type="tel" name="phone" placeholder="Your phone number" required>
+                    <label id="lbl-tel">ስልክ ቁጥር *</label>
+                    <input type="tel" name="phone" id="placeholder-phone" placeholder="የስልክ ቁጥርዎን ያስገቡ" required>
                 </div>
                 <div class="form-field-group">
-                    <label>Preferred Service</label>
+                    <label id="lbl-serv-select">የሚፈልጉት አገልግሎት</label>
                     <select name="service" id="service-dropdown">
                         <option value="Mobile Service (Hotel / Residence)">Mobile Service (Hotel/Residence)</option>
                         <option value="Personalized Full-Body Relaxation">Personalized Full-Body Relaxation</option>
@@ -79,19 +83,78 @@
                         <option value="VIP Consultation">VIP Consultation</option>
                     </select>
                 </div>
-                <button type="submit" class="btn-submit-appointment"><i class="fa-regular fa-paper-plane"></i> Book Via WhatsApp</button>
+                <button type="submit" class="btn-submit-appointment" id="btn-submit"><i class="fa-regular fa-paper-plane"></i> በዋትስአፕ ቀጠሮ ይያዙ</button>
             </form>
         </div>
     </section>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // 1. የድሮፕዳውን ሰርቪስ መምረጫ
             const urlParams = new URLSearchParams(window.location.search);
             const serviceParam = urlParams.get('service');
             if (serviceParam) {
-                const dropdown = document.getElementById('service-dropdown');
-                dropdown.value = serviceParam;
+                document.getElementById('service-dropdown').value = serviceParam;
             }
+
+            // 2. የቋንቋ ትርጉም ስራዎች
+            const bTranslations = {
+                am: {
+                    backHome: "<i class='fa-solid fa-arrow-left'></i> ወደ ዋናው ገጽ",
+                    gitTitle: "ያግኙን",
+                    gitDesc: "ልዩ የቪአይፒ አገልግሎቶቻችንን ለመያዝ ዝግጁ ነዎት?",
+                    lblPhone: "ስልክ", lblAvail: "24/7 ይገኛል", lblAddr: "አድራሻ",
+                    formHeading: "የመመዝገቢያ ፎርም",
+                    formSecurity: "<i class='fa-solid fa-user-shield'></i> አስተማማኝ እና ምስጢራዊ የቪአይፒ ምዝገባ",
+                    lblName: "ስም *", placeholderName: "ሙሉ ስምዎን ያስገቡ",
+                    lblTel: "ስልክ ቁጥር *", placeholderPhone: "የስልክ ቁጥርዎን ያስገቡ",
+                    lblServSelect: "የሚፈልጉት አገልግሎት",
+                    btnSubmit: "<i class='fa-regular fa-paper-plane'></i> በዋትስአፕ ቀጠሮ ይያዙ"
+                },
+                en: {
+                    backHome: "<i class='fa-solid fa-arrow-left'></i> Back to Home",
+                    gitTitle: "Get In Touch",
+                    gitDesc: "Ready to book your premium wellness experience?",
+                    lblPhone: "Phone", lblAvail: "Available 24/7", lblAddr: "Address",
+                    formHeading: "Contact Form",
+                    formSecurity: "<i class='fa-solid fa-user-shield'></i> Secure VIP Booking Confirmation",
+                    lblName: "Name *", placeholderName: "Your full name",
+                    lblTel: "Phone *", placeholderPhone: "Your phone number",
+                    lblServSelect: "Preferred Service",
+                    btnSubmit: "<i class='fa-regular fa-paper-plane'></i> Book Via WhatsApp"
+                }
+            };
+
+            const bSwitcher = document.getElementById("lang-switcher-booking");
+
+            function applyBookingLanguage(lang) {
+                document.getElementById("back-home-btn").innerHTML = bTranslations[lang].backHome;
+                document.getElementById("git-title").innerText = bTranslations[lang].gitTitle;
+                document.getElementById("git-desc").innerText = bTranslations[lang].gitDesc;
+                
+                document.querySelector(".lbl-phone").innerText = bTranslations[lang].lblPhone;
+                document.querySelector(".lbl-avail").innerText = bTranslations[lang].lblAvail;
+                document.querySelector(".lbl-addr").innerText = bTranslations[lang].lblAddr;
+                
+                document.getElementById("form-heading").innerText = bTranslations[lang].formHeading;
+                document.getElementById("form-security").innerHTML = bTranslations[lang].formSecurity;
+                document.getElementById("lbl-name").innerText = bTranslations[lang].lblName;
+                document.getElementById("placeholder-name").placeholder = bTranslations[lang].placeholderName;
+                document.getElementById("lbl-tel").innerText = bTranslations[lang].lblTel;
+                document.getElementById("placeholder-phone").placeholder = bTranslations[lang].placeholderPhone;
+                document.getElementById("lbl-serv-select").innerText = bTranslations[lang].lblServSelect;
+                document.getElementById("btn-submit").innerHTML = bTranslations[lang].btnSubmit;
+
+                localStorage.setItem("selectedLang", lang);
+            }
+
+            bSwitcher.addEventListener("change", function(e) {
+                applyBookingLanguage(e.target.value);
+            });
+
+            const currentLang = localStorage.getItem("selectedLang") || "am";
+            bSwitcher.value = currentLang;
+            applyBookingLanguage(currentLang);
         });
     </script>
 </body>
