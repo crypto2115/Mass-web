@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment - Habesha Girls By Money</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="index.html" class="logo" style="text-decoration: none;">Habesha <span>Girls By Money</span></a>
+        <div class="nav-right">
+            <a href="index.html" class="btn-gold-outline" style="padding: 6px 16px; font-size: 0.85rem; text-decoration: none;"><i class="fa-solid fa-arrow-left"></i> ወደ ዋናው ገጽ</a>
+        </div>
+    </header>
+
+    <section class="get-in-touch-section" style="max-height: none; opacity: 1; overflow: visible;">
+        <div class="get-in-touch-header">
+            <h2>Get In Touch</h2>
+            <p>Ready to book your premium wellness experience?</p>
+        </div>
+
+        <div class="contact-cards-stack">
+            <div class="contact-detail-row">
+                <div class="icon-circle-bg pink-btn-circle"><i class="fa-solid fa-phone"></i></div>
+                <div class="contact-row-text">
+                    <h4>Phone</h4>
+                    <p>0974 443616</p>
+                    <span>available 24/7</span>
+                </div>
+            </div>
+            <div class="contact-detail-row">
+                <div class="icon-circle-bg pink-btn-circle"><i class="fa-brands fa-whatsapp"></i></div>
+                <div class="contact-row-text">
+                    <h4>WhatsApp</h4>
+                    <p>+251 974 443 616</p>
+                </div>
+            </div>
+            <div class="contact-detail-row">
+                <div class="icon-circle-bg pink-btn-circle"><i class="fa-regular fa-envelope"></i></div>
+                <div class="contact-row-text">
+                    <h4>Email</h4>
+                    <p>aferuafsfu@gmail.com</p>
+                </div>
+            </div>
+            <div class="contact-detail-row">
+                <div class="icon-circle-bg pink-btn-circle"><i class="fa-solid fa-location-dot"></i></div>
+                <div class="contact-row-text">
+                    <h4>Address</h4>
+                    <p>Bole Road, In front of Mega Building, Addis Ababa</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="appointment-form-box">
+            <h3>Contact Form</h3>
+            <div class="lock-notification-bar">
+                <i class="fa-solid fa-user-shield"></i> Secure VIP Booking Confirmation
+            </div>
+            <form action="https://wa.me/251974443616" method="get" target="_blank">
+                <div class="form-field-group">
+                    <label>Name *</label>
+                    <input type="text" name="name" placeholder="Your full name" required>
+                </div>
+                <div class="form-field-group">
+                    <label>Phone *</label>
+                    <input type="tel" name="phone" placeholder="Your phone number" required>
+                </div>
+                <div class="form-field-group">
+                    <label>Preferred Service</label>
+                    <select name="service" id="service-dropdown">
+                        <option value="Mobile Service (Hotel / Residence)">Mobile Service (Hotel/Residence)</option>
+                        <option value="Personalized Full-Body Relaxation">Personalized Full-Body Relaxation</option>
+                        <option value="Women Session">Women Session</option>
+                        <option value="Extended Session (If Special Request)">Extended Session</option>
+                        <option value="VIP Consultation">VIP Consultation</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-submit-appointment"><i class="fa-regular fa-paper-plane"></i> Book Via WhatsApp</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const serviceParam = urlParams.get('service');
+            if (serviceParam) {
+                const dropdown = document.getElementById('service-dropdown');
+                dropdown.value = serviceParam;
+            }
+        });
+    </script>
+</body>
+</html>
