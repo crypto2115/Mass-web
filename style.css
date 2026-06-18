@@ -6,8 +6,8 @@
 }
 
 body {
-    background-color: #FFFFFF;
-    color: #000000; /* ሙሉ ደማቅ ጥቁር ጽሑፍ */
+    background-color: #0A0A0A; /* ልክ እንደ ድረ-ገጹ ማራኪ ጥቁር ባግራውንድ */
+    color: #FFFFFF; /* ዋና ጽሑፎች በሙሉ ነጭ */
     font-family: 'Helvetica Neue', Arial, sans-serif;
     overflow-x: hidden;
 }
@@ -18,8 +18,8 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 20px 8%;
-    background-color: #FFFFFF;
-    border-bottom: 2px solid #FFF0F5;
+    background-color: #0A0A0A;
+    border-bottom: 2px solid #1A1A1A; /* ስስ ጥቁር መስመር */
     position: sticky;
     top: 0;
     z-index: 100;
@@ -28,16 +28,16 @@ body {
 .logo {
     font-size: 1.6rem;
     font-weight: 900;
-    color: #000000;
+    color: #FFFFFF;
     letter-spacing: 2px;
 }
 
 .logo span {
-    color: #FFB6C1;
+    color: #FFD700; /* ወርቃማ (Gold) ቀለም */
 }
 
 .nav-links a {
-    color: #000000;
+    color: #FFFFFF;
     text-decoration: none;
     margin-right: 30px;
     font-size: 1rem;
@@ -46,7 +46,7 @@ body {
 }
 
 .nav-links a:hover {
-    color: #FFB6C1;
+    color: #FFD700; /* ማውሱ ሲያርፍ ወርቃማ ይሆናል */
 }
 
 /* ዋናው ገጽታ (Hero) */
@@ -55,7 +55,7 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 60px 8%;
-    background: linear-gradient(to bottom, #FFF0F5, #FFFFFF);
+    background: linear-gradient(to bottom, #111111, #0A0A0A);
 }
 
 .hero-content {
@@ -63,7 +63,7 @@ body {
 }
 
 .subtitle {
-    color: #FFB6C1;
+    color: #FFD700; /* ወርቃማ */
     font-size: 0.9rem;
     font-weight: 800;
     letter-spacing: 3px;
@@ -72,38 +72,39 @@ body {
 
 .main-title {
     font-size: 3.5rem;
-    color: #000000;
+    color: #FFFFFF; /* ደማቅ ነጭ ርዕስ በጥቁር ላይ */
     font-weight: 900;
     line-height: 1.2;
     margin-bottom: 25px;
 }
 
 .highlight-text {
-    color: #FFB6C1;
+    color: #FFD700; /* ወርቃማ */
 }
 
 .description {
-    color: #000000;
+    color: #E0E0E0; /* ደማቅ እና የሚነበብ ግራጫ መሰል ነጭ */
     font-size: 1.2rem;
     font-weight: 700;
     line-height: 1.8;
     margin-bottom: 35px;
 }
 
+/* ዋናው በተን */
 .btn-primary {
-    background-color: #FFB6C1;
-    color: #000000;
+    background-color: #FFD700; /* ወርቃማ በተን */
+    color: #000000; /* በወርቃማው ላይ ጥቁር ደማቅ ጽሑፍ */
     padding: 16px 36px;
     border-radius: 30px;
     text-decoration: none;
     font-weight: 900;
     display: inline-block;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(255, 182, 193, 0.4);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
 }
 
 .btn-primary:hover {
-    background-color: #FFA07A;
+    background-color: #FFF;
     transform: translateY(-3px);
 }
 
@@ -111,28 +112,30 @@ body {
     width: 100%;
     max-width: 450px;
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    border: 5px solid #FFFFFF;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 4px solid #1A1A1A;
 }
 
 /* ጥቅስ */
 .quote-section {
     padding: 60px 8%;
     text-align: center;
-    background-color: #FFFFFF;
+    background-color: #111111;
+    border-top: 1px solid #1A1A1A;
+    border-bottom: 1px solid #1A1A1A;
 }
 
 .quote-text {
     font-size: 1.6rem;
     font-style: italic;
     font-weight: 800;
-    color: #000000;
+    color: #FFD700; /* ጥቅሱ በወርቃማ ከለር ይደምቃል */
 }
 
 /* 🌟 አዲሱ የቪአይፒ አገልግሎቶች ስታይል (Services Section) 🌟 */
 .services-section {
     padding: 80px 8%;
-    background-color: #FFFFFF;
+    background-color: #0A0A0A;
 }
 
 .section-header {
@@ -142,25 +145,26 @@ body {
 
 .section-header h2 {
     font-size: 2.5rem;
-    color: #000000;
+    color: #FFFFFF;
     font-weight: 900;
     margin-top: 10px;
 }
 
 .section-desc-text {
     font-size: 1.1rem;
-    color: #333333;
+    color: #B3B3B3;
     font-weight: 700;
     margin-top: 10px;
 }
 
 .badge {
-    background-color: #FFF0F5;
-    color: #FFB6C1;
+    background-color: #1A1A1A;
+    color: #FFD700;
     padding: 6px 16px;
     border-radius: 20px;
     font-size: 0.9rem;
     font-weight: 900;
+    border: 1px solid #333333;
 }
 
 /* የአገልግሎት ካርዶች መደርደሪያ */
@@ -171,28 +175,29 @@ body {
     flex-wrap: wrap;
 }
 
-/* እያንዳንዱ የአገልግሎት ካርድ ዲዛይን (ልክ እንደ ፕሮፌሽናል ድረ-ገጾች) */
+/* እያንዳንዱ ካርድ በጥቁር እና በወርቃማ መስመር ተውቧል */
 .service-card {
-    background: #FFFFFF;
-    border: 2px solid #FFF0F5;
+    background: #111111;
+    border: 2px solid #1A1A1A;
     border-radius: 20px;
     width: 31%;
     min-width: 300px;
     overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .service-card:hover {
     transform: translateY(-10px);
-    border-color: #FFB6C1;
-    box-shadow: 0 20px 40px rgba(255, 182, 193, 0.4);
+    border-color: #FFD700; /* ማውሱ ሲያርፍ ጠርዙ ወርቃማ ይሆናል */
+    box-shadow: 0 20px 40px rgba(255, 215, 0, 0.15);
 }
 
 .service-img-box {
     width: 100%;
     height: 240px;
     overflow: hidden;
+    border-bottom: 2px solid #1A1A1A;
 }
 
 .service-img-box img {
@@ -213,7 +218,7 @@ body {
 .service-tag {
     font-size: 0.8rem;
     font-weight: 900;
-    color: #FFB6C1;
+    color: #FFD700;
     text-transform: uppercase;
     letter-spacing: 1px;
     display: block;
@@ -222,18 +227,18 @@ body {
 
 .service-content h3 {
     font-size: 1.3rem;
-    color: #000000;
+    color: #FFFFFF;
     font-weight: 900;
     margin-bottom: 12px;
 }
 
 .service-details {
     font-size: 1rem;
-    color: #222222;
+    color: #CCCCCC;
     font-weight: 700;
     line-height: 1.6;
     margin-bottom: 20px;
-    height: 75px; /* እኩል ወጥ እንዲሆኑ ቁመቱን መገደብ */
+    height: 75px;
     overflow: hidden;
 }
 
@@ -242,26 +247,26 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px dashed #FFE4E1;
-    border-bottom: 1px dashed #FFE4E1;
+    border-top: 1px dashed #333333;
+    border-bottom: 1px dashed #333333;
     padding: 12px 0;
     margin-bottom: 20px;
 }
 
 .duration {
     font-size: 0.95rem;
-    color: #000000;
+    color: #FFFFFF;
     font-weight: 800;
 }
 
 .duration i {
-    color: #FFB6C1;
+    color: #FFD700;
     margin-right: 5px;
 }
 
 .price {
     font-size: 1.2rem;
-    color: #000000;
+    color: #FFD700; /* ዋጋው በወርቃማ ቀለም ይደምቃል */
     font-weight: 900;
 }
 
@@ -269,9 +274,9 @@ body {
 .btn-book {
     display: block;
     text-align: center;
-    background-color: #FFFFFF;
-    color: #000000;
-    border: 2px solid #FFB6C1;
+    background-color: transparent;
+    color: #FFD700;
+    border: 2px solid #FFD700;
     padding: 12px;
     border-radius: 25px;
     text-decoration: none;
@@ -281,29 +286,30 @@ body {
 }
 
 .btn-book:hover {
-    background-color: #FFB6C1;
+    background-color: #FFD700;
     color: #000000;
-    box-shadow: 0 5px 15px rgba(255, 182, 193, 0.4);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
 }
 
 /* የቁጥር መረጃዎች ማሳያ */
 .stats-section {
     display: flex;
     padding: 80px 8%;
-    background-color: #FFF0F5;
+    background-color: #111111;
     justify-content: space-between;
     align-items: center;
+    border-top: 1px solid #1A1A1A;
 }
 
 .stats-left h2 {
     font-size: 2.3rem;
-    color: #000000;
+    color: #FFFFFF;
     font-weight: 900;
     margin-bottom: 15px;
 }
 
 .stats-left p {
-    color: #000000;
+    color: #CCCCCC;
     font-weight: 800;
     font-size: 1.1rem;
 }
@@ -311,10 +317,10 @@ body {
 .btn-secondary {
     display: inline-block;
     margin-top: 25px;
-    color: #000000;
+    color: #FFD700;
     text-decoration: none;
     font-weight: 900;
-    border-bottom: 3px solid #FFB6C1;
+    border-bottom: 3px solid #FFD700;
     padding-bottom: 5px;
     font-size: 1.1rem;
 }
@@ -326,22 +332,22 @@ body {
 }
 
 .stat-box {
-    background-color: #FFFFFF;
+    background-color: #0A0A0A;
     padding: 30px;
     border-radius: 12px;
     text-align: center;
-    border: 2px solid #FFF0F5;
+    border: 2px solid #1A1A1A;
 }
 
 .stat-box h3 {
-    color: #FFB6C1;
+    color: #FFD700;
     font-size: 2.2rem;
     font-weight: 900;
     margin-bottom: 5px;
 }
 
 .stat-box p {
-    color: #000000;
+    color: #FFFFFF;
     font-weight: 900;
     font-size: 1rem;
 }
@@ -360,7 +366,7 @@ body {
     justify-content: center;
     align-items: center;
     font-size: 30px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
     z-index: 1000;
 }
 
