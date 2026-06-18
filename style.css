@@ -137,18 +137,22 @@ body {
     color: #fff;
     padding: 16px;
     border-radius: 30px;
-    text-decoration: none;
+    border: none;
     font-weight: 800;
+    font-size: 1rem;
+    cursor: pointer;
     box-shadow: 0 4px 20px rgba(255, 59, 112, 0.4);
 }
 
 .btn-gold-outline {
+    background: transparent;
     border: 1.5px solid #ffd700;
     color: #ffd700;
     padding: 14px;
     border-radius: 30px;
-    text-decoration: none;
     font-weight: 800;
+    font-size: 1rem;
+    cursor: pointer;
 }
 
 /* ==========================================================================
@@ -229,7 +233,7 @@ body {
 .info-banner-text p { font-size: 0.85rem; color: #a491b3; margin-top: 2px; }
 
 /* ==========================================================================
-   6. 4 Premium Service Cards Layout
+   6. Premium Services Configuration
    ========================================================================== */
 .premium-services-section { padding: 40px 6%; }
 .services-header-box { text-align: center; margin-bottom: 40px; }
@@ -252,62 +256,40 @@ body {
 .panel-features { display: flex; flex-direction: column; gap: 8px; margin-bottom: 22px; }
 .panel-features span { font-size: 0.85rem; font-weight: 600; }
 .panel-features i { color: #ffd700; margin-right: 6px; }
-.btn-panel-action { display: block; text-align: center; background: #ffd700; color: #000; text-decoration: none; padding: 14px; border-radius: 25px; font-weight: 800; }
+.btn-panel-action { display: block; width: 100%; border: none; text-align: center; background: #ffd700; color: #000; padding: 14px; border-radius: 25px; font-weight: 800; font-size: 0.95rem; cursor: pointer; }
 
 /* ==========================================================================
    7. Not Sure Which Service? Layout
    ========================================================================== */
-.not-sure-section {
-    padding: 20px 6% 40px 6%;
-}
-
+.not-sure-section { padding: 20px 6% 40px 6%; }
 .not-sure-box {
     background: linear-gradient(145deg, #180529 0%, #0d0316 100%);
-    border: 1px solid #360e54;
-    border-radius: 20px;
-    padding: 35px 25px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    border: 1px solid #360e54; border-radius: 20px; padding: 35px 25px; text-align: center;
 }
-
-.crown-icon {
-    color: #ffd700;
-    font-size: 1.1rem;
-    font-weight: 800;
-    display: block;
-    margin-bottom: 12px;
-}
-
-.not-sure-box p {
-    color: #c1aed3;
-    font-size: 0.9rem;
-    line-height: 1.5;
-    margin-bottom: 25px;
-}
-
-.btn-vip-consultation {
-    display: block;
-    background: #ffd700;
-    color: #000;
-    padding: 14px;
-    border-radius: 25px;
-    font-weight: 800;
-    text-decoration: none;
-    margin-bottom: 15px;
-}
-
-.btn-explore-all {
-    display: block;
-    color: #bfaec9;
-    font-weight: 700;
-    font-size: 0.9rem;
-    text-decoration: underline;
-}
+.crown-icon { color: #ffd700; font-size: 1.1rem; font-weight: 800; display: block; margin-bottom: 12px; }
+.not-sure-box p { color: #c1aed3; font-size: 0.9rem; line-height: 1.5; margin-bottom: 25px; }
+.btn-vip-consultation { display: block; width: 100%; border: none; background: #ffd700; color: #000; padding: 14px; border-radius: 25px; font-weight: 800; font-size: 0.95rem; cursor: pointer; margin-bottom: 15px; }
+.btn-explore-all { display: block; width: 100%; background: transparent; border: none; color: #bfaec9; font-weight: 700; font-size: 0.9rem; text-decoration: underline; cursor: pointer; }
 
 /* ==========================================================================
-   8. Get In Touch & Interactive Form Layout
+   8. Get In Touch & Form (Hidden/Shown Animation States)
    ========================================================================== */
-.get-in-touch-section { padding: 50px 6%; }
+.get-in-touch-section {
+    padding: 50px 6%;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 1s cubic-bezier(0, 1, 0, 1), opacity 0.6s ease-in-out;
+}
+
+/* 🟢 ቅጹ ሲከፈት የሚነበበው የክላስ ስታይል */
+.get-in-touch-section.show-form {
+    max-height: 2500px;
+    opacity: 1;
+    overflow: visible;
+    transition: max-height 1.2s cubic-bezier(0.5, 0, 0.1, 1), opacity 0.8s ease-in-out;
+}
+
 .get-in-touch-header { text-align: center; margin-bottom: 35px; }
 .get-in-touch-header h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 900; }
 .get-in-touch-header p { color: #a491b3; margin-top: 6px; font-size: 0.95rem; }
@@ -329,14 +311,12 @@ body {
 .btn-submit-appointment { width: 100%; background: #ffd700; color: #000; border: none; padding: 15px; border-radius: 8px; font-weight: 800; font-size: 1rem; cursor: pointer; margin-top: 10px; }
 
 /* ==========================================================================
-   9. Footer (with Contacts Configuration)
+   9. Footer Settings
    ========================================================================== */
 .vip-luxury-footer {
-    background: #040108;
-    padding: 50px 6% 20px 6%;
+    background: #040108; padding: 50px 6% 20px 6%;
     border-top: 1px solid rgba(255, 215, 0, 0.08);
 }
-
 .footer-inner-content { display: flex; flex-direction: column; gap: 35px; margin-bottom: 35px; }
 .brand-pitch { color: #a491b3; font-size: 0.9rem; line-height: 1.5; margin-top: 12px; }
 .brand-social-icons { display: flex; gap: 12px; margin-top: 16px; }
@@ -346,13 +326,13 @@ body {
 .footer-links-column ul { list-style: none; }
 .footer-links-column li { margin-bottom: 12px; color: #bfaec9; font-size: 0.95rem; font-weight: 700; }
 .footer-links-column a { color: #bfaec9; text-decoration: none; }
+.footer-inline-btn { background: transparent; border: none; color: #bfaec9; font-size: 0.95rem; font-weight: 700; cursor: pointer; text-align: left; font-family: inherit; }
 .footer-links-column i { color: #ffd700; margin-right: 8px; font-size: 0.9rem; }
 
 .footer-contact-details li { display: flex; align-items: flex-start; line-height: 1.4; }
-
 .footer-copyright-bottom { text-align: center; border-top: 1px solid #11041c; padding-top: 20px; color: #55485c; font-size: 0.8rem; font-weight: 600; }
 
-/* Responsive adjustments */
+/* Responsive Adjustments */
 @media (min-width: 768px) {
     .hero-buttons { flex-direction: row; max-width: 100%; justify-content: center; }
     .footer-inner-content { grid-template-columns: repeat(3, 1fr); display: grid; }
