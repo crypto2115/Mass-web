@@ -40,8 +40,8 @@
         <h1 class="hero-title">በቤትዎ እና ሆቴል <br> በዓለም ዙሪያ <br> ያግኙን</h1>
         <p class="hero-desc">ለሀገር ውስጥም ሆነ ከሀገር ውጪ (ዲያስፖራ) ለሚኖሩ ደንበኞቻችን አስተማማኝ፣ ፈጣን እና ምስጢሩ 100% የተጠበቀ የሞዴሎች ስራ እናከናውናለን።</p>
         <div class="hero-buttons">
-            <a href="#get-in-touch" class="btn-pink-full">አሁን ይጀምሩ <i class="fa-solid fa-arrow-right"></i></a>
-            <a href="#get-in-touch" class="btn-gold-outline">ያነጋግሩን</a>
+            <button class="btn-pink-full trigger-booking">አሁን ይጀምሩ <i class="fa-solid fa-arrow-right"></i></button>
+            <button class="btn-gold-outline trigger-booking">ያነጋግሩን</button>
         </div>
     </section>
 
@@ -93,7 +93,7 @@
                         <span><i class="fa-solid fa-sparkles"></i> Stress relief</span>
                         <span><i class="fa-solid fa-sparkles"></i> Improved circulation</span>
                     </div>
-                    <a href="#get-in-touch" class="btn-panel-action">Book Now <i class="fa-solid fa-chevron-right"></i></a>
+                    <button class="btn-panel-action trigger-booking" data-service="Personalized Full-Body Relaxation">Book Now <i class="fa-solid fa-chevron-right"></i></button>
                 </div>
             </div>
 
@@ -110,7 +110,7 @@
                         <span><i class="fa-solid fa-magnifying-glass"></i> High-end mobility</span>
                         <span><i class="fa-solid fa-magnifying-glass"></i> Discreet service</span>
                     </div>
-                    <a href="#get-in-touch" class="btn-panel-action">Book Now <i class="fa-solid fa-chevron-right"></i></a>
+                    <button class="btn-panel-action trigger-booking" data-service="Mobile Service (Hotel / Residence)">Book Now <i class="fa-solid fa-chevron-right"></i></button>
                 </div>
             </div>
 
@@ -127,7 +127,7 @@
                         <span><i class="fa-solid fa-sparkles"></i> Hotel therapy</span>
                         <span><i class="fa-solid fa-sparkles"></i> Tailored approach</span>
                     </div>
-                    <a href="#get-in-touch" class="btn-panel-action">Book Now <i class="fa-solid fa-chevron-right"></i></a>
+                    <button class="btn-panel-action trigger-booking" data-service="Women Session">Book Now <i class="fa-solid fa-chevron-right"></i></button>
                 </div>
             </div>
 
@@ -144,7 +144,7 @@
                         <span><i class="fa-solid fa-magnifying-glass"></i> Tailored experience</span>
                         <span><i class="fa-solid fa-magnifying-glass"></i> Holistic approach</span>
                     </div>
-                    <a href="#get-in-touch" class="btn-panel-action">Book Now <i class="fa-solid fa-chevron-right"></i></a>
+                    <button class="btn-panel-action trigger-booking" data-service="Extended Session (If Special Request)">Book Now <i class="fa-solid fa-chevron-right"></i></button>
                 </div>
             </div>
         </div>
@@ -154,12 +154,12 @@
         <div class="not-sure-box">
             <span class="crown-icon"><i class="fa-solid fa-crown"></i> Not Sure Which Service? <i class="fa-solid fa-crown"></i></span>
             <p>Our experts will assess your needs and recommend the perfect treatment for your unique requirements.</p>
-            <a href="#get-in-touch" class="btn-vip-consultation"><i class="fa-solid fa-crown"></i> VIP Consultation</a>
-            <a href="#" class="btn-explore-all">Explore All Services</a>
+            <button class="btn-vip-consultation trigger-booking" data-service="VIP Consultation"><i class="fa-solid fa-crown"></i> VIP Consultation</button>
+            <button class="btn-explore-all trigger-booking">Explore All Services</button>
         </div>
     </section>
 
-    <section id="get-in-touch" class="get-in-touch-section">
+    <section id="get-in-touch" class="get-in-touch-section hidden-section">
         <div class="get-in-touch-header">
             <h2>Get In Touch</h2>
             <p>Ready to book your premium wellness experience?</p>
@@ -203,7 +203,7 @@
         <div class="appointment-form-box">
             <h3>Contact Form</h3>
             <div class="lock-notification-bar">
-                <i class="fa-solid fa-user-shield"></i> You're booking Mobile Service (Hotel/Residence) <i class="fa-solid fa-chevron-down"></i>
+                <i class="fa-solid fa-user-shield"></i> You're booking <span id="selected-service-text">Mobile Service (Hotel/Residence)</span> <i class="fa-solid fa-chevron-down"></i>
             </div>
             <form action="https://wa.me/251974443616" method="get" target="_blank">
                 <div class="form-field-group">
@@ -220,11 +220,12 @@
                 </div>
                 <div class="form-field-group">
                     <label>Preferred Service</label>
-                    <select name="service">
-                        <option>Mobile Service (Hotel/Residence)</option>
-                        <option>Personalized Full-Body Relaxation</option>
-                        <option>Women Session</option>
-                        <option>Extended Session</option>
+                    <select name="service" id="service-dropdown">
+                        <option value="Mobile Service (Hotel / Residence)">Mobile Service (Hotel/Residence)</option>
+                        <option value="Personalized Full-Body Relaxation">Personalized Full-Body Relaxation</option>
+                        <option value="Women Session">Women Session</option>
+                        <option value="Extended Session (If Special Request)">Extended Session</option>
+                        <option value="VIP Consultation">VIP Consultation</option>
                     </select>
                 </div>
                 <button type="submit" class="btn-submit-appointment"><i class="fa-regular fa-paper-plane"></i> Book Appointment</button>
@@ -249,7 +250,7 @@
                     <li><a href="#"><i class="fa-regular fa-circle-dot"></i> Home</a></li>
                     <li><a href="#"><i class="fa-regular fa-circle-dot"></i> About Us</a></li>
                     <li><a href="#"><i class="fa-regular fa-circle-dot"></i> Services</a></li>
-                    <li><a href="#"><i class="fa-regular fa-circle-dot"></i> Contact</a></li>
+                    <li><button class="footer-inline-btn trigger-booking"><i class="fa-regular fa-circle-dot"></i> Contact</button></li>
                 </ul>
             </div>
 
@@ -268,5 +269,6 @@
         </div>
     </footer>
 
+    <script src="script.js"></script>
 </body>
 </html>
