@@ -346,3 +346,49 @@ body {
     .services-vertical-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
     .not-sure-box { max-width: 700px; margin: 0 auto; padding: 50px; }
 }
+
+/* 📝 Contact Form Styling */
+.appointment-form-box {
+    background: #12041c;
+    border: 1px solid #310d47;
+    padding: 30px 20px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.appointment-form-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: #fff;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.form-field-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-field-group label {
+    display: block;
+    font-size: 0.9rem;
+    color: #ffd700;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.form-field-group input {
+    width: 100%;
+    padding: 14px;
+    background: #1e062c;
+    border: 1px solid #4a1566;
+    color: #FFFFFF;
+    border-radius: 10px;
+    outline: none;
+    font-size: 0.95rem;
+    transition: border 0.3s ease;
+}
+
+.form-field-group input:focus {
+    border-color: #ff3b70;
+}
