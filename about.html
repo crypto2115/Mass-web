@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About VIP Massage & Morocco</title>
+    <title>About Nani Massage & Morocco</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,8 +11,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+
+    <!-- ═══ PARTICLE ANIMATION ═══ -->
+    <canvas id="particle-canvas"></canvas>
+
     <header class="navbar">
-        <a href="index.html" class="logo" style="text-decoration: none;">VIP Massage <span>& Morocco</span></a>
+        <a href="index.html" class="logo" style="text-decoration: none;">Nani <span>& Morocco</span></a>
         <select id="lang-switcher" class="lang-dropdown-select">
             <option value="en" selected>🇺🇸 EN</option>
             <option value="am">🇪🇹 AM</option>
@@ -21,15 +25,15 @@
 
     <section class="get-in-touch-section">
         <div class="get-in-touch-header">
-            <h2 id="about-main-title">About VIP Massage & Morocco</h2>
-            <p id="about-main-desc" style="color: #c1aed3; line-height: 1.8; max-width: 650px; margin: 20px auto; font-size: 1rem;">At VIP Massage & Morocco, we believe in providing an exceptional wellness experience that combines traditional techniques with modern luxury. Our mission is to create a sanctuary where you can escape the stresses of daily life and reconnect with your inner peace.</p>
+            <h2 id="about-main-title">About Nani Massage & Morocco</h2>
+            <p id="about-main-desc" style="color: #c1aed3; line-height: 1.8; max-width: 650px; margin: 20px auto; font-size: 1rem;">At Nani & Morocco, we believe in providing an exceptional wellness experience that combines traditional techniques with modern luxury. Our mission is to create a sanctuary where you can escape the stresses of daily life and reconnect with your inner peace.</p>
         </div>
 
         <div style="text-align: center; margin: 30px 0;"><img src="https://i.ibb.co/LDWbM0GF/image.jpg" style="width: 100%; border-radius: 16px; max-height: 250px; object-fit: cover;"></div>
 
         <div class="get-in-touch-header" style="text-align: left; margin-top: 40px;">
             <h3 id="mission-title" style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: #fff;">Our Mission</h3>
-            <p id="mission-desc" style="color: #bfaec9; font-size: 0.95rem; line-height: 1.6; margin-top: 10px;">At VIP Massage & Morocco, our mission is to provide discreet, personalized wellness experiences in a peaceful setting — where every client feels respected, relaxed, and cared for with empathy and professionalism.</p>
+            <p id="mission-desc" style="color: #bfaec9; font-size: 0.95rem; line-height: 1.6; margin-top: 10px;">At Nani & Morocco, our mission is to provide discreet, personalized wellness experiences in a peaceful setting — where every client feels respected, relaxed, and cared for with empathy and professionalism.</p>
         </div>
 
         <div class="contact-cards-stack" style="margin-top: 20px;">
@@ -74,7 +78,7 @@
         </div>
     </section>
 
-    <section class="stats-grid-container" style="background: linear-gradient(180deg, #12041c 0%, #07020d 100%); border-top: 1px solid #230b33;">
+    <section class="stats-grid-container">
         <div class="stat-item-box"><h3>500+</h3><p id="st-1">Happy Clients</p></div>
         <div class="stat-item-box"><h3>3+</h3><p id="st-2">Years Experience</p></div>
         <div class="stat-item-box"><h3>10+</h3><p id="st-3">Service Types</p></div>
@@ -93,15 +97,64 @@
                 </ul>
             </div>
         </div>
+        <div class="footer-copyright-bottom">
+            <p>© 2026 Nani & Morocco. All rights reserved.</p>
+        </div>
     </footer>
 
     <script>
+        // ─── PARTICLE ANIMATION ───────────────────────────────────────────
+        (function() {
+            const canvas = document.getElementById('particle-canvas');
+            const ctx = canvas.getContext('2d');
+            let W, H;
+            function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+            resize(); window.addEventListener('resize', resize);
+            const COLORS = ['#ffd700','#ff3b70','#c084fc','#e0a96d','#ffffff'];
+            class Particle {
+                constructor(init) { this.reset(init); }
+                reset(init) {
+                    this.x=Math.random()*W; this.y=init?Math.random()*H:H+10;
+                    this.r=Math.random()*1.8+0.4; this.color=COLORS[Math.floor(Math.random()*COLORS.length)];
+                    this.vy=-(Math.random()*0.5+0.15); this.vx=(Math.random()-0.5)*0.3;
+                    this.life=0; this.maxLife=Math.random()*200+150;
+                }
+                update() { this.x+=this.vx; this.y+=this.vy; this.life++; if(this.life>this.maxLife||this.y<-10)this.reset(false); }
+                draw() {
+                    const p=this.life/this.maxLife,alpha=p<0.2?p/0.2:p>0.8?1-(p-0.8)/0.2:1;
+                    ctx.save(); ctx.globalAlpha=alpha*0.75; ctx.shadowBlur=10; ctx.shadowColor=this.color;
+                    ctx.beginPath(); ctx.arc(this.x,this.y,this.r,0,Math.PI*2); ctx.fillStyle=this.color; ctx.fill(); ctx.restore();
+                }
+            }
+            function drawLines(ps) {
+                for(let i=0;i<ps.length;i++) for(let j=i+1;j<ps.length;j++){
+                    const dx=ps[i].x-ps[j].x,dy=ps[i].y-ps[j].y,d=Math.sqrt(dx*dx+dy*dy);
+                    if(d<100){ctx.save();ctx.globalAlpha=(1-d/100)*0.12;ctx.strokeStyle='#ffd700';ctx.lineWidth=0.5;ctx.beginPath();ctx.moveTo(ps[i].x,ps[i].y);ctx.lineTo(ps[j].x,ps[j].y);ctx.stroke();ctx.restore();}
+                }
+            }
+            let mouse={x:-999,y:-999};
+            window.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY;});
+            const COUNT=Math.min(100,Math.floor(window.innerWidth/8));
+            const particles=Array.from({length:COUNT},()=>new Particle(true));
+            function animate(){
+                ctx.clearRect(0,0,W,H); drawLines(particles);
+                particles.forEach(p=>{
+                    const dx=p.x-mouse.x,dy=p.y-mouse.y,d=Math.sqrt(dx*dx+dy*dy);
+                    if(d<90){p.x+=(dx/d)*0.8;p.y+=(dy/d)*0.8;}
+                    p.update(); p.draw();
+                });
+                requestAnimationFrame(animate);
+            }
+            animate();
+        })();
+
+        // ─── LANGUAGE ─────────────────────────────────────────────────────
         const translations = {
             en: {
-                aboutMainTitle: "About VIP Massage & Morocco",
-                aboutMainDesc: "At VIP Massage & Morocco, we believe in providing an exceptional wellness experience that combines traditional techniques with modern luxury. Our mission is to create a sanctuary where you can escape the stresses of daily life and reconnect with your inner peace.",
+                aboutMainTitle: "About Nani Massage & Morocco",
+                aboutMainDesc: "At Nani & Morocco, we believe in providing an exceptional wellness experience that combines traditional techniques with modern luxury. Our mission is to create a sanctuary where you can escape the stresses of daily life and reconnect with your inner peace.",
                 missionTitle: "Our Mission",
-                missionDesc: "At VIP Massage & Morocco, our mission is to provide discreet, personalized wellness experiences in a peaceful setting — where every client feels respected, relaxed, and cared for with empathy and professionalism.",
+                missionDesc: "At Nani & Morocco, our mission is to provide discreet, personalized wellness experiences in a peaceful setting — where every client feels respected, relaxed, and cared for with empathy and professionalism.",
                 mSub1T: "Premium Quality", mSub1D: "Professional standards",
                 mSub2T: "Expert Team", mSub2D: "Skilled professionals",
                 valuesTitle: "Privacy & Values",
@@ -112,10 +165,10 @@
                 fLinksTitle: "Quick Links"
             },
             am: {
-                aboutMainTitle: "ስለ ቪአይፒ ማሳጅ እና ሞሮኮ",
-                aboutMainDesc: "በቪአይፒ ማሳጅ እና ሞሮኮ፣ ባህላዊ ዘዴዎችን ከዘመናዊ የቅንጦት ሁኔታ ጋር የሚያጣምር ልዩ የዌልነስ አገልግሎት እንደምናቀርብ እናምናለን። አላማችን ከዕለት ተዕለት ኑሮ ውጥረት አምልጠው ከውስጥ ሰላምዎ ጋር የሚገናኙበት ማዕከል መፍጠር ነው።",
+                aboutMainTitle: "ስለ Nani ማሳጅ እና ሞሮኮ",
+                aboutMainDesc: "በ Nani & Morocco፣ ባህላዊ ዘዴዎችን ከዘመናዊ የቅንጦት ሁኔታ ጋር የሚያጣምር ልዩ የዌልነስ አገልግሎት እንደምናቀርብ እናምናለን። አላማችን ከዕለት ተዕለት ኑሮ ውጥረት አምልጠው ከውስጥ ሰላምዎ ጋር የሚገናኙበት ማዕከል መፍጠር ነው።",
                 missionTitle: "ራዕያችን (Mission)",
-                missionDesc: "በቪአይፒ ማሳጅ እና ሞሮኮ፣ የእኛ ተልዕኮ ሰላማዊ በሆነ አካባቢ ውስጥ ጥንቃቄ የተሞላበት እና የተመቻቸ የዌልነስ አገልግሎት መስጠት ነው — እያንዳንዱ ደንበኛ በአክብሮት፣ በመዝናናት እና በሙያዊ ብቃት እንክብካቤ እንዲያገኝ እናደርጋለን።",
+                missionDesc: "በ Nani & Morocco፣ የእኛ ተልዕኮ ሰላማዊ በሆነ አካባቢ ውስጥ ጥንቃቄ የተሞላበት እና የተመቻቸ የዌልነስ አገልግሎት መስጠት ነው — እያንዳንዱ ደንበኛ በአክብሮት፣ በመዝናናት እና በሙያዊ ብቃት እንክብካቤ እንዲያገኝ እናደርጋለን።",
                 mSub1T: "ከፍተኛ ጥራት", mSub1D: "ፕሮፌሽናል ስታንዳርድ",
                 mSub2T: "የባለሙያ ቡድን", mSub2D: "ብቁ ባለሙያዎች",
                 valuesTitle: "ምስጢራዊነት እና እሴቶቻችን",
@@ -126,31 +179,31 @@
                 fLinksTitle: "ፈጣን ሊንኮች"
             }
         };
-
         const switcher = document.getElementById("lang-switcher");
         function applyLanguage(lang) {
-            document.getElementById("about-main-title").innerText = translations[lang].aboutMainTitle;
-            document.getElementById("about-main-desc").innerText = translations[lang].aboutMainDesc;
-            document.getElementById("mission-title").innerText = translations[lang].missionTitle;
-            document.getElementById("mission-desc").innerText = translations[lang].missionDesc;
-            document.getElementById("m-sub1-t").innerText = translations[lang].mSub1T;
-            document.getElementById("m-sub1-d").innerText = translations[lang].mSub1D;
-            document.getElementById("m-sub2-t").innerText = translations[lang].mSub2T;
-            document.getElementById("m-sub2-d").innerText = translations[lang].mSub2D;
-            document.getElementById("values-title").innerText = translations[lang].valuesTitle;
-            document.getElementById("values-desc").innerText = translations[lang].valuesDesc;
-            document.getElementById("v-sub1-t").innerText = translations[lang].vSub1T;
-            document.getElementById("v-sub1-d").innerText = translations[lang].vSub1D;
-            document.getElementById("v-sub2-t").innerText = translations[lang].vSub2T;
-            document.getElementById("v-sub2-d").innerText = translations[lang].vSub2D;
-            document.getElementById("st-1").innerText = translations[lang].st1;
-            document.getElementById("st-2").innerText = translations[lang].st2;
-            document.getElementById("st-3").innerText = translations[lang].st3;
-            document.getElementById("st-4").innerText = translations[lang].st4;
-            document.getElementById("f-links-title").innerText = translations[lang].fLinksTitle;
+            const t = translations[lang];
+            document.getElementById("about-main-title").innerText = t.aboutMainTitle;
+            document.getElementById("about-main-desc").innerText = t.aboutMainDesc;
+            document.getElementById("mission-title").innerText = t.missionTitle;
+            document.getElementById("mission-desc").innerText = t.missionDesc;
+            document.getElementById("m-sub1-t").innerText = t.mSub1T;
+            document.getElementById("m-sub1-d").innerText = t.mSub1D;
+            document.getElementById("m-sub2-t").innerText = t.mSub2T;
+            document.getElementById("m-sub2-d").innerText = t.mSub2D;
+            document.getElementById("values-title").innerText = t.valuesTitle;
+            document.getElementById("values-desc").innerText = t.valuesDesc;
+            document.getElementById("v-sub1-t").innerText = t.vSub1T;
+            document.getElementById("v-sub1-d").innerText = t.vSub1D;
+            document.getElementById("v-sub2-t").innerText = t.vSub2T;
+            document.getElementById("v-sub2-d").innerText = t.vSub2D;
+            document.getElementById("st-1").innerText = t.st1;
+            document.getElementById("st-2").innerText = t.st2;
+            document.getElementById("st-3").innerText = t.st3;
+            document.getElementById("st-4").innerText = t.st4;
+            document.getElementById("f-links-title").innerText = t.fLinksTitle;
             localStorage.setItem("selectedLang", lang);
         }
-        switcher.addEventListener("change", (e) => applyLanguage(e.target.value));
+        switcher.addEventListener("change", e => applyLanguage(e.target.value));
         const savedLang = localStorage.getItem("selectedLang") || "en";
         switcher.value = savedLang;
         applyLanguage(savedLang);
