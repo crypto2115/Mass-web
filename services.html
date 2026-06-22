@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Premium Services - VIP Massage & Morocco</title>
+    <title>Our Premium Services - Nani Massage & Morocco</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,8 +11,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+
+    <!-- ═══ PARTICLE ANIMATION ═══ -->
+    <canvas id="particle-canvas"></canvas>
+
     <header class="navbar">
-        <a href="index.html" class="logo" style="text-decoration: none;">VIP Massage <span>& Morocco</span></a>
+        <a href="index.html" class="logo" style="text-decoration: none;">Nani <span>& Morocco</span></a>
         <select id="lang-switcher" class="lang-dropdown-select">
             <option value="en" selected>🇺🇸 EN</option>
             <option value="am">🇪🇹 AM</option>
@@ -109,9 +113,58 @@
                 </ul>
             </div>
         </div>
+        <div class="footer-copyright-bottom">
+            <p>© 2026 Nani & Morocco. All rights reserved.</p>
+        </div>
     </footer>
 
     <script>
+        // ─── PARTICLE ANIMATION ───────────────────────────────────────────
+        (function() {
+            const canvas = document.getElementById('particle-canvas');
+            const ctx = canvas.getContext('2d');
+            let W, H;
+            function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+            resize(); window.addEventListener('resize', resize);
+            const COLORS = ['#ffd700','#ff3b70','#c084fc','#e0a96d','#ffffff'];
+            class Particle {
+                constructor(init) { this.reset(init); }
+                reset(init) {
+                    this.x=Math.random()*W; this.y=init?Math.random()*H:H+10;
+                    this.r=Math.random()*1.8+0.4; this.color=COLORS[Math.floor(Math.random()*COLORS.length)];
+                    this.vy=-(Math.random()*0.5+0.15); this.vx=(Math.random()-0.5)*0.3;
+                    this.life=0; this.maxLife=Math.random()*200+150;
+                }
+                update() { this.x+=this.vx; this.y+=this.vy; this.life++; if(this.life>this.maxLife||this.y<-10)this.reset(false); }
+                draw() {
+                    const p=this.life/this.maxLife,alpha=p<0.2?p/0.2:p>0.8?1-(p-0.8)/0.2:1;
+                    ctx.save(); ctx.globalAlpha=alpha*0.75; ctx.shadowBlur=10; ctx.shadowColor=this.color;
+                    ctx.beginPath(); ctx.arc(this.x,this.y,this.r,0,Math.PI*2); ctx.fillStyle=this.color; ctx.fill(); ctx.restore();
+                }
+            }
+            function drawLines(ps) {
+                for(let i=0;i<ps.length;i++) for(let j=i+1;j<ps.length;j++){
+                    const dx=ps[i].x-ps[j].x,dy=ps[i].y-ps[j].y,d=Math.sqrt(dx*dx+dy*dy);
+                    if(d<100){ctx.save();ctx.globalAlpha=(1-d/100)*0.12;ctx.strokeStyle='#ffd700';ctx.lineWidth=0.5;ctx.beginPath();ctx.moveTo(ps[i].x,ps[i].y);ctx.lineTo(ps[j].x,ps[j].y);ctx.stroke();ctx.restore();}
+                }
+            }
+            let mouse={x:-999,y:-999};
+            window.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY;});
+            const COUNT=Math.min(100,Math.floor(window.innerWidth/8));
+            const particles=Array.from({length:COUNT},()=>new Particle(true));
+            function animate(){
+                ctx.clearRect(0,0,W,H); drawLines(particles);
+                particles.forEach(p=>{
+                    const dx=p.x-mouse.x,dy=p.y-mouse.y,d=Math.sqrt(dx*dx+dy*dy);
+                    if(d<90){p.x+=(dx/d)*0.8;p.y+=(dy/d)*0.8;}
+                    p.update(); p.draw();
+                });
+                requestAnimationFrame(animate);
+            }
+            animate();
+        })();
+
+        // ─── LANGUAGE ─────────────────────────────────────────────────────
         const translations = {
             en: {
                 servicesTitle: "Our Premium Services",
@@ -130,34 +183,34 @@
                 servicesTitle: "ልዩ አገልግሎቶቻችን",
                 servicesDesc: "ለእርስዎ የሚስማማውን ምርጥ የማሳጅ እና የዌልነስ አገልግሎት ይምረጡ",
                 s1Title: "የሰውነት ሙሉ ማሳጅ እና እረፍት",
-                s1Desc: "ድካምን እና ውጥረትን የሚያስወግድ፣ ለሰውነትዎ ፍጹም መዝናናትን የሚሰጥ ልዩ ማሳጅ። ጥልቅ መዝናናትን እና ልዩ ትኩረትን ለሚሹ ሰዎች ተስማሚ ነው።",
+                s1Desc: "ድካምን እና ውጥረትን የሚያስወግድ፣ ለሰውነትዎ ፍጹም መዝናናትን የሚሰጥ ልዩ ማሳጅ።",
                 s2Title: "የሆቴል እና የቤት ማሳጅ አገልግሎት",
-                s2Desc: "ባሉበት ቦታ መሆን ይመርጣሉ? እኛ ወደ እርስዎ እንመጣለን! ባለሙያዎቻችን በተመረጡ ሆቴሎች እና መኖሪያ ቤቶች ቀጠሮዎችን ለማስተናገድ ዝግጁ ናቸው — ሁልጊዜ ምስጢራዊ እና እጅግ አክብሮት የተሞላበት።",
+                s2Desc: "ባሉበት ቦታ መሆን ይመርጣሉ? እኛ ወደ እርስዎ እንመጣለን! ባለሙያዎቻችን በተመረጡ ሆቴሎች እና መኖሪያ ቤቶች ዝግጁ ናቸው።",
                 s3Title: "የሴቶች ልዩ ማሳጅ",
-                s3Desc: "ደህንነቱ በተጠበቀ እና ምቹ በሆነ አካባቢ ውስጥ ለስላሳ እና የተሟላ መዝናናት ለሚፈልጉ ሴቶች የተዘጋጀ ልዩ አገልግሎት። እንደ ምርጫዎ ሴት ወይም ወንድ ባለሙያ ማግኘት ይቻላል።",
+                s3Desc: "ደህንነቱ በተጠበቀ እና ምቹ በሆነ አካባቢ ውስጥ ለስላሳ እና የተሟላ መዝናናት ለሚፈልጉ ሴቶች የተዘጋጀ ልዩ አገልግሎት።",
                 s4Title: "የተራዘመ ሰዓት ማሳጅ (በልዩ ትዕዛዝ)",
-                s4Desc: "ረዘም ያለ ወይም ለየት ያለ ዝግጅት ያላቸውን ክፍለ-ጊዜዎች ለሚፈልጉ ደንበኞች፣ በቅድመ ስምምነት ተለዋዋጭ የቀጠሮ አማራጮችን እናቀርባለን። ሁሉም መዝገቦች በጥንቃቄ እና በምስጢር ይያዛሉ።",
+                s4Desc: "ረዘም ያለ ወይም ለየት ያለ ዝግጅት ያላቸውን ክፍለ-ጊዜዎች ለሚፈልጉ ደንበኞች፣ ተለዋዋጭ የቀጠሮ አማራጮችን እናቀርባለን።",
                 bookBtn: "📱 አሁኑኑ ይያዙ ›", fLinksTitle: "ፈጣን ሊንኮች"
             }
         };
-
         const switcher = document.getElementById("lang-switcher");
         function applyLanguage(lang) {
-            document.getElementById("services-title").innerText = translations[lang].servicesTitle;
-            document.getElementById("services-desc").innerText = translations[lang].servicesDesc;
-            document.getElementById("s1-title").innerText = translations[lang].s1Title;
-            document.getElementById("s1-desc").innerText = translations[lang].s1Desc;
-            document.getElementById("s2-title").innerText = translations[lang].s2Title;
-            document.getElementById("s2-desc").innerText = translations[lang].s2Desc;
-            document.getElementById("s3-title").innerText = translations[lang].s3Title;
-            document.getElementById("s3-desc").innerText = translations[lang].s3Desc;
-            document.getElementById("s4-title").innerText = translations[lang].s4Title;
-            document.getElementById("s4-desc").innerText = translations[lang].s4Desc;
-            document.querySelectorAll(".btn-book-text").forEach(btn => btn.innerHTML = translations[lang].bookBtn);
-            document.getElementById("f-links-title").innerText = translations[lang].fLinksTitle;
+            const t = translations[lang];
+            document.getElementById("services-title").innerText = t.servicesTitle;
+            document.getElementById("services-desc").innerText = t.servicesDesc;
+            document.getElementById("s1-title").innerText = t.s1Title;
+            document.getElementById("s1-desc").innerText = t.s1Desc;
+            document.getElementById("s2-title").innerText = t.s2Title;
+            document.getElementById("s2-desc").innerText = t.s2Desc;
+            document.getElementById("s3-title").innerText = t.s3Title;
+            document.getElementById("s3-desc").innerText = t.s3Desc;
+            document.getElementById("s4-title").innerText = t.s4Title;
+            document.getElementById("s4-desc").innerText = t.s4Desc;
+            document.querySelectorAll(".btn-book-text").forEach(btn => btn.innerHTML = t.bookBtn);
+            document.getElementById("f-links-title").innerText = t.fLinksTitle;
             localStorage.setItem("selectedLang", lang);
         }
-        switcher.addEventListener("change", (e) => applyLanguage(e.target.value));
+        switcher.addEventListener("change", e => applyLanguage(e.target.value));
         const savedLang = localStorage.getItem("selectedLang") || "en";
         switcher.value = savedLang;
         applyLanguage(savedLang);
