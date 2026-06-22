@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIP Massage & Morocco</title>
+    <title>Nani Massage & Morocco</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,8 +12,11 @@
 </head>
 <body>
 
+    <!-- ═══ PARTICLE ANIMATION ═══ -->
+    <canvas id="particle-canvas"></canvas>
+
     <header class="navbar">
-        <div class="logo">VIP Massage <span>& Morocco</span></div>
+        <div class="logo">Nani <span>& Morocco</span></div>
         <div class="nav-right">
             <select id="lang-switcher" class="lang-dropdown-select">
                 <option value="en" selected>🇺🇸 EN</option>
@@ -24,7 +27,7 @@
 
     <section class="hero-section">
         <div class="hero-icon"><i class="fa-solid fa-moon"></i></div>
-        <h1 class="hero-title" id="hero-title">Welcome to VIP <br> Massage & Morocco</h1>
+        <h1 class="hero-title" id="hero-title">Welcome to Nani <br> Massage & Morocco</h1>
         <p class="hero-desc" id="hero-desc">Private Relaxation Services in Addis Ababa</p>
         <div class="hero-buttons">
             <a href="services.html" class="btn-pink-full" id="btn-explore">Explore Our Services →</a>
@@ -35,7 +38,7 @@
     <section class="premium-services-section" style="padding-top: 20px;">
         <div class="services-header-box">
             <h2 id="luxury-title" style="font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 900;">Luxury Wellness Experience ✨</h2>
-            <p id="luxury-desc" style="color: #c1aed3; margin-top: 15px; font-size: 0.95rem; line-height: 1.6;">VIP Massage & Morocco offers a premium private experience for individuals seeking relaxation, comfort, & personalized attention.</p>
+            <p id="luxury-desc" style="color: #c1aed3; margin-top: 15px; font-size: 0.95rem; line-height: 1.6;">Nani & Morocco offers a premium private experience for individuals seeking relaxation, comfort, & personalized attention.</p>
         </div>
 
         <div class="contact-cards-stack" style="margin-top: 30px;">
@@ -76,11 +79,11 @@
     <footer class="vip-luxury-footer">
         <div class="footer-inner-content">
             <div class="footer-brand-summary">
-                <div class="logo">VIP Massage <span>& Morocco</span></div>
+                <div class="logo">Nani <span>& Morocco</span></div>
                 <p class="brand-pitch" id="footer-pitch">Premium massage and wellness services in Addis Ababa. Experience luxury, privacy, and professional care.</p>
                 <div class="brand-social-icons">
-                    <a href="mailto:aferuafsfu@gmail.com" class="footer-round-btn"><i class="fa-regular fa-envelope"></i></a>
-                    <a href="https://wa.me/251974443616" class="footer-round-btn"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="mailto:Example@gmail.com" class="footer-round-btn"><i class="fa-regular fa-envelope"></i></a>
+                    <a href="https://wa.me/251900838801" class="footer-round-btn"><i class="fa-brands fa-whatsapp"></i></a>
                 </div>
             </div>
 
@@ -97,100 +100,130 @@
             <div class="footer-links-column">
                 <h3 id="f-contact-title">Contact</h3>
                 <ul class="footer-contact-details">
-                    <li><i class="fa-solid fa-phone"></i> 0974 443616</li>
-                    <li><i class="fa-regular fa-envelope"></i> aferuafsfu@gmail.com</li>
-                    <li><i class="fa-brands fa-whatsapp"></i> +251 974 443 616</li>
+                    <li><i class="fa-solid fa-phone"></i> +251 90 083 8801</li>
+                    <li><i class="fa-regular fa-envelope"></i> Example@gmail.com</li>
+                    <li><i class="fa-brands fa-whatsapp"></i> +251 90 083 8801</li>
                     <li><i class="fa-solid fa-location-dot"></i> Bole Road, In front of Mega Building, Addis Ababa</li>
                 </ul>
             </div>
         </div>
         <div class="footer-copyright-bottom">
-            <p>© 2026 VIP Massage & Morocco. All rights reserved.</p>
+            <p>© 2026 Nani & Morocco. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
+        // ─── PARTICLE ANIMATION ───────────────────────────────────────────
+        (function() {
+            const canvas = document.getElementById('particle-canvas');
+            const ctx = canvas.getContext('2d');
+            let W, H;
+            function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+            resize(); window.addEventListener('resize', resize);
+            const COLORS = ['#ffd700','#ff3b70','#c084fc','#e0a96d','#ffffff'];
+            class Particle {
+                constructor(init) { this.reset(init); }
+                reset(init) {
+                    this.x = Math.random() * W; this.y = init ? Math.random() * H : H + 10;
+                    this.r = Math.random() * 1.8 + 0.4; this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+                    this.vy = -(Math.random() * 0.5 + 0.15); this.vx = (Math.random() - 0.5) * 0.3;
+                    this.life = 0; this.maxLife = Math.random() * 200 + 150;
+                }
+                update() {
+                    this.x += this.vx; this.y += this.vy; this.life++;
+                    if (this.life > this.maxLife || this.y < -10) this.reset(false);
+                }
+                draw() {
+                    const p = this.life / this.maxLife;
+                    const alpha = p < 0.2 ? p/0.2 : p > 0.8 ? 1-(p-0.8)/0.2 : 1;
+                    ctx.save(); ctx.globalAlpha = alpha * 0.75;
+                    ctx.shadowBlur = 10; ctx.shadowColor = this.color;
+                    ctx.beginPath(); ctx.arc(this.x, this.y, this.r, 0, Math.PI*2);
+                    ctx.fillStyle = this.color; ctx.fill(); ctx.restore();
+                }
+            }
+            function drawLines(ps) {
+                for (let i=0;i<ps.length;i++) for (let j=i+1;j<ps.length;j++) {
+                    const dx=ps[i].x-ps[j].x, dy=ps[i].y-ps[j].y, d=Math.sqrt(dx*dx+dy*dy);
+                    if (d<100) { ctx.save(); ctx.globalAlpha=(1-d/100)*0.12; ctx.strokeStyle='#ffd700'; ctx.lineWidth=0.5; ctx.beginPath(); ctx.moveTo(ps[i].x,ps[i].y); ctx.lineTo(ps[j].x,ps[j].y); ctx.stroke(); ctx.restore(); }
+                }
+            }
+            let mouse={x:-999,y:-999};
+            window.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY;});
+            const COUNT = Math.min(100, Math.floor(window.innerWidth/8));
+            const particles = Array.from({length:COUNT},()=>new Particle(true));
+            function animate() {
+                ctx.clearRect(0,0,W,H); drawLines(particles);
+                particles.forEach(p=>{
+                    const dx=p.x-mouse.x,dy=p.y-mouse.y,d=Math.sqrt(dx*dx+dy*dy);
+                    if(d<90){p.x+=(dx/d)*0.8;p.y+=(dy/d)*0.8;}
+                    p.update(); p.draw();
+                });
+                requestAnimationFrame(animate);
+            }
+            animate();
+        })();
+
+        // ─── LANGUAGE SWITCHER ────────────────────────────────────────────
         const translations = {
             en: {
-                heroTitle: "Welcome to VIP <br> Massage & Morocco",
+                heroTitle: "Welcome to Nani <br> Massage & Morocco",
                 heroDesc: "Private Relaxation Services in Addis Ababa",
-                btnExplore: "Explore Our Services →",
-                btnBookNow: "Book Now",
+                btnExplore: "Explore Our Services →", btnBookNow: "Book Now",
                 luxuryTitle: "Luxury Wellness Experience ✨",
-                luxuryDesc: "VIP Massage & Morocco offers a premium private experience for individuals seeking relaxation, comfort, & personalized attention.",
-                featQTitle: "Premium Quality",
-                featQDesc: "Experience the finest massage techniques with premium oils & luxurious amenities.",
-                featPTitle: "Privacy & Discretion",
-                featPDesc: "Your privacy is our priority. Enjoy complete discretion & confidentiality.",
-                featCTitle: "Personalized Care",
-                featCDesc: "Personalized care for your physical, mental, & emotional well-being—delivered safely, respectfully, & with complete confidentiality.",
-                escapeTitle: "Welcome To Your Private Escape!",
-                escapeDesc: "For Those Who Expect More than Ordinary Massage Book your premium wellness session today for ultimate relaxation.",
-                btnEscapeBook: "Book Now ✨",
-                footerPitch: "Premium massage and wellness services in Addis Ababa. Experience luxury, privacy, and professional care.",
+                luxuryDesc: "Nani & Morocco offers a premium private experience for individuals seeking relaxation, comfort, & personalized attention.",
+                featQTitle: "Premium Quality", featQDesc: "Experience the finest massage techniques with premium oils & luxurious amenities.",
+                featPTitle: "Privacy & Discretion", featPDesc: "Your privacy is our priority. Enjoy complete discretion & confidentiality.",
+                featCTitle: "Personalized Care", featCDesc: "Personalized care for your physical, mental, & emotional well-being—delivered safely, respectfully, & with complete confidentiality.",
+                escapeTitle: "Welcome To Your Private Escape!", escapeDesc: "For Those Who Expect More than Ordinary Massage Book your premium wellness session today for ultimate relaxation.",
+                btnEscapeBook: "Book Now ✨", footerPitch: "Premium massage and wellness services in Addis Ababa. Experience luxury, privacy, and professional care.",
                 fLinksTitle: "Quick Links", fContactTitle: "Contact",
                 txtHome: "Home", txtAbout: "About Us", txtServices: "Services", txtContact: "Contact"
             },
             am: {
-                heroTitle: "እንኳን ወደ VIP <br> ማሳጅ እና ሞሮኮ በሰላም መጡ",
+                heroTitle: "እንኳን ወደ Nani <br> ማሳጅ እና ሞሮኮ በሰላም መጡ",
                 heroDesc: "ልዩ የምስጢር መዝናኛ አገልግሎቶች በአዲስ አበባ",
-                btnExplore: "አገልግሎቶቻችንን ይመልከቱ →",
-                btnBookNow: "ቀጠሮ ይያዙ",
+                btnExplore: "አገልግሎቶቻችንን ይመልከቱ →", btnBookNow: "ቀጠሮ ይያዙ",
                 luxuryTitle: "የቅንጦት ዌልነስ ተሞክሮ ✨",
-                luxuryDesc: "ቪአይፒ ማሳጅ እና ሞሮኮ መዝናናትን፣ ምቾትን እና ልዩ ትኩረትን ለሚሹ ደንበኞች ከፍተኛ ጥራት ያለው የግል አገልግሎት ይሰጣል።",
-                featQTitle: "ከፍተኛ ጥራት (Premium)",
-                featQDesc: "በምርጥ ዘይቶች እና በቅንጦት ዕቃዎች የታገዙ ምርጥ የማሳጅ ዘዴዎችን ይለማመዱ።",
-                featPTitle: "ምስጢራዊነት እና ጥንቃቄ",
-                featPDesc: "የእርስዎ ምስጢር ቅድሚያ የምንሰጠው ጉዳይ ነው። ሙሉ በሙሉ ጥንቃቄ እና ምስጢራዊነት ባለው ሁኔታ ይደሰቱ።",
-                featCTitle: "ልዩ እንክብካቤ",
-                featCDesc: "ለአካላዊ፣ አእምሯዊ እና ስሜታዊ ደህንነትዎ የሚሆን ልዩ እንክብካቤ—በደህንነቱ በተጠበቀ፣ በአክብሮት እና በሙሉ ምስጢራዊነት ይቀርባል።",
-                escapeTitle: "ወደ ግል መዝናኛዎ እንኳን በሰላም መጡ!",
-                escapeDesc: "ከተለመደው ማሳጅ በላይ ለሚጠብቁ ደንበኞች፤ ለላቀ መዝናናት የቪአይፒ ዌልነስ ቀጠሮዎን ዛሬውኑ ይያዙ።",
-                btnEscapeBook: "አሁኑኑ ይያዙ ✨",
-                footerPitch: "በአዲስ አበባ ውስጥ ከፍተኛ ጥራት ያላቸው የቪአይፒ ማሳጅ አገልግሎቶች። የቅንጦት፣ የምስጢር እና ሙያዊ እንክብካቤን ያግኙ።",
+                luxuryDesc: "Nani & Morocco መዝናናትን፣ ምቾትን እና ልዩ ትኩረትን ለሚሹ ደንበኞች ከፍተኛ ጥራት ያለው የግል አገልግሎት ይሰጣል።",
+                featQTitle: "ከፍተኛ ጥራት (Premium)", featQDesc: "በምርጥ ዘይቶች እና በቅንጦት ዕቃዎች የታገዙ ምርጥ የማሳጅ ዘዴዎችን ይለማመዱ።",
+                featPTitle: "ምስጢራዊነት እና ጥንቃቄ", featPDesc: "የእርስዎ ምስጢር ቅድሚያ የምንሰጠው ጉዳይ ነው። ሙሉ በሙሉ ጥንቃቄ እና ምስጢራዊነት ባለው ሁኔታ ይደሰቱ።",
+                featCTitle: "ልዩ እንክብካቤ", featCDesc: "ለአካላዊ፣ አእምሯዊ እና ስሜታዊ ደህንነትዎ የሚሆን ልዩ እንክብካቤ—በደህንነቱ በተጠበቀ፣ በአክብሮት እና በሙሉ ምስጢራዊነት ይቀርባል።",
+                escapeTitle: "ወደ ግል መዝናኛዎ እንኳን በሰላም መጡ!", escapeDesc: "ከተለመደው ማሳጅ በላይ ለሚጠብቁ ደንበኞች፤ ለላቀ መዝናናት የቪአይፒ ዌልነስ ቀጠሮዎን ዛሬውኑ ይያዙ።",
+                btnEscapeBook: "አሁኑኑ ይያዙ ✨", footerPitch: "በአዲስ አበባ ውስጥ ከፍተኛ ጥራት ያላቸው የ Nani ማሳጅ አገልግሎቶች። የቅንጦት፣ የምስጢር እና ሙያዊ እንክብካቤን ያግኙ።",
                 fLinksTitle: "ፈጣን ሊንኮች", fContactTitle: "አድራሻ",
                 txtHome: "መነሻ ገጽ", txtAbout: "ስለ እኛ", txtServices: "አገልግሎቶች", txtContact: "ያግኙን"
             }
         };
 
         const switcher = document.getElementById("lang-switcher");
-
         function applyLanguage(lang) {
-            document.getElementById("hero-title").innerHTML = translations[lang].heroTitle;
-            document.getElementById("hero-desc").innerText = translations[lang].heroDesc;
-            document.getElementById("btn-explore").innerText = translations[lang].btnExplore;
-            document.getElementById("btn-book-now").innerText = translations[lang].btnBookNow;
-            
-            document.getElementById("luxury-title").innerText = translations[lang].luxuryTitle;
-            document.getElementById("luxury-desc").innerText = translations[lang].luxuryDesc;
-            
-            document.getElementById("feat-q-title").innerText = translations[lang].featQTitle;
-            document.getElementById("feat-q-desc").innerText = translations[lang].featQDesc;
-            document.getElementById("feat-p-title").innerText = translations[lang].featPTitle;
-            document.getElementById("feat-p-desc").innerText = translations[lang].featPDesc;
-            document.getElementById("feat-c-title").innerText = translations[lang].featCTitle;
-            document.getElementById("feat-c-desc").innerText = translations[lang].featCDesc;
-            
-            document.getElementById("escape-title").innerText = translations[lang].escapeTitle;
-            document.getElementById("escape-desc").innerText = translations[lang].escapeDesc;
-            document.getElementById("btn-escape-book").innerText = translations[lang].btnEscapeBook;
-            
-            document.getElementById("footer-pitch").innerText = translations[lang].footerPitch;
-            document.getElementById("f-links-title").innerText = translations[lang].fLinksTitle;
-            document.getElementById("f-contact-title").innerText = translations[lang].fContactTitle;
-            
-            document.getElementById("txt-home").innerText = translations[lang].txtHome;
-            document.getElementById("txt-about").innerText = translations[lang].txtAbout;
-            document.getElementById("txt-services").innerText = translations[lang].txtServices;
-            document.getElementById("txt-contact").innerText = translations[lang].txtContact;
-
+            const t = translations[lang];
+            document.getElementById("hero-title").innerHTML = t.heroTitle;
+            document.getElementById("hero-desc").innerText = t.heroDesc;
+            document.getElementById("btn-explore").innerText = t.btnExplore;
+            document.getElementById("btn-book-now").innerText = t.btnBookNow;
+            document.getElementById("luxury-title").innerText = t.luxuryTitle;
+            document.getElementById("luxury-desc").innerText = t.luxuryDesc;
+            document.getElementById("feat-q-title").innerText = t.featQTitle;
+            document.getElementById("feat-q-desc").innerText = t.featQDesc;
+            document.getElementById("feat-p-title").innerText = t.featPTitle;
+            document.getElementById("feat-p-desc").innerText = t.featPDesc;
+            document.getElementById("feat-c-title").innerText = t.featCTitle;
+            document.getElementById("feat-c-desc").innerText = t.featCDesc;
+            document.getElementById("escape-title").innerText = t.escapeTitle;
+            document.getElementById("escape-desc").innerText = t.escapeDesc;
+            document.getElementById("btn-escape-book").innerText = t.btnEscapeBook;
+            document.getElementById("footer-pitch").innerText = t.footerPitch;
+            document.getElementById("f-links-title").innerText = t.fLinksTitle;
+            document.getElementById("f-contact-title").innerText = t.fContactTitle;
+            document.getElementById("txt-home").innerText = t.txtHome;
+            document.getElementById("txt-about").innerText = t.txtAbout;
+            document.getElementById("txt-services").innerText = t.txtServices;
+            document.getElementById("txt-contact").innerText = t.txtContact;
             localStorage.setItem("selectedLang", lang);
         }
-
-        switcher.addEventListener("change", function(e) {
-            applyLanguage(e.target.value);
-        });
-
+        switcher.addEventListener("change", e => applyLanguage(e.target.value));
         const savedLang = localStorage.getItem("selectedLang") || "en";
         switcher.value = savedLang;
         applyLanguage(savedLang);
