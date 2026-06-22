@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact & Booking - VIP Massage & Morocco</title>
+    <title>Contact & Booking - Nani Massage & Morocco</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,10 +11,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+
+    <!-- ═══ PARTICLE ANIMATION ═══ -->
+    <canvas id="particle-canvas"></canvas>
+
     <header class="navbar">
-        <a href="index.html" class="logo" style="text-decoration: none;">VIP Massage <span>& Morocco</span></a>
+        <a href="index.html" class="logo" style="text-decoration: none;">Nani <span>& Morocco</span></a>
         <div class="nav-right">
-            <a href="index.html" class="btn-gold-outline" id="btn-back-home" style="padding: 6px 16px; font-size: 0.8rem; border-radius: 15px;"><i class="fa-solid fa-arrow-left"></i> Back Home</a>
+            <a href="index.html" class="btn-gold-outline" style="padding: 6px 16px; font-size: 0.8rem; border-radius: 15px;"><i class="fa-solid fa-arrow-left"></i> Back Home</a>
             <select id="lang-switcher-booking" class="lang-dropdown-select">
                 <option value="en" selected>🇺🇸 EN</option>
                 <option value="am">🇪🇹 AM</option>
@@ -33,21 +37,21 @@
                 <div class="icon-circle-bg pink-btn-circle"><i class="fa-solid fa-phone"></i></div>
                 <div class="contact-row-text">
                     <h4 class="lbl-phone">Phone</h4>
-                    <p>0974 443616<br><span style="font-size:0.75rem; color:#ffd700;">Available 24/7</span></p>
+                    <p>+251 90 083 8801<br><span style="font-size:0.75rem; color:#ffd700;">Available 24/7</span></p>
                 </div>
             </div>
             <div class="contact-detail-row">
                 <div class="icon-circle-bg pink-btn-circle" style="background:#25d366;"><i class="fa-brands fa-whatsapp"></i></div>
                 <div class="contact-row-text">
                     <h4>WhatsApp</h4>
-                    <p>+251 974 443 616<br><span style="font-size:0.75rem; color:#25d366;">Instant Response</span></p>
+                    <p>+251 90 083 8801<br><span style="font-size:0.75rem; color:#25d366;">Instant Response</span></p>
                 </div>
             </div>
             <div class="contact-detail-row">
                 <div class="icon-circle-bg pink-btn-circle" style="background:#007bff;"><i class="fa-regular fa-envelope"></i></div>
                 <div class="contact-row-text">
                     <h4>Email</h4>
-                    <p style="font-size:0.85rem;">aferuafsfu@gmail.com</p>
+                    <p style="font-size:0.85rem;">Example@gmail.com</p>
                 </div>
             </div>
             <div class="contact-detail-row">
@@ -62,10 +66,10 @@
         <div class="appointment-form-box" style="margin-top: 40px;">
             <h3 id="form-heading">Contact Form</h3>
             <div class="secure-badge" style="background: rgba(255,215,0,0.1); border: 1px dashed #ffd700; padding: 10px; border-radius: 10px; text-align: center; margin-bottom: 20px; font-size: 0.85rem; color: #ffd700;">
-                <i class="fa-solid fa-shield-halved"></i> <span id="txt-secure">Secure VIP Booking Confirmation</span>
+                <i class="fa-solid fa-shield-halved"></i> <span id="txt-secure">Secure Booking Confirmation</span>
             </div>
-            
-            <form action="https://wa.me/251974443616" method="get" target="_blank">
+
+            <form action="https://wa.me/251900838801" method="get" target="_blank">
                 <div class="form-field-group">
                     <label id="lbl-name">Name *</label>
                     <input type="text" name="name" id="placeholder-name" placeholder="Your full name" required>
@@ -102,47 +106,94 @@
                 </ul>
             </div>
         </div>
+        <div class="footer-copyright-bottom">
+            <p>© 2026 Nani & Morocco. All rights reserved.</p>
+        </div>
     </footer>
 
     <script>
+        // ─── PARTICLE ANIMATION ───────────────────────────────────────────
+        (function() {
+            const canvas = document.getElementById('particle-canvas');
+            const ctx = canvas.getContext('2d');
+            let W, H;
+            function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+            resize(); window.addEventListener('resize', resize);
+            const COLORS = ['#ffd700','#ff3b70','#c084fc','#e0a96d','#ffffff'];
+            class Particle {
+                constructor(init) { this.reset(init); }
+                reset(init) {
+                    this.x = Math.random()*W; this.y = init ? Math.random()*H : H+10;
+                    this.r = Math.random()*1.8+0.4; this.color = COLORS[Math.floor(Math.random()*COLORS.length)];
+                    this.vy = -(Math.random()*0.5+0.15); this.vx = (Math.random()-0.5)*0.3;
+                    this.life = 0; this.maxLife = Math.random()*200+150;
+                }
+                update() { this.x+=this.vx; this.y+=this.vy; this.life++; if(this.life>this.maxLife||this.y<-10)this.reset(false); }
+                draw() {
+                    const p=this.life/this.maxLife, alpha=p<0.2?p/0.2:p>0.8?1-(p-0.8)/0.2:1;
+                    ctx.save(); ctx.globalAlpha=alpha*0.75; ctx.shadowBlur=10; ctx.shadowColor=this.color;
+                    ctx.beginPath(); ctx.arc(this.x,this.y,this.r,0,Math.PI*2); ctx.fillStyle=this.color; ctx.fill(); ctx.restore();
+                }
+            }
+            function drawLines(ps) {
+                for(let i=0;i<ps.length;i++) for(let j=i+1;j<ps.length;j++){
+                    const dx=ps[i].x-ps[j].x,dy=ps[i].y-ps[j].y,d=Math.sqrt(dx*dx+dy*dy);
+                    if(d<100){ctx.save();ctx.globalAlpha=(1-d/100)*0.12;ctx.strokeStyle='#ffd700';ctx.lineWidth=0.5;ctx.beginPath();ctx.moveTo(ps[i].x,ps[i].y);ctx.lineTo(ps[j].x,ps[j].y);ctx.stroke();ctx.restore();}
+                }
+            }
+            let mouse={x:-999,y:-999};
+            window.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY;});
+            const COUNT=Math.min(100,Math.floor(window.innerWidth/8));
+            const particles=Array.from({length:COUNT},()=>new Particle(true));
+            function animate(){
+                ctx.clearRect(0,0,W,H); drawLines(particles);
+                particles.forEach(p=>{
+                    const dx=p.x-mouse.x,dy=p.y-mouse.y,d=Math.sqrt(dx*dx+dy*dy);
+                    if(d<90){p.x+=(dx/d)*0.8;p.y+=(dy/d)*0.8;}
+                    p.update(); p.draw();
+                });
+                requestAnimationFrame(animate);
+            }
+            animate();
+        })();
+
+        // ─── LANGUAGE ─────────────────────────────────────────────────────
         document.addEventListener("DOMContentLoaded", function() {
             const bTranslations = {
                 en: {
                     gitTitle: "Get in Touch", gitDesc: "Ready to book your premium wellness experience?",
-                    lblPhone: "Phone", lblAddress: "Address", formHeading: "Contact Form", txtSecure: "Secure VIP Booking Confirmation",
+                    lblPhone: "Phone", lblAddress: "Address", formHeading: "Contact Form", txtSecure: "Secure Booking Confirmation",
                     lblName: "Name *", placeholderName: "Your full name", lblPhoneForm: "Phone *", placeholderPhone: "Your phone number",
                     lblService: "Preferred Service", btnSubmit: "<i class='fa-brands fa-whatsapp'></i> Book Via WhatsApp",
                     fLinksTitle: "Quick Links"
                 },
                 am: {
-                    gitTitle: "ያግኙን (Contact)", gitDesc: "ልዩ የቪአይፒ አገልግሎቶቻችንን ለመያዝ ዝግጁ ነዎት?",
-                    lblPhone: "ስልክ", lblAddress: "አድራሻ", formHeading: "የመመዝገቢያ ፎርም", txtSecure: "የተጠበቀ የቪአይፒ ቀጠሮ ማረጋገጫ",
+                    gitTitle: "ያግኙን (Contact)", gitDesc: "ልዩ አገልግሎቶቻችንን ለመያዝ ዝግጁ ነዎት?",
+                    lblPhone: "ስልክ", lblAddress: "አድራሻ", formHeading: "የመመዝገቢያ ፎርም", txtSecure: "የተጠበቀ ቀጠሮ ማረጋገጫ",
                     lblName: "ስም *", placeholderName: "ሙሉ ስምዎን ያስገቡ", lblPhoneForm: "ስልክ ቁጥር *", placeholderPhone: "የስልክ ቁጥርዎን ያስገቡ",
                     lblService: "የሚመርጡት አገልግሎት", btnSubmit: "<i class='fa-brands fa-whatsapp'></i> በዋትስአፕ ቀጠሮ ይያዙ",
                     fLinksTitle: "ፈጣን ሊንኮች"
                 }
             };
-            
             const bSwitcher = document.getElementById("lang-switcher-booking");
-            
             function applyBookingLanguage(lang) {
-                document.getElementById("git-title").innerText = bTranslations[lang].gitTitle;
-                document.getElementById("git-desc").innerText = bTranslations[lang].gitDesc;
-                document.querySelector(".lbl-phone").innerText = bTranslations[lang].lblPhone;
-                document.querySelector(".lbl-address").innerText = bTranslations[lang].lblAddress;
-                document.getElementById("form-heading").innerText = bTranslations[lang].formHeading;
-                document.getElementById("txt-secure").innerText = bTranslations[lang].txtSecure;
-                document.getElementById("lbl-name").innerText = bTranslations[lang].lblName;
-                document.getElementById("placeholder-name").placeholder = bTranslations[lang].placeholderName;
-                document.getElementById("lbl-phone-form").innerText = bTranslations[lang].lblPhoneForm;
-                document.getElementById("placeholder-phone").placeholder = bTranslations[lang].placeholderPhone;
-                document.getElementById("lbl-service").innerText = bTranslations[lang].lblService;
-                document.getElementById("btn-submit").innerHTML = bTranslations[lang].btnSubmit;
-                document.getElementById("b-f-links-title").innerText = bTranslations[lang].fLinksTitle;
+                const t = bTranslations[lang];
+                document.getElementById("git-title").innerText = t.gitTitle;
+                document.getElementById("git-desc").innerText = t.gitDesc;
+                document.querySelector(".lbl-phone").innerText = t.lblPhone;
+                document.querySelector(".lbl-address").innerText = t.lblAddress;
+                document.getElementById("form-heading").innerText = t.formHeading;
+                document.getElementById("txt-secure").innerText = t.txtSecure;
+                document.getElementById("lbl-name").innerText = t.lblName;
+                document.getElementById("placeholder-name").placeholder = t.placeholderName;
+                document.getElementById("lbl-phone-form").innerText = t.lblPhoneForm;
+                document.getElementById("placeholder-phone").placeholder = t.placeholderPhone;
+                document.getElementById("lbl-service").innerText = t.lblService;
+                document.getElementById("btn-submit").innerHTML = t.btnSubmit;
+                document.getElementById("b-f-links-title").innerText = t.fLinksTitle;
                 localStorage.setItem("selectedLang", lang);
             }
-            
-            bSwitcher.addEventListener("change", (e) => applyBookingLanguage(e.target.value));
+            bSwitcher.addEventListener("change", e => applyBookingLanguage(e.target.value));
             const currentLang = localStorage.getItem("selectedLang") || "en";
             bSwitcher.value = currentLang;
             applyBookingLanguage(currentLang);
