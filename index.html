@@ -10,15 +10,103 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+.navbar {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 14px 5% !important;
+}
+.logo {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    white-space: nowrap !important;
+    font-family: 'Playfair Display', serif !important;
+    font-size: 1.25rem !important;
+    font-weight: 900 !important;
+    color: #e8c99a !important;
+    text-decoration: none !important;
+}
+.logo span { color: #e8c99a !important; }
+.logo img {
+    width: 44px !important; height: 44px !important;
+    border-radius: 50% !important; object-fit: cover !important;
+    mix-blend-mode: lighten !important;
+    box-shadow: 0 0 14px rgba(192,132,252,0.5) !important;
+    flex-shrink: 0 !important;
+}
+.hamburger-btn {
+    background: none; border: none; cursor: pointer;
+    display: flex; flex-direction: column;
+    gap: 5px; padding: 8px;
+}
+.hamburger-btn span {
+    display: block; width: 24px; height: 2.5px;
+    background: #e8c99a; border-radius: 3px;
+    transition: all 0.3s ease;
+}
+.nav-right { display: flex; align-items: center; gap: 10px; }
+.side-menu {
+    position: fixed; top: 0; right: -280px;
+    width: 260px; height: 100vh;
+    background: rgba(10,2,18,0.97);
+    backdrop-filter: blur(20px);
+    border-left: 1px solid rgba(192,132,252,0.2);
+    z-index: 999;
+    transition: right 0.35s cubic-bezier(0.4,0,0.2,1);
+    padding: 80px 30px 30px;
+    display: flex; flex-direction: column; gap: 8px;
+}
+.side-menu.open { right: 0; }
+.side-menu a {
+    color: #d4c5e2; text-decoration: none;
+    font-size: 1rem; font-weight: 600;
+    padding: 12px 16px; border-radius: 12px;
+    display: flex; align-items: center; gap: 12px;
+    transition: background 0.2s ease, color 0.2s ease;
+    border: 1px solid transparent;
+}
+.side-menu a:hover, .side-menu a.active-link {
+    background: rgba(192,132,252,0.1);
+    border-color: rgba(192,132,252,0.2);
+    color: #c084fc;
+}
+.side-menu a i { width: 18px; color: #e8c99a; }
+.menu-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 998; display: none;
+}
+.menu-overlay.open { display: block; }
+.close-menu {
+    position: absolute; top: 20px; right: 20px;
+    background: rgba(192,132,252,0.15);
+    border: 1px solid rgba(192,132,252,0.3);
+    color: #c084fc; width: 36px; height: 36px;
+    border-radius: 50%; font-size: 1.1rem;
+    cursor: pointer; display: flex;
+    align-items: center; justify-content: center;
+}
+.lang-dropdown-select {
+    background: rgba(30,6,44,0.8) !important;
+    border: 1px solid rgba(192,132,252,0.3) !important;
+    color: #fff !important; padding: 7px 12px !important;
+    border-radius: 20px !important; font-size: 0.82rem !important;
+    font-weight: 700 !important; cursor: pointer !important;
+    outline: none !important;
+}
+</style>
 </head>
 <body>
 
     <!-- ═══ PARTICLE ANIMATION ═══ -->
     <canvas id="particle-canvas"></canvas>
 
-    <header class="navbar">
-        <div class="logo" style="display:flex;align-items:center;gap:10px;white-space:nowrap;">
-            <img src="logo.png" alt="Nani Logo" style="width:46px;height:46px;border-radius:50%;object-fit:cover;mix-blend-mode:lighten;box-shadow:0 0 14px rgba(192,132,252,0.5);">
+        <header class="navbar">
+        <div class="logo">
+            <img src="logo.png" alt="Nani Logo">
             Nani <span>& Morocco</span>
         </div>
         <div class="nav-right">
@@ -26,6 +114,9 @@
                 <option value="en" selected>🇺🇸 EN</option>
                 <option value="am">🇪🇹 AM</option>
             </select>
+            <button class="hamburger-btn" onclick="openMenu()" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </header>
 
@@ -232,5 +323,19 @@
         switcher.value = savedLang;
         applyLanguage(savedLang);
     </script>
+
+<div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
+<div class="side-menu" id="sideMenu">
+    <button class="close-menu" onclick="closeMenu()"><i class="fa-solid fa-xmark"></i></button>
+    <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+    <a href="about.html"><i class="fa-solid fa-heart"></i> About Us</a>
+    <a href="services.html"><i class="fa-solid fa-spa"></i> Services</a>
+    <a href="booking.html"><i class="fa-solid fa-phone"></i> Contact</a>
+</div>
+<script>
+function openMenu(){document.getElementById('sideMenu').classList.add('open');document.getElementById('menuOverlay').classList.add('open');}
+function closeMenu(){document.getElementById('sideMenu').classList.remove('open');document.getElementById('menuOverlay').classList.remove('open');}
+</script>
+
 </body>
 </html>
