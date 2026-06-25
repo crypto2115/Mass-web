@@ -330,3 +330,15 @@ body {
 .logo img {
     flex-shrink: 0;
 }
+
+/* ── HERO ICON & BOOK NOW GOLD FIX ── */
+.hero-icon { color: #e8a825 !important; }
+.btn-gold-outline {
+    border: 2px solid #e8a825 !important;
+    color: #e8a825 !important;
+}
+.btn-gold-outline:hover {
+    background: rgba(232,168,37,0.1) !important;
+    border-color: #ffd700 !important;
+    color: #ffd700 !important;
+}
