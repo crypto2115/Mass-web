@@ -342,3 +342,46 @@ body {
     border-color: #ffd700 !important;
     color: #ffd700 !important;
 }
+
+/* ══ GLOBAL PURPLE → GOLD FIX ══ */
+.contact-row-text h4,
+.footer-links-column h3,
+.footer-contact-details i,
+.footer-round-btn,
+.stat-item-box h3,
+.gold-tag,
+.benefits-label,
+.benefit-row i,
+.strip-stat h4,
+.svc-badge,
+.logo span,
+h1, h2, h3, h4 { color: #e8a825 !important; }
+
+/* keep white for card titles and body text */
+.panel-info-content h3,
+.svc-body h2,
+.get-in-touch-header h2,
+.services-header-box h2,
+.not-sure-box h2,
+.appointment-form-box h3,
+.hero-title,
+.stat-item-box p { color: #ffffff !important; }
+
+/* stat numbers gold */
+.stat-item-box h3 { color: #e8a825 !important; }
+
+/* icon circles keep their bg */
+.footer-round-btn { color: #e8a825 !important; }
+
+/* links gold on hover */
+.footer-links-column a:hover { color: #e8a825 !important; }
+.footer-links-column a.active-link { color: #e8a825 !important; }
+
+/* form labels */
+.form-field-group label { color: #e8a825 !important; }
+
+/* btn-gold-outline already gold */
+.lang-dropdown-select { border-color: rgba(232,168,37,0.3) !important; }
+
+/* side menu contact gold */
+.side-menu a[href="booking.html"] { color: #e8a825 !important; }
