@@ -98,6 +98,41 @@
     outline: none !important;
 }
 </style>
+
+    <style>
+        body {
+            background: linear-gradient(160deg, #0a0118 0%, #1a0535 40%, #2d0a4e 70%, #1a0535 100%) !important;
+            background-attachment: fixed !important;
+        }
+        .get-in-touch-section { padding: 30px 5% 20px; }
+        .appointment-form-box {
+            background: rgba(20, 4, 40, 0.7) !important;
+            border: 1px solid rgba(192,132,252,0.2) !important;
+            border-radius: 20px !important;
+            padding: 30px 22px !important;
+            backdrop-filter: blur(15px) !important;
+        }
+        .appointment-form-box h3 {
+            font-size: 1.8rem !important;
+            font-weight: 900 !important;
+            text-align: left !important;
+            margin-bottom: 24px !important;
+        }
+        .form-field-group label {
+            color: #d4c5e2 !important;
+            font-weight: 600 !important;
+        }
+        .form-field-group input {
+            background: rgba(20,4,40,0.8) !important;
+            border: 1px solid rgba(192,132,252,0.25) !important;
+            border-radius: 12px !important;
+            color: #fff !important;
+        }
+        .form-field-group input:focus {
+            border-color: #c084fc !important;
+            box-shadow: 0 0 0 3px rgba(192,132,252,0.1) !important;
+        }
+    </style>
 </head>
 <body>
 
@@ -157,9 +192,9 @@
             </div>
         </div>
 
-        <div class="appointment-form-box" style="margin-top: 40px;">
+                <div class="appointment-form-box" style="margin-top: 40px;">
             <h3 id="form-heading">Contact Form</h3>
-            <div class="secure-badge" style="background: rgba(255,215,0,0.1); border: 1px dashed #ffd700; padding: 10px; border-radius: 10px; text-align: center; margin-bottom: 20px; font-size: 0.85rem; color: #ffd700;">
+            <div class="secure-badge" style="background: rgba(255,215,0,0.08); border: 1px dashed rgba(232,201,154,0.4); padding: 10px; border-radius: 10px; text-align: center; margin-bottom: 24px; font-size: 0.85rem; color: #e8c99a;">
                 <i class="fa-solid fa-shield-halved"></i> <span id="txt-secure">Secure Booking Confirmation</span>
             </div>
 
@@ -169,23 +204,54 @@
                     <input type="text" name="name" id="placeholder-name" placeholder="Your full name" required>
                 </div>
                 <div class="form-field-group">
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="your@email.com">
+                </div>
+                <div class="form-field-group">
                     <label id="lbl-phone-form">Phone *</label>
                     <input type="tel" name="phone" id="placeholder-phone" placeholder="Your phone number" required>
                 </div>
                 <div class="form-field-group">
                     <label id="lbl-service">Preferred Service</label>
-                    <select name="service" id="select-service-dropdown" style="width: 100%; padding: 14px; background: #1e062c; border: 1px solid #4a1566; color: #fff; border-radius: 10px; outline: none; font-size: 0.9rem;">
+                    <select name="service" id="select-service-dropdown" style="width:100%;padding:14px;background:#1e062c;border:1px solid rgba(192,132,252,0.3);color:#fff;border-radius:10px;outline:none;font-size:0.9rem;">
+                        <option value="" disabled selected>Select a service</option>
                         <option value="Personalized Full-Body">Personalized Full-Body Relaxation</option>
                         <option value="Mobile Service">Mobile Service (Hotel / Residence)</option>
                         <option value="Women Session">Women Session</option>
                         <option value="Extended Session">Extended Session</option>
                     </select>
                 </div>
-                <button type="submit" class="btn-pink-full" id="btn-submit" style="width: 100%; margin-top: 15px; background: linear-gradient(90deg, #ffd700 0%, #b89200 100%); color: #000; font-weight: 900;">
-                    <i class="fa-brands fa-whatsapp"></i> Book Via WhatsApp
+                <div class="form-field-group">
+                    <label id="lbl-date">Appointment Date *</label>
+                    <input type="date" name="date" id="placeholder-date" required
+                        style="width:100%;padding:14px;background:#1e062c;border:1px solid rgba(192,132,252,0.3);color:#e8c99a;border-radius:10px;outline:none;font-size:0.9rem;color-scheme:dark;">
+                </div>
+                <div class="form-field-group">
+                    <label id="lbl-time">Starting Time *</label>
+                    <select name="time" id="select-time" style="width:100%;padding:14px;background:#1e062c;border:1px solid rgba(192,132,252,0.3);color:#fff;border-radius:10px;outline:none;font-size:0.9rem;" required>
+                        <option value="" disabled selected>Select starting time</option>
+                        <option>08:00 AM</option><option>09:00 AM</option>
+                        <option>10:00 AM</option><option>11:00 AM</option>
+                        <option>12:00 PM</option><option>01:00 PM</option>
+                        <option>02:00 PM</option><option>03:00 PM</option>
+                        <option>04:00 PM</option><option>05:00 PM</option>
+                        <option>06:00 PM</option><option>07:00 PM</option>
+                        <option>08:00 PM</option><option>09:00 PM</option>
+                        <option>10:00 PM</option>
+                    </select>
+                </div>
+                <div class="form-field-group">
+                    <label id="lbl-message">Message *</label>
+                    <textarea name="message" rows="4" placeholder="Tell us about your preferences, preferred time, or any special requests..."
+                        style="width:100%;padding:14px;background:#1e062c;border:1px solid rgba(192,132,252,0.3);color:#fff;border-radius:10px;outline:none;font-size:0.9rem;resize:vertical;font-family:inherit;" required></textarea>
+                </div>
+                <button type="submit" class="btn-pink-full" id="btn-submit"
+                    style="width:100%;margin-top:10px;background:linear-gradient(90deg,#e8a825,#c47d0e);color:#000;font-weight:900;border-radius:14px;font-size:1rem;padding:16px;display:flex;align-items:center;justify-content:center;gap:10px;">
+                    <i class="fa-solid fa-paper-plane"></i> <span>Book Appointment</span>
                 </button>
             </form>
         </div>
+
     </section>
 
     <footer class="vip-luxury-footer">
@@ -266,7 +332,7 @@
                 en: {
                     gitTitle: "Get in Touch", gitDesc: "Ready to book your premium wellness experience?",
                     lblPhone: "Phone", lblAddress: "Address", formHeading: "Contact Form", txtSecure: "Secure Booking Confirmation",
-                    lblName: "Name *", placeholderName: "Your full name", lblPhoneForm: "Phone *", placeholderPhone: "Your phone number",
+                    lblDate: "Appointment Date *", lblTime: "Starting Time *", lblMessage: "Message *", lblName: "Name *", placeholderName: "Your full name", lblPhoneForm: "Phone *", placeholderPhone: "Your phone number",
                     lblService: "Preferred Service", btnSubmit: "<i class='fa-brands fa-whatsapp'></i> Book Via WhatsApp",
                     fLinksTitle: "Quick Links"
                 },
@@ -309,7 +375,10 @@
     <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
     <a href="about.html"><i class="fa-solid fa-heart"></i> About Us</a>
     <a href="services.html"><i class="fa-solid fa-spa"></i> Services</a>
-    <a href="booking.html"><i class="fa-solid fa-phone"></i> Contact</a>
+    <a href="booking.html" style="color:#e8c99a !important;"><i class="fa-solid fa-phone" style="color:#e8c99a;"></i> Contact</a>
+    <a href="booking.html" style="background:linear-gradient(90deg,#e8a825,#c47d0e);color:#000 !important;font-weight:900;justify-content:center;border:none;margin-top:10px;">
+        <i class="fa-solid fa-calendar-check" style="color:#000;"></i> Book Now
+    </a>
 </div>
 <script>
 function openMenu(){document.getElementById('sideMenu').classList.add('open');document.getElementById('menuOverlay').classList.add('open');}
